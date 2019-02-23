@@ -29,4 +29,8 @@ public class initConfiguration {
         dog.setName(person.getName());
         return dog;
     }
+
+    public void getName(){
+        System.out.println("123");
+    }
 }
