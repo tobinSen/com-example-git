@@ -1,11 +1,19 @@
 package com.uplooking.configuration;
 
-import com.uplooking.pojo.Dog;
 import com.uplooking.pojo.Person;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 @Configuration
+@ComponentScans(value = {
+        @ComponentScan(value = "com.uplooking",
+                excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Controller.class, Service.class})}),
+        @ComponentScan(value = "com.uplooking",
+                includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = Repository.class)}, useDefaultFilters = false)
+})
+
 public class initConfiguration {
 
     /**
@@ -25,9 +33,7 @@ public class initConfiguration {
     }
 
     @Bean
-    public Dog getDog(Person person) {
-        Dog dog = new Dog();
-        dog.setName(person.getName());
-        return dog;
+    public MyBeanDefinitionRegistryPostProcessor MyBeanDefinitionRegistryPostProcessor() {
+        return new MyBeanDefinitionRegistryPostProcessor();
     }
 }

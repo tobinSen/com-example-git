@@ -43,8 +43,8 @@ public class Springboot01Test {
     @Test
     public void test1() {
         System.out.println(dog.toString());
-        Dog dog = applicationContext.getBean(Dog.class);
-        System.out.println(dog.toString());
+        //Dog dog = applicationContext.getBean(Dog.class);
+        //System.out.println(dog.toString());
         //Person person = (Person) objectProvider.getIfUnique();
         //System.out.println(person.toString());
     }
