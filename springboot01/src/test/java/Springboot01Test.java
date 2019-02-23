@@ -19,6 +19,14 @@ public class Springboot01Test {
     @Autowired
     private ApplicationContext applicationContext;
 
+    /**
+     * 四种方式注入容器中：
+     * 1、 xml
+     * 2、注解 @Controller @Service @Repository
+     * 3、配置类 @configuration @Bean
+     * 4、容器自动运行时候创建的 ApplicationContext
+     */
+
     @Test
     public void test1() {
         System.out.println(dog.toString());
