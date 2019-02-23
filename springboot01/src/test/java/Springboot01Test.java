@@ -34,6 +34,10 @@ public class Springboot01Test {
      * 1、注解方式 @Autowired @Qualifier @Resource
      * 2、applicationContext.getBean(Person.class);
      * 3、ObjectProvider.getIfAvailable();
+     * <p>
+     * 注意：
+     * 形参直接可以从容器中获取
+     * dubbo引入会自动注入到spring容器中
      */
 
     @Test
