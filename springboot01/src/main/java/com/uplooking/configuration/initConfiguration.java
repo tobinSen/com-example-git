@@ -29,4 +29,8 @@ public class initConfiguration {
         dog.setName(person.getName());
         return dog;
     }
+
+    public void getPerson(Integer age){
+        System.out.println(age);
+    }
 }
