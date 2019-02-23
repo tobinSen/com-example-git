@@ -2,6 +2,7 @@ import com.uplooking.Springboot01Application;
 import com.uplooking.pojo.Dog;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -19,12 +20,20 @@ public class Springboot01Test {
     @Autowired
     private ApplicationContext applicationContext;
 
+    @Autowired
+    private ObjectProvider objectProvider;
+
     /**
      * 四种方式注入容器中：
      * 1、 xml
      * 2、注解 @Controller @Service @Repository
      * 3、配置类 @configuration @Bean
      * 4、容器自动运行时候创建的 ApplicationContext
+     * <p>
+     * 三种依赖注入的方式
+     * 1、注解方式 @Autowired @Qualifier @Resource
+     * 2、applicationContext.getBean(Person.class);
+     * 3、ObjectProvider.getIfAvailable();
      */
 
     @Test
@@ -32,5 +41,7 @@ public class Springboot01Test {
         System.out.println(dog.toString());
         Dog dog = applicationContext.getBean(Dog.class);
         System.out.println(dog.toString());
+        //Person person = (Person) objectProvider.getIfUnique();
+        //System.out.println(person.toString());
     }
 }

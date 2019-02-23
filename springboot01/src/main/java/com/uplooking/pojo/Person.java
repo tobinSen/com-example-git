@@ -2,6 +2,7 @@ package com.uplooking.pojo;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Date;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 @Data
 //@Configuration //注入属性的同时，注册到spring容器中
-//@ConfigurationProperties(prefix = "person") //prefix表示将配置类中以什么开头的配置信息注入到实体的属性中
+@ConfigurationProperties(prefix = "person") //prefix表示将配置类中以什么开头的配置信息注入到实体的属性中
 public class Person {
 
     //@Value("${person.name}")
