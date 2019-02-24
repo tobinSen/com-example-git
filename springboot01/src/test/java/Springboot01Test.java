@@ -29,6 +29,14 @@ public class Springboot01Test {
      * 2、注解 @Controller @Service @Repository
      * 3、配置类 @configuration @Bean
      * 4、容器自动运行时候创建的 ApplicationContext
+     * 5、@Import()
+     *      1、@Import(要导入到容器中的组件)，容器中就会自动注册这个组件 id默认全类名
+     *      2、ImportSelector：返回需要导入的组件的全类名数据组
+     *      3、ImportBeanDefinitionRegistrar:手动组成Bean到容器中
+     * 6、使用FactoryBean(工厂Bean)
+     *      1、默认获取的是工厂Bean调用getObject创建的对象
+     *      2、要获取工厂Bean本身，我们需要给id前面加一个&
+     *          &myFactoryBean
      * <p>
      * 三种依赖注入的方式
      * 1、注解方式 @Autowired @Qualifier @Resource
