@@ -1,6 +1,6 @@
 package com.uplooking.configuration;
 
-import com.uplooking.MyCondition;
+import com.uplooking.condition.MyCondition;
 import com.uplooking.factory.MyFactoryBean;
 import com.uplooking.importselector.MyImportBeanDefinitionRegistrar;
 import com.uplooking.importselector.MyImportSelector;
@@ -9,6 +9,11 @@ import com.uplooking.pojo.Dog;
 import com.uplooking.pojo.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.DelegatingDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import javax.sql.DataSource;
 
 @Configuration
 //@ComponentSan是一个复合组件，可以重复使用
@@ -56,7 +61,7 @@ public class initConfiguration {
     }
 
     @Conditional({MyCondition.class})//当符合MyCondition为true，才会添加到容器中
-    @Bean
+    @Bean()
     public Dog dog() {
         return new Dog();
     }
@@ -67,6 +72,18 @@ public class initConfiguration {
         return new MyFactoryBean();
     }
 
+    //spring对@Configuration类会特殊处理，给容器中加组件的方法，多次调用都只是从容器中找组件
+
+    @Bean
+    public DataSource dataSource() {
+        return new DelegatingDataSource();
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        //方法调用，注入Bean
+        return new DataSourceTransactionManager(dataSource());
+    }
 
     @Bean
     public MyBeanDefinitionRegistryPostProcessor MyBeanDefinitionRegistryPostProcessor() {

@@ -1,4 +1,4 @@
-package com.uplooking;
+package com.uplooking.condition;
 
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;

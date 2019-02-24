@@ -6,6 +6,9 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 @Component
 public class MyBeanLifeCycle implements InitializingBean, DisposableBean, BeanPostProcessor {
 
@@ -30,6 +33,15 @@ public class MyBeanLifeCycle implements InitializingBean, DisposableBean, BeanPo
         return null;
     }
 
+    @PostConstruct
+    public void init(){
+        System.out.println("init...");
+    }
+
+    @PreDestroy
+    public void MyDestroy(){
+        System.out.println("destroy");
+    }
 
     /**
      * 容器管理Bean的生命周期

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * AOP的原理：
  *  1、@EnableAspectJAutoProxy 开启AOP功能
  *  2、@EnableAspectJAutoProxy 会给容器中注册一个组件AnnotationAwareAspectJAutoProxyCreator
- *  3、AnnotationAwareAspectJAutoProxyCreator是一个后置处理器
+ *  3、AnnotationAwareAspectJAutoProxyCreator是一个后置处理器==》BeanPostProcess
  *  4、容器创建流程；
  *      1、registerBeanPostProcessors()注册后置处理器，创建AnnotationAwareAspectJAutoProxyCreator
         2、finishBeanFactoryInitialization()初始化剩下的单实例bean
