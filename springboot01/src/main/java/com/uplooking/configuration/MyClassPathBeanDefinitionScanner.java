@@ -4,6 +4,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
+import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.stereotype.Controller;
 
 import java.util.Set;
 
@@ -14,10 +16,11 @@ public class MyClassPathBeanDefinitionScanner extends ClassPathBeanDefinitionSca
     }
 
     @Override
-    public int scan(String... basePackages) {
-        return super.scan(basePackages);
+    protected void registerDefaultFilters() {
+        this.addIncludeFilter(new AnnotationTypeFilter(Controller.class));
     }
 
+    //执行扫描包
     @Override
     protected Set<BeanDefinitionHolder> doScan(String... basePackages) {
         return super.doScan(basePackages);
@@ -27,6 +30,4 @@ public class MyClassPathBeanDefinitionScanner extends ClassPathBeanDefinitionSca
     protected boolean isCompatible(BeanDefinition newDefinition, BeanDefinition existingDefinition) {
         return super.isCompatible(newDefinition, existingDefinition);
     }
-
-
 }
