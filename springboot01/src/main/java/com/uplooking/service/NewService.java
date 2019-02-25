@@ -68,7 +68,7 @@ public class NewService {
                                                                         .filter(QueryBuilders.rangeQuery("word").gt(10))
                                                                         .mustNot(QueryBuilders.termQuery("word",word )))
                                     .build();
-        List<New> newsList = elasticsearchTemplate.queryForList(query, New.class);
+        elasticsearchTemplate.queryForList(query, New.class)
     }
 
     public Iterable<New> findAll() {
