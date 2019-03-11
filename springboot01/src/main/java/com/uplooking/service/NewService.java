@@ -2,6 +2,7 @@ package com.uplooking.service;
 
 import com.uplooking.dao.NewsRepository;
 import com.uplooking.pojo.New;
+import com.uplooking.pojo.Person;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.GeoDistanceQueryBuilder;
 import org.elasticsearch.index.query.MatchQueryBuilder;
@@ -20,8 +21,8 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class NewService {
@@ -68,7 +69,7 @@ public class NewService {
                                                                         .filter(QueryBuilders.rangeQuery("word").gt(10))
                                                                         .mustNot(QueryBuilders.termQuery("word",word )))
                                     .build();
-        elasticsearchTemplate.queryForList(query, New.class)
+        elasticsearchTemplate.queryForList(query, New.class);
     }
 
     public Iterable<New> findAll() {
@@ -87,7 +88,7 @@ public class NewService {
         this.newsRepository.delete(id);
     }
 
-    public void init() {
+    /*public void init() {
         for (int i = 0; i < 100; i++) {
             New aNew = new New();
             aNew.setId(Long.valueOf(i));
@@ -96,6 +97,14 @@ public class NewService {
             aNew.setCreateDateTime(new Date());
             this.newsRepository.save(aNew);
         }
-    }
+    }*/
 
+
+    public static void main(String[] args) throws InterruptedException {
+        long convert = TimeUnit.MINUTES.convert(1, TimeUnit.HOURS);
+        long hours = TimeUnit.HOURS.toMinutes(1);
+        TimeUnit.HOURS.timedWait(new Person(), 1L);
+        System.out.println(convert);
+        System.out.println(hours);
+    }
 }

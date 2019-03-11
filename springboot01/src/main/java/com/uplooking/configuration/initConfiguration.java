@@ -55,7 +55,7 @@ public class initConfiguration {
     @Primary //
     public Person getPerson() {
         Person person = new Person();
-        person.setName("张三");
+        //person.setName("张三");
         System.out.println("1233");
         return person;
     }
