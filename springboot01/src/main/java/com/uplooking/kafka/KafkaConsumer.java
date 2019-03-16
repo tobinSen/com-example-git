@@ -9,6 +9,8 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.locks.StampedLock;
+
 @Component
 @Slf4j
 public class KafkaConsumer {
@@ -25,6 +27,8 @@ public class KafkaConsumer {
         System.out.println("监听消息==》" + message);
         //当期的偏移量==》kafka是根据偏移量进行消费的
         long offset = consumerRecord.offset();
+        StampedLock stampedLock = new StampedLock();
+        stampedLock.asReadLock();
 
     }
 }
