@@ -1,6 +1,7 @@
 package com.uplooking.mongo;
 
 import lombok.Data;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Timestamp;
@@ -9,6 +10,7 @@ import java.sql.Timestamp;
 @Data
 public class Book {
 
+    @Indexed
     private Long id;
     private String title;
     private String context;
