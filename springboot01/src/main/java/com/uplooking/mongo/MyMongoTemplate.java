@@ -37,9 +37,6 @@ public class MyMongoTemplate {
      *            .pull("字段名","字段值") ->删除集合中的某个值
      *
      *      Aggregation.newAggregation(Aggregation.Group("id").count().as("别名"));
-     *
-     *
-     *
      */
     public void test() {
         Book book = new Book();
