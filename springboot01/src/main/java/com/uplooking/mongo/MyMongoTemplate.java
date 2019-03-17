@@ -19,6 +19,28 @@ public class MyMongoTemplate {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    /**
+     * 总结：Query 、Criteria、Update 、Aggregation 、skip 、limit
+     *      Query.query()
+     *
+     *      Criteria.where("字段名").is("字段值")
+     *              .and("字段名").is("字段值")
+     *              .orOperator(Criteria....)
+     *
+     *      Update.update("字段名","字段值")
+     *            .set("字段名","字段值")
+     *            .inc("字段名","增加值")
+     *            .currentDate("字段值") -> 更新为当前时间
+     *            .unset("字段值")  ->删除字段名
+     *            .push("字段名","字段值")
+     *            .addToSet("字段名").each("字段值1"，"字段值2"，"字段值3"，"字段值4")
+     *            .pull("字段名","字段值") ->删除集合中的某个值
+     *
+     *      Aggregation.newAggregation(Aggregation.Group("id").count().as("别名"));
+     *
+     *
+     *
+     */
     public void test() {
         Book book = new Book();
         book.setId(1L);
