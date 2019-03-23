@@ -16,7 +16,19 @@ public class Book {
     private String context;
     private Timestamp time;
 
-    public void gitBrach01() {
-        System.out.println("gitBrach01");
+    private String newTitle;
+    private String newContext;
+
+    private String newName;
+
+    private Long oldTitle;
+    private String oldName;
+
+    private Long oldNewName;
+    private Long oldNew;
+
+
+    public void gitBrach02() {
+        System.out.println("gitBrach02");
     }
 }
