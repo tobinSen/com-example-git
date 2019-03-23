@@ -18,7 +18,7 @@ public class Book {
 
     public void gitBrach01() {
         System.out.println("gitBrach01");
-
+    }
     public void gitBrach02() {
         System.out.println("gitBrach02");
     }
