@@ -15,4 +15,8 @@ public class Book {
     private String title;
     private String context;
     private Timestamp time;
+
+    public void gitBrach01() {
+        System.out.println("gitBrach01");
+    }
 }
