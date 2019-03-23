@@ -1,4 +1,4 @@
-package websocket;
+package com.uplooking.websocket;
 
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;

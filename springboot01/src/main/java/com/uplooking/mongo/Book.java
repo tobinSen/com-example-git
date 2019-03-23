@@ -15,4 +15,7 @@ public class Book {
     private String title;
     private String context;
     private Timestamp time;
+
+    private String newTitle;
+    private String newContext;
 }

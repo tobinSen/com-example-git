@@ -1,4 +1,4 @@
-package websocket;
+package com.uplooking.websocket;
 
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
