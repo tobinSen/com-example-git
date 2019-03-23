@@ -18,4 +18,6 @@ public class Book {
 
     private String newTitle;
     private String newContext;
+
+    private String newName;
 }
