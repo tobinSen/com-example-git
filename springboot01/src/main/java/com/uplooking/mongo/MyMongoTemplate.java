@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -39,11 +38,11 @@ public class MyMongoTemplate {
      *      Aggregation.newAggregation(Aggregation.Group("id").count().as("别名"));
      */
     public void test() {
-        Book book = new Book();
+    /*    Book book = new Book();
         book.setId(1L);
         book.setContext("mongo");
         book.setTime(new Timestamp(System.currentTimeMillis()));
-        mongoTemplate.save(book, "book");
+        mongoTemplate.save(book, "book");*/
 
         Query query = Query.query(Criteria.where("id").is(1L).and("name").is("三国演义").orOperator(Criteria.where("context").is("三国演义")));
         mongoTemplate.remove(query, Book.class);
