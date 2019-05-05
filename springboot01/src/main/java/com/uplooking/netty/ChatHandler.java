@@ -1,5 +1,6 @@
 package com.uplooking.netty;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -27,6 +28,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
         for (Channel client : clients) {
             client.writeAndFlush(new TextWebSocketFrame(""));
         }
+        ByteBuf buf = null;
 
     }
 }

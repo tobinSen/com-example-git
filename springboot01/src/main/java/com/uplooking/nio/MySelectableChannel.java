@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class MySelectableChannel {
 
     @SneakyThrows
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         //客户端
         //1、获取通道
         SocketChannel sChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 8080));

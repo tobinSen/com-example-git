@@ -35,8 +35,8 @@ import java.util.SortedMap;
  * Socket
  * ServerSocket
  * DatagramSocket
- *  Pipe.SinkChannel
- *  Pipe.SourceChannel
+ * Pipe.SinkChannel
+ * Pipe.SourceChannel
  * 2、在JDK1.7中NIO针对各个通道提供了静态方法open()
  * 3、在JDK1.7中NIO中Files工具类newByteChannel()
  * <p>
@@ -50,7 +50,7 @@ import java.util.SortedMap;
  * <p>
  * 聚集写入(Gather Writers) : 将多个缓冲区中的数据聚集到通道中
  * 按照顺序将缓冲区中的数据写入到通道中
- *
+ * <p>
  * 字符集 CharSet
  * 编码：字符串->字节数组
  * 解码：字节数组->字符串
@@ -58,7 +58,7 @@ import java.util.SortedMap;
 public class MyChannel {
 
     @SneakyThrows
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         //通道完成文件的复制
         FileInputStream fis = new FileInputStream("1.jpg");
         FileOutputStream fos = new FileOutputStream("2.jpg");
@@ -116,7 +116,7 @@ public class MyChannel {
         }
 
         //4、聚集写入
-        RandomAccessFile accessFile = new RandomAccessFile("2.txt","rw" );
+        RandomAccessFile accessFile = new RandomAccessFile("2.txt", "rw");
 
 
         SortedMap<String, Charset> charsets = Charset.availableCharsets();
