@@ -31,4 +31,8 @@ public class Person {
     private List<String> lists;
     //@Value("#{${person.dog}}")  不支持复杂类型 @configurationProperties支持复杂类型，但是@Value可以使用spel表达式形成的数组映射到集合中
     private Dog dog;
+
+    protected Long parentId;
+
+    public String parentBook;
 }
