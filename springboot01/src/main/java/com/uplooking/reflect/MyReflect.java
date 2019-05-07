@@ -2,9 +2,7 @@ package com.uplooking.reflect;
 
 import com.uplooking.pojo.Person;
 
-import java.lang.reflect.AnnotatedType;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.lang.reflect.*;
 
 public class MyReflect {
     /**
@@ -68,6 +66,21 @@ public class MyReflect {
          getClasses():Class<?>[]
          getDeclaredClasses():Class<?>[]
 
+     Type type = book.getGenericSuperclass();
+     ParameterizedType parameterizedType = (ParameterizedType)type;
+     Type[] arguments = parameterizedType.getActualTypeArguments();//泛型参数
+
+     getActualTypeArguments()返回了一个Type数组,数组里是参数化类型的参数
+
+
+     注解API:
+     boolean isAnnotationPresent(Class<?extends Annotation> annotationClass)：判断是否是指定注解
+     <T extends Annotation> T getAnnotation(Class<T> annotationClass)：返回指定注解包含父类
+     Annotation[] getAnnotations()：返回所有注解
+     <T extends Annotation> T[] getAnnotationsByType(Class<T> annotationClass)：返回指定注解类型多个包含父类
+     <T extends Annotation> T getDeclaredAnnotation(Class<T> annotationClass)：获取指定注解只能是本类
+     <T extends Annotation> T[] getDeclaredAnnotationsByType(Class<T> annotationClass)：获取指定类型只能是本类
+     Annotation[] getDeclaredAnnotations()：获取本类所有的注解
 
      */
 
@@ -102,6 +115,10 @@ public class MyReflect {
         AnnotatedType annotatedSuperclass = book.getAnnotatedSuperclass();
         System.out.println(annotatedSuperclass.getType().getTypeName());
         Class<? extends Person> subclass = book.asSubclass(Person.class);
+
+        Type type = book.getGenericSuperclass();
+        ParameterizedType parameterizedType = (ParameterizedType)type;
+        Type[] arguments = parameterizedType.getActualTypeArguments();//泛型参数
 
     }
 
