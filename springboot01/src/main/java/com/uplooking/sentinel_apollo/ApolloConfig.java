@@ -1,8 +1,5 @@
 package com.uplooking.sentinel_apollo;
 
-import com.alibaba.fastjson.JSON;
-import com.ctrip.framework.apollo.openapi.client.ApolloOpenApiClient;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
@@ -12,8 +9,11 @@ class
 
 ApolloConfig {
 
+    public static void main(String[] args) {
+        System.out.println("---------->");
+    }
 
-    @Bean
+    /*@Bean
     public Converter<List<FlowRuleEntity>, String> flowRuleEntityEncoder() {
         return JSON::toJSONString;
     }
@@ -32,5 +32,5 @@ ApolloConfig {
                 .withToken("open api token") // TODO 根据实际情况修改
                 .build();
         return client;
-    }
+    }*/
 }
