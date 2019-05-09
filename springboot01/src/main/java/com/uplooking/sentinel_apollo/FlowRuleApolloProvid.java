@@ -6,5 +6,6 @@ public class FlowRuleApolloProvid  {
         System.out.println("123");
         System.out.println("张三");
         System.out.println("历史");
+        System.out.println("----------------");
     }
 }
