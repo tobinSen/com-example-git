@@ -1,0 +1,4 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.uplooking.spring.MyEnvironmentPostProcessor
+org.springframework.context.ApplicationContextInitializer=\
+com.uplooking.spring.MyApplicationContextInitializer
