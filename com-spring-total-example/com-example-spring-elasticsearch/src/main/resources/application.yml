@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: spring-elasticsearch
+  data:
+    elasticsearch:
+      cluster-name: spring-elasticserch
+      cluster-nodes: localhost:9300
+
+server:
+  port: 9990
