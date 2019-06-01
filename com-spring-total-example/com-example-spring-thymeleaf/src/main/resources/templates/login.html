@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"></meta>
+    <title th:if="#{login.title}" th:text="#{login.title}"></title>
+</head>
+<body>
+	<div th:if="${session.user == null}">
+		<!--/*@thymesVar id="result" type="ch"*/-->
+		<h3 th:text="${result}"></h3>
+		<h2 th:text="#{login.title}"></h2>
+		<form th:action="@{/user/login}" method="post">
+			<label th:text="#{login.uname}"></label>
+			<input type="text" th:field="*{user.uname}" />
+			<label th:if="${#fields.hasErrors('user.uname')}" th:errors="*{user.uname}"></label><br/>
+			<label th:text="#{login.upwd}"></label>
+			<input type="text" th:field="*{user.upwd}" />
+			<label th:if="${#fields.hasErrors('user.upwd')}" th:errors="*{user.upwd}"></label><br/>
+			<input type="submit" th:value="#{login.submit}" />
+		</form>
+	</div>
+	<div th:if="${session.user !=null}">
+		<h2 th:text="${session.user.uname}"></h2>
+		<a th:href="@{/user/logout}" th:text="#{login.out}"></a>
+		<a th:href="@{/book/list}" th:text="#{book.list}"></a>
+	</div>
+</body>
+</html>

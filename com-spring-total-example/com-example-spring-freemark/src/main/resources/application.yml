@@ -1,0 +1,15 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /freemark
+spring:
+  freemarker:
+    cache: false
+    charset: UTF-8
+    template-loader-path: /web #ftl的加载地址
+    check-template-location: true
+    content-type: text/html  #转换的类型
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl

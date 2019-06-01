@@ -11,6 +11,9 @@
     <modules>
         <module>com-example-spring-gateway</module>
         <module>com-example-spring-elasticsearch</module>
+        <module>com-example-spring-websocket</module>
+        <module>com-example-spring-thymeleaf</module>
+        <module>com-example-spring-freemark</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
@@ -29,13 +32,32 @@
         <druid.version>1.1.10</druid.version>
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <spring-cloud-starter-gateway>2.1.1.RELEASE</spring-cloud-starter-gateway>
+        <alibaba-fastjson>1.2.45</alibaba-fastjson>
     </properties>
 
     <dependencies>
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${alibaba-fastjson}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
