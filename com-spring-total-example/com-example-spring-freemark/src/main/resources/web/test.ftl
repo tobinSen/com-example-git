@@ -104,5 +104,14 @@ ${(x/2)?int}
 </h1>
 <p>Our latest product:
     <a href="${latestProduct.url}">${latestProduct.name}</a>!
+<#switch .caller_template_name>
+
+<#list map?keys as key>
+<ul>
+    <li>${map[key].name}</li>
+</ul>
+</#list>
+
+</#switch>
 </body>
 </html>
