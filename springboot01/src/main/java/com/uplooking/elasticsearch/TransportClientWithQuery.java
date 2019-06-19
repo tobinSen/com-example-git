@@ -7,14 +7,12 @@ import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.index.query.QueryBuilders;
-import org.elasticsearch.index.query.QueryParseContext;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.aggregations.metrics.avg.AvgAggregationBuilder;
 import org.elasticsearch.search.aggregations.metrics.min.MinAggregationBuilder;
 import org.elasticsearch.search.aggregations.metrics.valuecount.ValueCountAggregationBuilder;
 import org.elasticsearch.search.aggregations.support.ValueType;
-import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
@@ -170,10 +168,10 @@ public class TransportClientWithQuery {
         SearchRequestBuilder builder = client.prepareSearch(indices)
                 .setSearchType(SearchType.DEFAULT)
                 .setFrom(0)
-                .setSize(5)//设置分页
-                .highlighter(HighlightBuilder.fromXContent(new QueryParseContext("")))
+                .setSize(5);//设置分页
+                /*.highlighter(HighlightBuilder.fromXContent(new QueryParseContext("")))
                 .setHighlighterPreTags("<font style='color:red;size=35'>")
-                .setHighlighterPostTags("</font>");//高亮风格
+                .setHighlighterPostTags("</font>");//高亮风格*/
         //16.ES查询详解之aggregations
         //根据字段进行分组统计 根据字段分组，统计其他字段的值 size设置为0，会获取所有数据，否则，只会返回10条
         SearchResponse searchResponse14 = client.prepareSearch(indices)
