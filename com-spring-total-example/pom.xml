@@ -18,6 +18,7 @@
         <module>com-example-spring-activity</module>
         <module>com-example-spring-weixin</module>
         <module>com-example-spring-jwt</module>
+        <module>com-example-spring-oauth</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
