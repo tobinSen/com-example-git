@@ -19,6 +19,7 @@
         <module>com-example-spring-weixin</module>
         <module>com-example-spring-jwt</module>
         <module>com-example-spring-oauth</module>
+        <module>com-example-spring-redis</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
