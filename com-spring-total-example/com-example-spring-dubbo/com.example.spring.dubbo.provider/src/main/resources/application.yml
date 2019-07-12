@@ -1,0 +1,17 @@
+server:
+  port: 8082
+
+dubbo:
+  application:
+    name: dubbo-provider
+
+  registry:
+    register: false
+    address: N/A
+
+  protocol:
+    name: dubbo
+    port: 20880
+
+  scan:
+    base-packages: com.example.spring.dubbo.provider.provider

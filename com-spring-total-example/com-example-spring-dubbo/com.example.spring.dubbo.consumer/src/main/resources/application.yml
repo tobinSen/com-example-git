@@ -1,0 +1,10 @@
+server:
+  port: 8081
+dubbo:
+  application:
+    name: dubbo-consumer
+  registry:
+    register: false
+    address: N/A
+  scan:
+    base-packages: com.example.spring.dubbo.consumer.consumer

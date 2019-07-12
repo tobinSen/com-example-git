@@ -20,6 +20,7 @@
         <module>com-example-spring-jwt</module>
         <module>com-example-spring-oauth</module>
         <module>com-example-spring-redis</module>
+        <module>com-example-spring-dubbo</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
