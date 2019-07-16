@@ -23,6 +23,7 @@
         <module>com-example-spring-dubbo</module>
         <module>com.example.spring.rocketmq</module>
         <module>com-example-spring-rocketmq</module>
+        <module>com-example-spring-mdc</module>
     </modules>
 
     <!--导入springboot版本仲裁-->

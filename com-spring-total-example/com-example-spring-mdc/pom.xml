@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>com.spring.total.example</artifactId>
+        <groupId>com.spring.cn</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>com.example.spring.mdc</artifactId>
+    <properties>
+        <spring-cloud.version>2.0.0.RELEASE</spring-cloud.version>
+
+        <!--全局属性配置-->
+        <!--<project.build.name>tools</project.build.name>-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.1.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.22</version>
+        </dependency>
+
+        <!-- sleuth链路跟踪 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <version>${spring-cloud.version}</version>
+        </dependency>
+
+        <!-- 添加能够使用log4j2.yml配置的依赖-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+    </dependencies>
+    <!--&lt;!&ndash; 编译插件 &ndash;&gt;-->
+    <!--<plugin>-->
+    <!--<groupId>org.apache.maven.plugins</groupId>-->
+    <!--<artifactId>maven-compiler-plugin</artifactId>-->
+    <!--<configuration>-->
+    <!--<source>1.8</source>-->
+    <!--<target>1.8</target>-->
+    <!--<encoding>${project.build.sourceEncoding}</encoding>-->
+    <!--</configuration>-->
+    <!--</plugin>-->
+
+    <!--&lt;!&ndash; 设置资源文件(xml、properties文件都是资源文件)的编码方式 &ndash;&gt;-->
+    <!--<plugin>-->
+    <!--<groupId>org.apache.maven.plugins</groupId>-->
+    <!--<artifactId>maven-resources-plugin</artifactId>-->
+    <!--<version>2.4.3</version>-->
+    <!--<executions>-->
+    <!--<execution>-->
+    <!--<phase>compile</phase>-->
+    <!--</execution>-->
+    <!--</executions>-->
+    <!--<configuration>-->
+    <!--<encoding>${project.build.sourceEncoding}</encoding>-->
+    <!--</configuration>-->
+    <!--</plugin>-->
+
+    <!--&lt;!&ndash; 依赖插件(在部署war包时，需要将项目依赖的jar包，也打到war包中) &ndash;&gt;-->
+    <!--<plugin>-->
+    <!--<groupId>org.apache.maven.plugins</groupId>-->
+    <!--<artifactId>maven-dependency-plugin</artifactId>-->
+    <!--<version>2.6</version>-->
+    <!--<executions>-->
+    <!--<execution>-->
+    <!--<id>copy-dependencies</id>-->
+    <!--<phase>compile</phase>-->
+    <!--<goals>-->
+    <!--<goal>copy-dependencies</goal>-->
+    <!--</goals>-->
+    <!--<configuration>-->
+    <!--&lt;!&ndash; ${project.build.directory}为Maven内置变量，缺省为target &ndash;&gt;-->
+    <!--<outputDirectory>${project.build.directory}/lib</outputDirectory>-->
+    <!--&lt;!&ndash; 表示是否不包含间接依赖的包 &ndash;&gt;-->
+    <!--<excludeTransitive>false</excludeTransitive>-->
+    <!--&lt;!&ndash; 表示复制的jar文件去掉版本信息 &ndash;&gt;-->
+    <!--<stripVersion>true</stripVersion>-->
+    <!--</configuration>-->
+    <!--</execution>-->
+    <!--</executions>-->
+    <!--</plugin>-->
+
+    <!--&lt;!&ndash; 源代码打包插件 &ndash;&gt;-->
+    <!--<plugin>-->
+    <!--<artifactId>maven-source-plugin</artifactId>-->
+    <!--<version>2.1</version>-->
+    <!--<configuration>-->
+    <!--&lt;!&ndash; <finalName>${project.build.name}</finalName> &ndash;&gt;-->
+    <!--<attach>true</attach>-->
+    <!--<encoding>${project.build.sourceEncoding}</encoding>-->
+    <!--</configuration>-->
+    <!--<executions>-->
+    <!--<execution>-->
+    <!--<phase>compile</phase>-->
+    <!--<goals>-->
+    <!--<goal>jar</goal>-->
+    <!--</goals>-->
+    <!--</execution>-->
+    <!--</executions>-->
+    <!--</plugin>-->
+
+    <!--&lt;!&ndash; jar包插件 &ndash;&gt;-->
+    <!--<plugin>-->
+    <!--<groupId>org.apache.maven.plugins</groupId>-->
+    <!--<artifactId>maven-jar-plugin</artifactId>-->
+    <!--<version>2.4</version>-->
+    <!--<configuration>-->
+    <!--<archive>-->
+    <!--<manifest>-->
+    <!--&lt;!&ndash; 告知 maven-jar-plugin添加一个 Class-Path元素到 MANIFEST.MF文件，以及在Class-Path元素中包括所有依赖项 &ndash;&gt;-->
+    <!--<addClasspath>true</addClasspath>-->
+    <!--&lt;!&ndash; 所有的依赖项应该位于 lib文件夹 &ndash;&gt;-->
+    <!--<classpathPrefix>lib/</classpathPrefix>-->
+    <!--&lt;!&ndash; 当用户使用 lib命令执行JAR文件时，使用该元素定义将要执行的类名 &ndash;&gt;-->
+    <!--<mainClass>com.zhengtian.tools.service.phone.MobilePhoneTool</mainClass>-->
+    <!--</manifest>-->
+    <!--</archive>-->
+    <!--</configuration>-->
+    <!--</plugin>-->
+
+    <!--&lt;!&ndash; war插件 &ndash;&gt;-->
+    <!--<plugin>-->
+    <!--<groupId>org.apache.maven.plugins</groupId>-->
+    <!--<artifactId>maven-war-plugin</artifactId>-->
+    <!--<version>2.1.1</version>-->
+    <!--<configuration>-->
+    <!--&lt;!&ndash; <warName>${project.build.name}</warName> &ndash;&gt;-->
+    <!--</configuration>-->
+    <!--</plugin>-->
+
+    <build>
+        <finalName>com.spring.total.example</finalName>
+        <plugins>
+            <!--通用配置 1.springboot的maven配置，2.Apache的maven部署-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.5.RELEASE</version>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <!--资源文件配置-->
+        <resources>
+            <resource>
+                <directory>${project.basedir}/lib</directory>
+                <targetPath>BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/lib</directory>
+                <targetPath>BOOT-INF</targetPath>
+                <includes>
+                    <include>**/*.so</include>
+                    <include>**/*.dll</include>
+                    <include>**/*.jnilib</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                </includes>
+            </resource>
+        </resources>
+    </build>
+</project>
