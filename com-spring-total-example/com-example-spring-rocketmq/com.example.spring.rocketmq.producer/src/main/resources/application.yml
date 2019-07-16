@@ -1,0 +1,9 @@
+server:
+  port: 9998
+
+rocketmq:
+  namesrvAddr: 127.0.0.1:9876
+  producer:
+    groupName: rocketMQ-producer
+    instanceName: rocketMQ-producer
+

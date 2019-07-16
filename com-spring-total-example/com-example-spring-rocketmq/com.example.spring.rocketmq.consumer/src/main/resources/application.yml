@@ -1,0 +1,9 @@
+server:
+  port: 9999
+
+rocketmq:
+  namesrvAddr: 127.0.0.1:9876
+  consumer:
+    groupName: rocketMQ-consumer
+    instanceName: rocketMQ-consumer
+    subscriptionList: MQ-topic:*
