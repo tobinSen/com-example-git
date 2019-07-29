@@ -26,6 +26,7 @@
         <module>com-example-spring-mdc</module>
         <module>com-example-spring-apollo</module>
         <module>com-example-spring-jedis</module>
+        <module>com-example-spring-email</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
