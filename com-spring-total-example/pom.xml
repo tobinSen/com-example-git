@@ -24,6 +24,8 @@
         <module>com.example.spring.rocketmq</module>
         <module>com-example-spring-rocketmq</module>
         <module>com-example-spring-mdc</module>
+        <module>com-example-spring-apollo</module>
+        <module>com-example-spring-jedis</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
