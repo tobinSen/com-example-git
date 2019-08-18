@@ -1,5 +1,7 @@
 package com.uplooking.elasticsearch;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+
 public class BigDataProduct {
 
     private String name;

@@ -11,7 +11,7 @@ import java.util.Map;
 @Slf4j
 public class WeixinController {
 
-    @RequestMapping("weixin.do")
+    @RequestMapping("ajax.do")
     public Map<String, Object> weixin() throws Exception {
         try {
             Map<String, Object> map = new HashMap<>();

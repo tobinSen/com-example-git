@@ -1,5 +1,6 @@
 package com.uplooking.elasticsearch;
 
+import org.elasticsearch.action.admin.indices.alias.Alias;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.search.SearchType;
@@ -16,10 +17,16 @@ import org.elasticsearch.search.aggregations.support.ValueType;
 import org.elasticsearch.search.sort.SortBuilders;
 import org.elasticsearch.search.sort.SortOrder;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.query.AliasQuery;
 
 import java.net.InetAddress;
 
 public class TransportClientWithQuery {
+
+    @Autowired
+    private static ElasticsearchTemplate elasticsearchTemplate;
 
     private static String index = "elasticsearchIndex";//索引
     private static String type = "elasticsearchType";//类型
@@ -190,6 +197,18 @@ public class TransportClientWithQuery {
                 .addAggregation(new AvgAggregationBuilder("avgBalance").field("balance"))
                 //触发检索
                 .get();
+
+        //es添加别名
+        AliasQuery aliasQuery = new AliasQuery();
+        aliasQuery.setAliasName("alias");
+        aliasQuery.setIndexName("alias-test");
+        elasticsearchTemplate.addAlias(aliasQuery);
+        elasticsearchTemplate.createIndex(MyElasticSearch.class);
+
+        Alias alias = new Alias("alias");
+        client.admin().indices().prepareCreate("index").addAlias(alias);
+
     }
+
 
 }

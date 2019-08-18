@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/jquery-1.8.2.js"></script>
+</head>
+<body>
+
+<div id="see">
+    <button id="btn" name="ajax请求">ajax请求</button>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("button").click(function () {
+            ajaxReq();
+            alert("ajax请求");
+        });
+    });
+
+    function ajaxReq() {
+
+        $.ajax({
+            url: 'localhost:8080/ajax.do',
+            type: 'POST',
+            contentType: "application/json;charset=UTF-8",
+            dataType: 'json',
+            data: JSON.stringify("ajax once request"),
+            success: function (data) {
+                alert(data);
+            },
+            error: function (e) {
+                alert(e);
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

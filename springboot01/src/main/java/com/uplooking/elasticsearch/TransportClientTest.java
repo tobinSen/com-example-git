@@ -6,6 +6,7 @@ import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -39,6 +40,10 @@ public class TransportClientTest {
         map.put("name", "张三");
         map.put("age", 12);
         IndexResponse indexResponse1 = client.prepareIndex(index, type, "2").setSource(map).get();
+
+        IndexRequestBuilder indexRequestBuilder = client.prepareIndex(index, type, "2");
+        indexRequestBuilder.
+
         System.out.println(indexResponse1.getVersion());
 
         //3.通过bean来添加
@@ -47,6 +52,7 @@ public class TransportClientTest {
         byte[] bytes = objectMapper.writeValueAsBytes(bigDataProduct);
         IndexResponse indexResponse2 = client.prepareIndex(index, type, "3").setSource(bytes).get();
         System.out.println(indexResponse2.getVersion());
+
 
         //4.ES helper来添加
         XContentBuilder builder = XContentFactory.jsonBuilder()

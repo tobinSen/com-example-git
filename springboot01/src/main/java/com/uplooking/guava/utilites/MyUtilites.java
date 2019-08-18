@@ -75,6 +75,7 @@ public class MyUtilites {
         System.out.println(union);
         Cache cache = CacheBuilder.newBuilder().build();
 
-
+//        Table<R, C, V2> rcv2Table = Tables.transformValues(HashBasedTable < String, String, String >.create(), Functions.
+//        compose(input -> input, input -> input));
     }
 }
