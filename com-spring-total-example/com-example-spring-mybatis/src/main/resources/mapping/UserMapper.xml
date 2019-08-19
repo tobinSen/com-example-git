@@ -7,7 +7,8 @@
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
-        <result column="city" property="city"/>
+        <result column="city" property="city" <!--javaType="com.example.spring.mybatis.domain.User$City"
+                typeHandler="com.example.spring.mybatis.config.JSONTypeHandler"-->/>
     </resultMap>
     <sql id="Base_Column_List">
     user_id, user_name, password, phone ,city
