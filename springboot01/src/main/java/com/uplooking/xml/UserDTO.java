@@ -28,6 +28,15 @@ public class UserDTO implements Serializable {
     @XmlElement(name = "create_time")
     private Date createTime;
 
+    public UserDTO() {
+    }
+
+    public UserDTO(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
     public Long getId() {
         return id;
     }

@@ -42,7 +42,7 @@ public class TransportClientTest {
         IndexResponse indexResponse1 = client.prepareIndex(index, type, "2").setSource(map).get();
 
         IndexRequestBuilder indexRequestBuilder = client.prepareIndex(index, type, "2");
-        indexRequestBuilder.
+        //indexRequestBuilder.
 
         System.out.println(indexResponse1.getVersion());
 
