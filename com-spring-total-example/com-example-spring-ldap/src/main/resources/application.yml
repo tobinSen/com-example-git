@@ -1,0 +1,7 @@
+# LDAP连接配置
+spring:
+  ldap:
+    urls: ldap://10.33.47.7:7003
+    base: dc=platform,dc=xxxx,dc=com
+    username: ou=acs,ou=componentaccounts,dc=platform,dc=xxxx,dc=com
+    password: UlAwRkYl

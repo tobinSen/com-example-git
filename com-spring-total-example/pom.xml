@@ -29,6 +29,7 @@
         <module>com-example-spring-email</module>
         <module>com-example-spring-docker</module>
         <module>com-example-spring-mybatis</module>
+        <module>com-example-spring-ldap</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
