@@ -101,5 +101,8 @@ public class TransportClientTest {
                 .add(new IndexRequest(index, "dep", "2").source(deptMarket))
                 .add(new IndexRequest(index, "dep", "3").source(deptOffice))
                 .add(new DeleteRequest(index, type, "3")).get();
+
+        //删除索引
+        client.admin().indices().prepareDelete(type);
     }
 }
