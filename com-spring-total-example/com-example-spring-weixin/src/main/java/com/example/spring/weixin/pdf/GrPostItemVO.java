@@ -12,11 +12,11 @@ public class GrPostItemVO {
     private String productName;
     // 商家采购单数
     private BigDecimal planNum;
-
+    // 单位编码
     private String unitCode;
     // 实收数
     private BigDecimal packageUnitNum;
-
+    // 包装单位编码
     private String packageUnitCode;
     // 实收数量
     private BigDecimal basicUnitNum;
