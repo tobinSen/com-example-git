@@ -80,13 +80,13 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        <!--添加热部署-->
+       <!-- &lt;!&ndash;添加热部署&ndash;&gt;
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
             <scope>true</scope>
-        </dependency>
+        </dependency>-->
     </dependencies>
     <build>
         <plugins>
