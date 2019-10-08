@@ -83,7 +83,7 @@ public class TransportClientTest {
         DeleteResponse deleteResponse = client.prepareDelete(index, type, "1").get();
         System.out.println(deleteResponse.getVersion());
 
-        //ES统计
+        //ES统计中
         long totalHits = client.prepareSearch(index)
                 .setTypes(type)
                 .execute()

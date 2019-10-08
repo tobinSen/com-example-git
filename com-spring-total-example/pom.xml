@@ -30,6 +30,7 @@
         <module>com-example-spring-docker</module>
         <module>com-example-spring-mybatis</module>
         <module>com-example-spring-ldap</module>
+        <module>com-example-spring-kafka</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
