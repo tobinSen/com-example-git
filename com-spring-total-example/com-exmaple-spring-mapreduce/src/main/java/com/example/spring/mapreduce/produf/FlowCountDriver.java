@@ -13,6 +13,7 @@ public class FlowCountDriver {
         Job job = Job.getInstance(new Configuration());
         job.setJarByClass(FlowCountDriver.class);
 
+
         job.setMapperClass(FlowCountMapper.class);
         job.setReducerClass(FlowCountReduce.class);
 
