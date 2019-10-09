@@ -45,7 +45,7 @@ public class JedisOfFutureTest {
         scanParams.match("set*");
         scanParams.count(500); //匹配的字符长度
         ScanResult<String> scan = jedis.scan("1", scanParams);
-        System.out.println(scan.getStringCursor());//返回0 说明遍历完成说明没有数据
+        //System.out.println(scan.getStringCursor());//返回0 说明遍历完成说明没有数据
         System.out.println(scan.getResult().toString());
     }
 }

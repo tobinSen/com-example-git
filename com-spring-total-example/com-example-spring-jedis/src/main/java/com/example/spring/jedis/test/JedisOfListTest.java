@@ -1,7 +1,6 @@
 package com.example.spring.jedis.test;
 
 import org.junit.jupiter.api.Test;
-import redis.clients.jedis.BinaryClient;
 import redis.clients.jedis.Jedis;
 
 public class JedisOfListTest {
@@ -63,7 +62,7 @@ public class JedisOfListTest {
     public void testList7() {
         //linsert
         //在指定的值后面或者前面添加值
-        System.out.println(jedis.linsert("key7", BinaryClient.LIST_POSITION.AFTER, "value7-3", "value7-2"));
+        //System.out.println(jedis.linsert("key7", BinaryClient.LIST_POSITION.AFTER, "value7-3", "value7-2"));
         System.out.println(jedis.lrange("key7", 0, -1));
     }
 
