@@ -28,6 +28,7 @@ public class TTLTest {
          *  2.父线程嵌套线程池的问题：
          *       1.开始的时候子线程可以获取值，但是当这个值被改变的时候每个创建的本地线程是不会改变值的（这时候的线程是独立的）
          *       2.通过TtlExecutors.getTtlExecutorService(Executors.newFixedThreadPool(2))方式进行包装，让其产生的线程是包装了的
+         *  3.其实没有解决兄弟线程之间进行传值问题
          */
 
         new Thread(() -> {
