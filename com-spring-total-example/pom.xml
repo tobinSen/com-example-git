@@ -33,6 +33,7 @@
         <module>com-example-spring-kafka</module>
         <module>com-exmaple-spring-mapreduce</module>
         <module>com-exmaple-spring-ttl</module>
+        <module>com-example-spring-webservice</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
