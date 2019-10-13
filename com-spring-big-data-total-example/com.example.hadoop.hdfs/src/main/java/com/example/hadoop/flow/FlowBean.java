@@ -1,12 +1,13 @@
 package com.example.hadoop.flow;
 
 import org.apache.hadoop.io.Writable;
+import org.apache.hadoop.io.WritableComparable;
 
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
-public class FlowBean implements Writable {
+public class FlowBean implements Writable, WritableComparable<FlowBean> {
 
     private long upFlow;
     private long downFlow;
@@ -68,5 +69,10 @@ public class FlowBean implements Writable {
         this.upFlow = in.readLong();
         this.downFlow = in.readLong();
         this.sumFlow = in.readLong();
+    }
+
+    @Override
+    public int compareTo(FlowBean o) {
+        return (int) (this.downFlow - o.downFlow);
     }
 }
