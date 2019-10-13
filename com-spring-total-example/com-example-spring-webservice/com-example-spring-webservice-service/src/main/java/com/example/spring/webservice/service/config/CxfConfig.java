@@ -56,5 +56,4 @@ public class CxfConfig {
         //启动服务
         server.start();
     }
-
 }
