@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>com.example.hadoop.hdfs</module>
+        <module>com-example-hadoop-hbase</module>
     </modules>
 
 
