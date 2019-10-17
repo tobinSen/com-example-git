@@ -6,6 +6,8 @@ import org.apache.hadoop.hbase.client.*;
 import org.apache.hadoop.hbase.util.Bytes;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * DDL:
@@ -72,6 +74,7 @@ public class HBaseTest {
             HColumnDescriptor hColumnDescriptor = new HColumnDescriptor(cf);
             hColumnDescriptor.setMaxVersions(10);
 
+            //列族
             hTableDescriptor.addFamily(hColumnDescriptor);
         }
 
@@ -103,6 +106,51 @@ public class HBaseTest {
         table.close();
     }
 
+    //删除数据
+    public static void delMultRow(String tableName, String... rows) throws Exception {
+        Table table = connection.getTable(TableName.valueOf(tableName));
+        List<Delete> list = new ArrayList<>();
+        for (String row : rows) {
+            Delete delete = new Delete(Bytes.toBytes(row));
+            list.add(delete);
+        }
+        table.delete(list);
+    }
+
+    //获取所有的数据
+    public static void getAllRow(String tableName) throws Exception {
+        Table table = connection.getTable(TableName.valueOf(tableName));
+        Scan scan = new Scan();
+        ResultScanner scanner = table.getScanner(scan);
+        for (Result result : scanner) {
+            Cell[] cells = result.rawCells();
+            for (Cell cell : cells) {
+                String family = Bytes.toString(CellUtil.cloneFamily(cell));
+                String cl = Bytes.toString(CellUtil.cloneQualifier(cell));
+                String value = Bytes.toString(CellUtil.cloneValue(cell));
+                String row = Bytes.toString(CellUtil.cloneRow(cell));
+
+                System.out.println(family);
+                System.out.println(cl);
+                System.out.println(value);
+            }
+        }
+    }
+
+    //获取指定列
+    public static void getRowQualifier(String tableName, String rowKey, String family, String qualifier) throws IOException {
+        Table table = connection.getTable(TableName.valueOf(tableName));
+        Get get = new Get(Bytes.toBytes(rowKey));
+        get.addColumn(Bytes.toBytes(family), Bytes.toBytes(qualifier));
+        Result result = table.get(get);
+        for (Cell cell : result.rawCells()) {
+            System.out.println(" 行键:" + Bytes.toString(result.getRow()));
+            System.out.println(" 列族" + Bytes.toString(CellUtil.cloneFamily(cell)));
+            System.out.println(" 列 :" + Bytes.toString(CellUtil.cloneQualifier(cell)));
+            System.out.println(" 值 :" + Bytes.toString(CellUtil.cloneValue(cell)));
+        }
+    }
+
     //表中获取数据
     public static void get(String tableName, String rowKey) throws Exception {
         Table table = connection.getTable(TableName.valueOf(tableName));
@@ -124,7 +172,6 @@ public class HBaseTest {
     }
 
     public static void main(String[] args) throws Exception {
-
         //1.判断表是否存储
         //System.out.println("判断表是否存储:" + isTableExist("student")); //true
         //2.创建一张表
