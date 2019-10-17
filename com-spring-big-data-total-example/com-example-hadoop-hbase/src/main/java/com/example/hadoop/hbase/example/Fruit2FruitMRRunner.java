@@ -9,8 +9,6 @@ import org.apache.hadoop.hbase.mapreduce.TableMapReduceUtil;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.util.Tool;
 
-import java.util.concurrent.atomic.AtomicStampedReference;
-
 public class Fruit2FruitMRRunner extends Configured implements Tool {
 
     @Override
@@ -26,7 +24,7 @@ public class Fruit2FruitMRRunner extends Configured implements Tool {
         scan.setCacheBlocks(false);
         scan.setCaching(500);
 
-        //设置Mapper,注意导入的是mapreduce包下的
+        //设置Mapper,注意导入的是mapReduce包下的
         TableMapReduceUtil.initTableMapperJob(
                 "fruit",
                 scan,
@@ -46,23 +44,23 @@ public class Fruit2FruitMRRunner extends Configured implements Tool {
     }
 
 
-    public static void main(String[] args) {
-
-        String str1 = "aaa";
-        String str2 = "bbb";
-        //compareAndSet中Str1 与str1进行比较和stamp
-        AtomicStampedReference<String> reference = new AtomicStampedReference<>(str1, 1);
-        reference.compareAndSet(str1, str2, reference.getStamp(), reference.getStamp() + 1);
-        System.out.println("reference.getReference() = " + reference.getReference());
-
-        //当前值与预期值相同时候，更新当前值的时间戳
-        boolean b = reference.attemptStamp(str2, reference.getStamp() + 1);
-        System.out.println("b: " + b);
-        System.out.println("reference.getStamp() = " + reference.getStamp());
-
-        boolean c = reference.weakCompareAndSet(str2, "ccc", 3, reference.getStamp() + 1);
-        System.out.println("reference.getReference() = " + reference.getReference());
-        System.out.println("c = " + c);
-    }
+//    public static void main(String[] args) {
+//
+//        String str1 = "aaa";
+//        String str2 = "bbb";
+//        //compareAndSet中Str1 与str1进行比较和stamp
+//        AtomicStampedReference<String> reference = new AtomicStampedReference<>(str1, 1);
+//        reference.compareAndSet(str1, str2, reference.getStamp(), reference.getStamp() + 1);
+//        System.out.println("reference.getReference() = " + reference.getReference());
+//
+//        //当前值与预期值相同时候，更新当前值的时间戳
+//        boolean b = reference.attemptStamp(str2, reference.getStamp() + 1);
+//        System.out.println("b: " + b);
+//        System.out.println("reference.getStamp() = " + reference.getStamp());
+//
+//        boolean c = reference.weakCompareAndSet(str2, "ccc", 3, reference.getStamp() + 1);
+//        System.out.println("reference.getReference() = " + reference.getReference());
+//        System.out.println("c = " + c);
+//    }
 
 }
