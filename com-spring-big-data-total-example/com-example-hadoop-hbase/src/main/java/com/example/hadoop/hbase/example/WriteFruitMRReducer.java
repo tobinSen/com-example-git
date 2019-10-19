@@ -16,4 +16,5 @@ public class WriteFruitMRReducer extends TableReducer<ImmutableBytesWritable, Pu
             context.write(NullWritable.get(), put);
         }
     }
+
 }
