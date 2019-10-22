@@ -15,7 +15,9 @@ public class ReadFruitMapper extends TableMapper<ImmutableBytesWritable, Put> {
     //key 是rowKey  result是一行数据
     @Override
     protected void map(ImmutableBytesWritable key, Result value, Context context) throws IOException, InterruptedException {
+        //rowKey
         Put put = new Put(key.get());
+
         for (Cell cell : value.rawCells()) {
             if ("info".equals(Bytes.toString(CellUtil.cloneFamily(cell)))) {
                 if ("name".equals(Bytes.toString(CellUtil.cloneQualifier(cell)))) {
