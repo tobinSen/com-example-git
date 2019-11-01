@@ -35,6 +35,7 @@
         <module>com-exmaple-spring-ttl</module>
         <module>com-example-spring-webservice</module>
         <module>com-example-spring-mockmvc</module>
+        <module>com-example-spring-oauth2</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
