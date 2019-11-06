@@ -36,6 +36,7 @@
         <module>com-example-spring-webservice</module>
         <module>com-example-spring-mockmvc</module>
         <module>com-example-spring-lettuce</module>
+        <module>com-example-spring-flowable</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
