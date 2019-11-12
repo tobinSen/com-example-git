@@ -12,6 +12,7 @@ public class KeepAliveServiceInitializer extends ChannelInitializer<SocketChanne
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
 
+        //心跳检查
         pipeline.addLast(new IdleStateHandler(5, 7, 10, TimeUnit.SECONDS));
         pipeline.addLast(new KeepAliveServiceHandler());
     }
