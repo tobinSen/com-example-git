@@ -27,6 +27,12 @@
             <artifactId>protobuf-java-util</artifactId>
             <version>3.10.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.thrift</groupId>
+            <artifactId>libthrift</artifactId>
+            <version>0.12.0</version>
+        </dependency>
     </dependencies>
 
 

@@ -13,8 +13,10 @@ public class NettyProtobufClientInitializer extends ChannelInitializer<SocketCha
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
+        //netty提供的处理protoBuf的handler
         pipeline.addLast(new ProtobufVarint32FrameDecoder());
-        pipeline.addLast(new ProtobufDecoder(DataInfo.Student.getDefaultInstance()));
+        // 这里编解码对象，如何动态化？
+        pipeline.addLast(new ProtobufDecoder(DataInfo1.outer_message.getDefaultInstance()));
         pipeline.addLast(new ProtobufVarint32LengthFieldPrepender());
         pipeline.addLast(new ProtobufEncoder());
         pipeline.addLast(new NettyProtobufClientHandler());

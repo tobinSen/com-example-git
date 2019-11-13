@@ -8,10 +8,44 @@ package com.example.spring.netty.protobuf;
 
 option optimize_for = SPEED;
 option java_package = "com.example.spring.netty.protobuf";
-option java_outer_classname = "DataInfo";
+option java_outer_classname = "DataInfo1";
+/*
+    1.protoBuf实现多消息（多协议）
+*/
+message outer_message {
+    enum DataType {
+        StudentType = 1;
+        DogType = 2;
+        CatType = 3;
+    }
+
+    required DataType data_type = 1;
+
+    //oneOf中
+    oneof dataBody {
+        Student student = 2;
+        Dog dog = 3;
+        Cat cat = 4;
+    }
+}
 
 message Student {
-    required string name = 1;
+    optional string name = 1;
     optional int32 age = 2;
     optional string address = 3;
 }
+
+message Dog {
+    optional string name = 1;
+    optional int32 age = 2;
+}
+
+message Cat {
+    optional string name = 1;
+    optional int32 city = 2;
+}
+
+/*
+message Address {
+    optional string address_name = 1;
+}*/
