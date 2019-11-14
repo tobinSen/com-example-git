@@ -38,6 +38,7 @@
         <module>com-example-spring-lettuce</module>
         <module>com-example-spring-flowable</module>
         <module>com-example-spring-netty</module>
+        <module>com-example-spring-git</module>
     </modules>
 
     <!--导入springboot版本仲裁-->

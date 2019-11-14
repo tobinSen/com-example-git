@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>com.spring.total.example</artifactId>
+        <groupId>com.spring.cn</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>com-example-spring-git</artifactId>
+
+    <!--健康检查-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dmall</groupId>
+            <artifactId>points-gateway-sdk</artifactId>
+            <version>1.1.4-RELEASE</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!--<plugin>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-jar-plugin</artifactId>-->
+            <!--<version>3.0.2</version>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+            <!--<groupId>pl.project13.maven</groupId>-->
+            <!--<artifactId>git-commit-id-plugin</artifactId>-->
+            <!--<version>2.2.4</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>get-the-git-infos</id>-->
+            <!--<goals>-->
+            <!--<goal>revision</goal>-->
+            <!--</goals>-->
+            <!--</execution>-->
+            <!--<execution>-->
+            <!--<id>validate-the-git-infos</id>-->
+            <!--<goals>-->
+            <!--<goal>validateRevision</goal>-->
+            <!--</goals>-->
+            <!--<phase>package</phase>-->
+            <!--</execution>-->
+            <!--</executions>-->
+
+            <!--<configuration>-->
+            <!--<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>-->
+
+            <!--&lt;!&ndash; that's the default value, you don't have to set it &ndash;&gt;-->
+            <!--<prefix>git</prefix>-->
+            <!--<verbose>false</verbose>-->
+            <!--<generateGitPropertiesFile>true</generateGitPropertiesFile>-->
+            <!--<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties-->
+            <!--</generateGitPropertiesFilename>-->
+            <!--<format>json</format>-->
+            <!--<gitDescribe>-->
+            <!--<skip>false</skip>-->
+            <!--<always>false</always>-->
+            <!--<dirty>-dirty</dirty>-->
+            <!--</gitDescribe>-->
+            <!--<validationProperties>-->
+            <!--&lt;!&ndash; verify that the current repository is not dirty &ndash;&gt;-->
+            <!--<validationProperty>-->
+            <!--<name>validating git dirty</name>-->
+            <!--<value>${git.dirty}</value>-->
+            <!--<shouldMatchTo>false</shouldMatchTo>-->
+            <!--</validationProperty>-->
+            <!--</validationProperties>-->
+
+            <!--</configuration>-->
+
+            <!--</plugin>-->
+
+            <plugin>
+                <!--https://github.com/git-commit-id/maven-git-commit-id-plugin-->
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>get-the-git-infos</id>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <phase>initialize</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                    <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties
+                    </generateGitPropertiesFilename>
+                    <includeOnlyProperties>
+                        <!--设置git.properties文件保存的git元数据属性, 支持正则表达式-->
+                        <includeOnlyProperty>^git.commit.*$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.build.*$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.branch$</includeOnlyProperty>
+                        <includeOnlyProperty>^git.tags$</includeOnlyProperty>
+                    </includeOnlyProperties>
+                    <commitIdGenerationMode>full</commitIdGenerationMode>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

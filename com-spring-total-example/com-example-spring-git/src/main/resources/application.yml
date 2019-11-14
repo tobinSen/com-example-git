@@ -1,0 +1,8 @@
+#spring actuator setting
+#http://{domain}/actuator/info
+management:
+  info: # 打开info actuator/info请求访问权限
+      git: # https://github.com/git-commit-id/maven-git-commit-id-plugin
+        mode: full
+server:
+  port: 9999
