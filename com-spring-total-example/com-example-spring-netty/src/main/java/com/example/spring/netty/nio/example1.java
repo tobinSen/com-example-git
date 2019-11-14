@@ -18,7 +18,7 @@ public class example1 {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         buffer.put(str.getBytes());
         //将缓冲区中的position置为0
-        buffer.flip();
+        buffer.flip(); //idea中tab键切换方法
         //把缓冲区的数据写到通道里
         fc.write(buffer);
         fos.close();
