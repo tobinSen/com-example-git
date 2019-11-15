@@ -39,6 +39,7 @@
         <module>com-example-spring-flowable</module>
         <module>com-example-spring-netty</module>
         <module>com-example-spring-git</module>
+        <module>com-example-spring-quartz</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
