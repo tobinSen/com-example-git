@@ -67,7 +67,7 @@ public class QuartzConfig {
     }
 
     @Bean("jobDetail2")
-    public MethodInvokingJobDetailFactoryBean detailFactoryBean2(SchedulerTask1 task) {
+    public MethodInvokingJobDetailFactoryBean detailFactoryBean2(SchedulerTask task) {
         MethodInvokingJobDetailFactoryBean jobDetail = new MethodInvokingJobDetailFactoryBean();
         jobDetail.setConcurrent(true);
         jobDetail.setName("scheduler2");// 设置任务的名字
