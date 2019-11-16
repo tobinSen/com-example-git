@@ -78,5 +78,4 @@ public class QuartzConfig {
         return jobDetail;
     }
 
-
 }
