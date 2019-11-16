@@ -16,6 +16,8 @@ import java.nio.charset.CharsetEncoder;
  *
  *   unicode：表示全世界的编码，采用2个字节表示一个字符（存储量增加了）
  *
+ *   UTF：是一种存储格式
+ *
  *   utf-8 : Unicode Translate Format:变长字节表示形式 3字节表示一个中文，
  *   utf-16
  *   utf-32
