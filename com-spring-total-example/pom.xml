@@ -40,6 +40,11 @@
         <module>com-example-spring-netty</module>
         <module>com-example-spring-git</module>
         <module>com-example-spring-quartz</module>
+        <module>com-example-spring-springCloudAlibaba</module>
+        <module>com-example-spring-springcloud-configserver</module>
+        <module>com-example-spring-springcloud-configclient</module>
+        <module>com-example-spring-eureka</module>
+        <module>com-example-spring-springcloud-sleuth</module>
     </modules>
 
     <!--导入springboot版本仲裁-->

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      uri: http://localhost:9999
+      profile: dev #环境
+      label: master #分支
+
+server:
+  port: 9990
+
+
+
+#  eureka.client.serviceUrl.defaultZone=http://localhost:1111/eureka/
+#
+#  spring.cloud.config.discovery.enabled=true
+#  spring.cloud.config.discovery.serviceId=config-server
+#  spring.cloud.config.profile=dev  这个还是之前的环境文件

@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/tong-jian/config-server.git
+          username: xxxxxx@qq.com
+          password: xxxxxx
+
+server:
+  port: 9999
+
+eureka:
+  client:
+    service-url: http://localhost:1111/eureka/ #将配置中心注册到eureka中
