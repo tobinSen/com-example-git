@@ -45,6 +45,7 @@
         <module>com-example-spring-springcloud-configclient</module>
         <module>com-example-spring-eureka</module>
         <module>com-example-spring-springcloud-sleuth</module>
+        <module>com-example-spring-nacos</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
