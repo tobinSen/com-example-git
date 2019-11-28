@@ -1,0 +1,6 @@
+server:
+  port: 9999
+
+security:
+  basic:
+    enabled: true
