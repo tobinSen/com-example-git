@@ -47,6 +47,7 @@
         <module>com-example-spring-springcloud-sleuth</module>
         <module>com-example-spring-nacos</module>
         <module>com-example-spring-springsecurity</module>
+        <module>com-example-spring-dynamic-aop</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
