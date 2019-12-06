@@ -33,6 +33,11 @@ package com.example.spring.dynamic.aop.config;
  *   AspectJExpressionPointcutAdvisor 动态性
  *   AspectJPointcutAdvisor
  *
+ *=================================================================================================
+ * 注册切面：
+ * ProxyFactoryBean -> 接口 + 切面(通知,指定运用到了method)
+ * BeanNameAutoProxyCreator -> 接口实现bean + 切面(通知,指定运用到了method)
+ * AspectJExpressionPointcutAdvisor -> DefaultAdvisorAutoProxyCreator + 切面(通知，表达式)
  *
  *
  *
