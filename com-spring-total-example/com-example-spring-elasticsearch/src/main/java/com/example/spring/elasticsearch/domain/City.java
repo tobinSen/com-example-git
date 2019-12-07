@@ -16,7 +16,6 @@ import java.util.Date;
 public class City implements Serializable {
 
     @Id
-    @Field(fielddata = true)
     private Long id;
     //keyword：存储数据时候，不会分词建立索引
     //text：存储数据时候，会自动分词，并生成索引

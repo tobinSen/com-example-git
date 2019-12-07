@@ -3,8 +3,10 @@ spring:
     name: spring-elasticsearch
   data:
     elasticsearch:
-      cluster-name: spring-elasticserch
+      cluster-name: docker-cluster
       cluster-nodes: localhost:9300
+      repositories:
+        enabled: true
 
 server:
   port: 9990
