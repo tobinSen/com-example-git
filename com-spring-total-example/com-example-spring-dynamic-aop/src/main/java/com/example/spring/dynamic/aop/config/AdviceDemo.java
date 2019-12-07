@@ -32,17 +32,31 @@ package com.example.spring.dynamic.aop.config;
  *   StaticMethodMatcherPointcutAdvisor
  *   AspectJExpressionPointcutAdvisor 动态性
  *   AspectJPointcutAdvisor
- *
+ *  注意：
+ *      有些切面拥有切点的功能
  *=================================================================================================
- * 注册切面：
+ * 注册切面： （5,3点）
  * ProxyFactoryBean -> 接口 + 切面(通知,指定运用到了method)
  * BeanNameAutoProxyCreator -> 接口实现bean + 切面(通知,指定运用到了method)
  * AspectJExpressionPointcutAdvisor -> DefaultAdvisorAutoProxyCreator + 切面(通知，表达式)
+ * AbstractBeanFactoryPointcutAdvisor
  *
  *
+ * DefaultBeanFactoryPointcutAdvisor
+ *
+ * 步骤：
+ *          NameMatchMethodPointcut cacheablePointcut = new NameMatchMethodPointcut();
+ *          cacheablePointcut.addMethodName(methodName);
+ *
+ *          QueryResultCacheInterceptor cacheInterceptor = new QueryResultCacheInterceptor(objClazzHavingAnnotatedMethods);
+ *          Advisor cacheableAdvisor = new DefaultPointcutAdvisor(cacheablePointcut, cacheInterceptor);
+ *
+ *          proxyFactory.addAdvisor(cacheableAdvisor);
+            proxyFactory.setTarget(target);
+            T proxy = (T) proxyFactory.getProxy();
  *
  *
- *
+ *重复注解Repeatable
  *
  *
  *
