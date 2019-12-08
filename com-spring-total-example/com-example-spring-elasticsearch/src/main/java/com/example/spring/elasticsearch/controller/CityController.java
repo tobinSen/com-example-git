@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -35,6 +36,13 @@ public class CityController {
             cityList.add(c);
         }
         cityRepository.saveAll(cityList);
+    }
+
+    @RequestMapping("jmeter.do")
+    public String jmeter(String name) throws Exception {
+       Thread.sleep(100000);
+        System.out.println("jmeter");
+        return new Random().nextInt(19) + name;
     }
 
 }
