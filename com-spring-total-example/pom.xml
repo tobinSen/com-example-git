@@ -48,6 +48,9 @@
         <module>com-example-spring-nacos</module>
         <module>com-example-spring-springsecurity</module>
         <module>com-example-spring-dynamic-aop</module>
+        <module>com-example-spring-skywalking</module>
+        <module>com-example-spring-log4j</module>
+        <module>com-example-spring-log</module>
     </modules>
 
     <!--导入springboot版本仲裁-->

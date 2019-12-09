@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j='http://jakarta.apache.org/log4j/'>
+    <appender name="stdout" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d - test - %c %p [%t] %x - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="D" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="logs/debug.log"/>
+        <param name="append" value="false"/>
+        <param name="threshold" value="debug"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss} [%t:%r] - [%p] %m%n"/>
+        </layout>
+    </appender>
+    <appender name="E" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="logs/error.log"/>
+        <param name="append" value="false"/>
+        <param name="threshold" value="error"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%-d{yyyy-MM-dd HH:mm:ss} [%t:%r] - [%p] %m%n"/>
+        </layout>
+    </appender>
+    <logger name="e" additivity="false">
+        <level value="error"/>
+        <appender-ref ref="E"/>
+    </logger>
+    <logger name="d" additivity="false"> <!--false 禁用继承-->
+        <level value="debug"/>
+        <appender-ref ref="D"/>
+    </logger>
+
+    <!--logger：存在一个继承的关系，先去对应该类的logger->包->rootLogger进行查找，additivity就是为了避免向下找继承关系
+
+    -->
+
+    <root>
+        <level value="debug"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="D"/>
+        <appender-ref ref="E"/>
+    </root>
+</log4j:configuration>

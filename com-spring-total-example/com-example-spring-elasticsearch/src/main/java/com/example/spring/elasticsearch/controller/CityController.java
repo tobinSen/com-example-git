@@ -40,7 +40,6 @@ public class CityController {
 
     @RequestMapping("jmeter.do")
     public String jmeter(String name) throws Exception {
-       Thread.sleep(100000);
         System.out.println("jmeter");
         return new Random().nextInt(19) + name;
     }
