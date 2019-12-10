@@ -21,7 +21,6 @@
         <module>com-example-spring-oauth</module>
         <module>com-example-spring-redis</module>
         <module>com-example-spring-dubbo</module>
-        <module>com.example.spring.rocketmq</module>
         <module>com-example-spring-rocketmq</module>
         <module>com-example-spring-mdc</module>
         <module>com-example-spring-apollo</module>
@@ -49,10 +48,10 @@
         <module>com-example-spring-springsecurity</module>
         <module>com-example-spring-dynamic-aop</module>
         <module>com-example-spring-skywalking</module>
-        <module>com-example-spring-log4j</module>
         <module>com-example-spring-log</module>
         <module>com-example-spring-logback</module>
         <module>com-example-spring-log4j2</module>
+        <module>com-example-spring-pay</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
