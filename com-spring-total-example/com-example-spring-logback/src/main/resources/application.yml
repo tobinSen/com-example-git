@@ -1,0 +1,6 @@
+server:
+  port: 9999
+
+logging:
+  file: C:/User/log.log
+  config:
