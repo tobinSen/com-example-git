@@ -52,6 +52,7 @@
         <module>com-example-spring-log4j</module>
         <module>com-example-spring-log</module>
         <module>com-example-spring-logback</module>
+        <module>com-example-spring-log4j2</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
