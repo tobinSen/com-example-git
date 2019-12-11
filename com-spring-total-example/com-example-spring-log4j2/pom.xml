@@ -23,6 +23,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!--
+           log4j对slf4j的实现：slf4j-log4j12.jar
+           log4j2对slf4j的实现：log4j-slf4j-impl.jar
+                   -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>

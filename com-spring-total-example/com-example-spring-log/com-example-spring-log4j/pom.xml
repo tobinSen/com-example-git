@@ -11,6 +11,7 @@
 
     <artifactId>com-example-spring-log4j</artifactId>
     <dependencies>
+        <!--log4j对slf4j的实现-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
