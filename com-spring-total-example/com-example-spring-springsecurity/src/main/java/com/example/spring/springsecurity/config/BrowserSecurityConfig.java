@@ -1,81 +1,117 @@
 package com.example.spring.springsecurity.config;
 
+import com.example.spring.springsecurity.filter.ValidateCodeFilter;
+import com.example.spring.springsecurity.sms.SmsCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 /**
- * UsernamePasswordAuthenticationFilter
- * BasicAuthenticationFilter
- * ExceptionTranslationFilter
- * FilterSecurityInterceptor
+ * 3，4，2，3，4
+ *
+ * security的认证方式：
+ *  1.默认基本认证，浏览器的portal认证
+ *  2.表单认证，网页跳转到一个网页进行表单认证
+ *  3.自定义认证过程 -->实现UserDetailsService
+ *
+ *
+ *
+ * UsernamePasswordAuthenticationFilter  -->表单认证
+ * BasicAuthenticationFilter             -->基本认证的
+ * ExceptionTranslationFilter            -->处理认证抛出的异常的
+ * FilterSecurityInterceptor             -->进行身份认证的
+ *
+ * private RequestCache requestCache = new HttpSessionRequestCache();
+ * private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+ *
+ * savedRequest.getRedirectUrl()：在访问那个链接上进行拦截的地址【引发跳转的页面】
+ *
+ *
+ * 处理成功和失败
+ * AuthenticationSuccessHandler
+ *
+ * 登录成功后获取认证信息
+ * 方式一：
+ *  @GetMapping("index")
+ *     public Object index(){
+ *         return SecurityContextHolder.getContext().getAuthentication();
+ *     }
+ * 方式二：
+ *  @GetMapping("index")
+ *     public Object index(Authentication authentication) {
+ *         return authentication;
+ *     }
+ *
+ *
+ * AuthenticationFailureHandler
+ *
  */
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true) //对方法开启权限控制
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private ValidateCodeFilter validateCodeFilter;
 
     @Autowired
-    private AuthenticationProvider authenticationProvider;
+    private SmsCodeFilter smsCodeFilter;
+
+    @Autowired
+    private MyAuthenticationAccessDeniedHandler authenticationAccessDeniedHandler;
+
+//    @Autowired
+//    private UserDetailService userDetailService;
+//    @Autowired
+//    private DataSource dataSource;
+//
+//    @Bean
+//    public PersistentTokenRepository persistentTokenRepository() {
+//        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+//        jdbcTokenRepository.setDataSource(dataSource);
+//        jdbcTokenRepository.setCreateTableOnStartup(false);
+//        return jdbcTokenRepository;
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setHideUserNotFoundExceptions(false);
-//        provider.setUserDetailsService(userService);
-        provider.setPasswordEncoder(passwordEncoder);
-        return provider;
-    }
+    @Autowired
+    private MyLogOutSuccessHandler logOutSuccessHandler;
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        super.configure(web);
-    }
-
-    //Using generated security password: 2f0febfd-5ca9-4027-bdec-6748f23f50fb
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                    .antMatchers("/login")
-                    .permitAll()
-                    .antMatchers("/home", "/")
-                    .hasRole("USER")
-                    .antMatchers("/admin")
-                    .hasAnyRole("ADMIN", "DBA")
+//        http.httpBasic() //portal基本认证
+        http.addFilterBefore(validateCodeFilter, UsernamePasswordAuthenticationFilter.class)// 添加验证码校验过滤器,这个过滤器必须在认证的的前面
+                .addFilterBefore(smsCodeFilter, UsernamePasswordAuthenticationFilter.class) // 添加短信验证码校验过滤器
+        .exceptionHandling()
+                .accessDeniedHandler(authenticationAccessDeniedHandler) //权限控制，访问别拒绝的时候
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
-    //                .successHandler(appAuthenticationSuccessHandler)
-                    .usernameParameter("loginName")
-                    .passwordParameter("password")
+                .formLogin() //表单认证方式
+                    .loginPage("/authentication/require") //登录跳转 URL（没有认证跳转的地址）
+                    .loginProcessingUrl("login")//form表单提交后的url到security来进行处理
+                    .successHandler(new MyAuthenticationSucessHandler()) //认证成功的处理器
+                    .failureHandler(new MyAuthenticationFailureHandler()) //认证失败的处理器
+                .and()
+                    .authorizeRequests() //授权所有请求
+                    .antMatchers("/authentication/require","login.html","/code/image","/code/sms").permitAll() //login请求不需要认证，否则进入死循环
+                    .anyRequest()   //所有请求
+                    .authenticated() //都需要认证
                 .and()
                     .logout()
-                    .permitAll()
-                    .and()
-                    .exceptionHandling().accessDeniedPage("/accessDenied");
-    }
+                    .logoutUrl("/signout")
+                    // .logoutSuccessUrl("/signout/success")
+                    .logoutSuccessHandler(logOutSuccessHandler)
+                    .deleteCookies("JSESSIONID")
+                .and().csrf().disable();
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("admin").password(new BCryptPasswordEncoder().encode("1")).roles("ADMIN");
-        auth.inMemoryAuthentication().passwordEncoder(new BCryptPasswordEncoder())
-                .withUser("user").password(new BCryptPasswordEncoder().encode("1")).roles("user");
     }
-
 }

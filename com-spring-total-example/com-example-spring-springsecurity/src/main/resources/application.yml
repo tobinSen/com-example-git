@@ -3,4 +3,4 @@ server:
 
 security:
   basic:
-    enabled: true
+   enabled: true #默认开启
