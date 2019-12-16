@@ -1,5 +1,15 @@
 justauth:
   enabled: true
+  # 扩展枚举请求
+  extend:
+    enum-class: com.example.spring.just.auth.extend.ExtendSource
+    config:
+      TEST:
+        request-class: com.example.spring.just.auth.extend.ExtendTestRequest
+        client-id: xxxxxx
+        client-secret: xxxxxxxx
+        redirect-uri: http://oauth.xkcoding.com/demo/oauth/test/callback
+  # 内置请求
   type:
     QQ:
       client-id: 10**********6
