@@ -7,6 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
 /**
  * 1.配置认证服务器AuthorizationServer
@@ -52,7 +54,12 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    //基于内存存储令牌
+    //认证服务器对client的配置
+
+    /**
+     * inMemory
+     * jdbc-->redis扩展
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
@@ -62,5 +69,15 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
                 .authorizedGrantTypes(authorizedGrantTypes) //授权模式
                 .scopes(scopes) //授权范围
                 .redirectUris("https:www.baidu.com");
+    }
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+        //对认证服务器的安全的配置
+    }
+
+    @Override
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        //对认证服务器，端点的配置
     }
 }
