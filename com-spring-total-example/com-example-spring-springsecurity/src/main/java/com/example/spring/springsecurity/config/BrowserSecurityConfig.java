@@ -52,6 +52,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  *
  * AuthenticationFailureHandler
  *
+ * oAuth 四种认证模式的类：
+ *  AuthorizationCodeTokenGranter -->授权码模式
+ *  ImplicitTokenGranter          -->简化模式(比授权码模式少了一个code，直接返回access_token)
+ *  ResourceOwnerPasswordTokenGranter -->密码模式(用户|密码->第三方应用->QQ等认证服务器)
+ *  ClientCredentialsTokenGranter -->客户端模式(适用于没有前端的命令行应用(应用间认证),这种方式给出的令牌，是针对第三方应用的，而不是针对用户的，即有可能多个用户共享同一个令牌)
+ *
+ *
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true) //对方法开启权限控制
