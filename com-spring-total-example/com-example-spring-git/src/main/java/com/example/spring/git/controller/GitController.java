@@ -1,5 +1,6 @@
 package com.example.spring.git.controller;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,6 +51,17 @@ public class GitController {
             }
         }
         return resultStringBuilder.toString();
+    }
+
+    /**
+     * @RequestParam Map<String   ,       String> params
+     * @RequestBody Map<String   ,       String> params
+     * @RequestParam List<Long> ids, String name
+     * @RequestBody String params
+     */
+    @RequestMapping(value = "/map.do")
+    public String test(@RequestBody String params) throws Exception {
+        return params.toString();
     }
 
 }
