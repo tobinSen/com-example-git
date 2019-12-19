@@ -31,7 +31,7 @@ import sun.misc.SharedSecrets;
  * ExceptionTranslationFilter            -->处理认证抛出的异常的
  * FilterSecurityInterceptor             -->进行身份认证的
  * RememberMeAuthenticationFilter        -->进行免密登录cookie中保存remember-me = token
- *
+ * AbstractAuthenticationProcessingFilter -->所有过滤器的抽象层
  *
  * private RequestCache requestCache = new HttpSessionRequestCache();
  * private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
