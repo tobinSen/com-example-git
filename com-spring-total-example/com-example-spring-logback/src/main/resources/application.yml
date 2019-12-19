@@ -4,3 +4,8 @@ server:
 logging:
   file: C:/User/log.log
   config:
+  level:
+    com:
+      uplooking:
+        spring:
+          logback: debug # 使用logback默认日志框架的时候，包路径下的日志等级

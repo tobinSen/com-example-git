@@ -7,10 +7,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import sun.misc.JavaLangAccess;
+import sun.misc.SharedSecrets;
 
 
 /**
@@ -27,6 +30,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * BasicAuthenticationFilter             -->基本认证的
  * ExceptionTranslationFilter            -->处理认证抛出的异常的
  * FilterSecurityInterceptor             -->进行身份认证的
+ * RememberMeAuthenticationFilter        -->进行免密登录cookie中保存remember-me = token
+ *
  *
  * private RequestCache requestCache = new HttpSessionRequestCache();
  * private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -36,6 +41,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  *
  * 处理成功和失败
  * AuthenticationSuccessHandler
+ *
+ * ====对比shiro中的SubObject=====
+ *  //获取认证器
+ *  Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+ *  //获取用户名
+ *  String username = (String) authentication.getPrincipal();
+ *
  *
  * 登录成功后获取认证信息
  * 方式一：
@@ -61,6 +73,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  *
  */
 @Configuration
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) //对方法开启权限控制
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -120,5 +133,18 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                     .deleteCookies("JSESSIONID")
                 .and().csrf().disable();
 
+    }
+
+    public static void main(String[] args) {
+        JavaLangAccess access = SharedSecrets.getJavaLangAccess();
+        Throwable throwable = new Throwable();
+
+        int depth = access.getStackTraceDepth(throwable);
+
+        //输出JVM栈帧中的所有类实例
+        for (int i = 0; i < depth; i++) {
+            StackTraceElement frame = access.getStackTraceElement(throwable, i);
+            System.out.println(frame);
+        }
     }
 }
