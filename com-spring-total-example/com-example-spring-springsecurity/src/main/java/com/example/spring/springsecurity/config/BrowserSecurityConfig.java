@@ -33,6 +33,24 @@ import sun.misc.SharedSecrets;
  * RememberMeAuthenticationFilter        -->进行免密登录cookie中保存remember-me = token
  * AbstractAuthenticationProcessingFilter -->所有过滤器的抽象层
  *
+ *
+ * ------------------------------------------------------------------------
+ *
+ *自定义添加过滤器的流程：
+ * AbstractAuthenticationProcessingFilter -->AbstractAuthenticationFilterConfigurer
+ *        ->AuthenticationManager
+ *        ->AuthenticationProvider(DaoAuthenticationProvider) | SmsAuthenticationProvider(自定义)
+ *        ->Authentication | UsernamePasswordAuthenticationToken(UserDetailService->UserDetail信息)
+ *
+ *
+ * 通过restful获取accessToken:
+ *
+ *  OAuth2RestTemplate auth2RestTemplate = new OAuth2RestTemplate(details);
+ * 	auth2RestTemplate.setAccessTokenProvider(new OpenIdAccessTokenProvider());
+ *  auth2RestTemplate.getAccessToken();
+ *
+ * ------------------------------------------------------------------------
+ *
  * private RequestCache requestCache = new HttpSessionRequestCache();
  * private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
  *
