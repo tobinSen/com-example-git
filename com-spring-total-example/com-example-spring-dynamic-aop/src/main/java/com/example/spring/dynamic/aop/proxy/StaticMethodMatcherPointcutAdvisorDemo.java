@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 
 public class StaticMethodMatcherPointcutAdvisorDemo {
 
+    //3点 target + advisor(advice)
     public static void main(String[] args) throws Exception {
         ProxyFactory proxyFactory = new ProxyFactory();
         // 设置目标类

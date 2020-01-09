@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 
 public class BarberTonyBeforeAdviceDemo {
 
+    //2点 target + advice
     public static void main(String[] args) {
         ProxyFactory proxyFactory = new ProxyFactory();
         // 设置代理的目标类
