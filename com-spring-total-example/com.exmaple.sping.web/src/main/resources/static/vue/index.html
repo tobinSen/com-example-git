@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 1. 导入Vue的包-->
+    <script src="vue.js"></script>
+</head>
+<style>
+    [v-cloak] {
+        display: none;
+    }
+
+    .red {
+        color: #ff6144;
+    }
+
+</style>
+<body>
+
+<!--将来 new 的Vue实例，会控制这个元素中的所有内容-->
+<div id="app">
+    <!--v-cloak可以解决vue.js加载慢的问题，导致插值表达式{{}}闪烁显示问题
+        支持三目运算符
+    -->
+    <p v-cloak>{{msg}}</p>
+    <!--
+     1. v-text不存在闪烁问题
+     2. v-text会覆盖元素中原来的内容，但是插值表达式不会
+    -->
+    <h4 v-text="msg"></h4>
+    <div v-html="msg2"></div>
+    <input type="button" value="按钮" :title="myTitle"/><br/>
+    <!--.prevent 阻止默认事件-->
+    <input type="button" value="按钮" @click.stop="show"/>
+    <span>{{msg}}</span>
+    <input type="text" v-model="msg"/>
+    <p v-for="(item,index)in list">索引值:{{i}}}-->每项值:{{item.id}}}</p>
+    <p v-for="(value,key,index) in user">{{value}}-->{{key}}</p>
+
+
+</div>
+
+<script>
+
+    // 2.创建一个Vue的实例
+    //当我们导入Vue包的时候，在浏览器内存中，就多了一个Vue构造函数
+
+    var vm = new Vue({
+        el: '#app',//表示氮气我们new的这个Vue实例，要控制页面上的那个区域
+        data: {  //data属性中，存放的是el总要用到的数据
+            msg: '欢迎学习Vue', //通过Vue提供的指令，很方便就能把数据渲染到页面上
+            msg2: '<h1>2132132</h1>',
+            myTitle: '这个是个自定义title',
+            arr: [1, 2, 3, 4, 5],
+            list: [
+                {id: 1, username: "Tom"}
+            ],
+            user: {
+                id: 1,
+                username: tongjian
+            }
+        },
+        methods: {
+            show: function () {
+                alert('Hello world');
+
+                setInterval(() => {
+                    console.log("匿名函数==>" + this); //这里的this是外部的this
+                    console.log(this);
+                }, 10000);
+
+                setInterval(function () {
+                    console.log("声明函数==>" + this); //window
+                    console.log(this);
+                }, 10000);
+            }
+        }
+
+    });
+</script>
+
+</body>
+</html>

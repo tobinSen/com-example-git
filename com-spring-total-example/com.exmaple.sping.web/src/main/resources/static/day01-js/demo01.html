@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript">
+    /**
+     * javaScript组成
+     * 	1.ECMAScript 3，4，5，6，7
+     * 	2.DOM 文档
+     *  3.BOM 浏览器
+     *
+     * <script>
+     属性:type='text/javascript'声明当前标签内写的文本格式
+          src=“demo.js” 引入js外部文件
+     注意：
+         1.多个<script>js代码是根据从上到下执行
+         2.一个<script>标签只能专心做一件事情
+
+     ========================================
+     弹框：
+         使用 window.alert() 写入警告框
+         使用 document.write() 写入 HTML 输出
+         使用 innerHTML 写入 HTML 元素
+         使用 console.log() 写入浏览器控制台
+
+     注释
+         单行注释
+         多行注释
+
+     代码压缩：去掉编写代码的时候，有的所有空格，tab键
+
+     变量：
+     运算符
+        1.算符运算符
+        2.关系运算符
+        3.逻辑运算符
+        4.赋值运算符
+        5.一元运算符
+
+     注意：
+        不同数据类型之间不能进行运算【自动类型转换】
+            1.其中有一个操作是字符串，运算符是 + 则另外一个会转发为字符串
+
+     判断语句
+        if
+        switch
+
+     循环语句:
+        for
+        while
+        do...while
+
+
+     函数：
+        内置函数：
+         alert()
+
+
+        自定义函数：
+            function 函数名(形参...){
+                函数体(具体要执行的代码...)
+                return 返回值;
+
+            }
+            函数调用：
+                函数名()
+
+        【注意】每个函数内部都有一个arguments,表示实际传入的参数
+
+     函数作用域：
+        基本类型：形参变化不会影响实参
+        引用类型：形参变化会影响是实参
+
+     递归：
+
+     数组：
+        声明数组：
+            var array = new Array(10) //长度为10的数组
+            var array = new Array(100,true,'1232131');
+            var array = [10] // 10为元素
+
+        数组的属性
+            数组.length 长度
+        数组元素访问：
+            数组[0]
+
+     for ..in
+
+     for(var i in arr){
+        i //这里为下标
+     }
+
+         push:
+         pop:
+         shift
+         unShift
+         splice
+         concat
+         join
+         toString
+         slice
+
+     声明的提升：变量 + 函数
+        alert(num);
+        var num =10;
+
+     省略var,直接定义变量就会升级为全局变量
+     nu
+
+
+     严格模式：那个作用域下生效
+        "use strict"
+        1.全局变量声明是，必须加var
+        2.函数内重名属性
+        3.arguments对象不能动态改变
+        4.新增保留字
+     *
+     *
+     *
+     *
+     * 数组遍历
+     *  for
+     *  for ...in
+     *  forEach
+     *  for of
+     *
+     *
+     *  对象:
+     *      1.通过new运算符声明对象  var obj = new Object()
+     *      2.通过省略new          var obj = {}
+     *      3.对象常量赋值
+     *
+     *      obj.username = 'xxx'
+     *      obj['username']='xxxx'
+     *
+     *
+     *  定时器
+     *    var timer =  setInterval(函数,毫秒数)
+     *    cleanInterval(timer)
+     *
+     *
+     *  等待页面加载完后再加载这个函数的内容
+     *  window.onload = function(){
+     *
+     *  }
+     *
+     *
+     * BOM:
+     * 系统对话框：
+     *  window方法
+     *      alert()
+     *      confirm()
+     *      prompt()
+     *      open()
+     *      history()
+     *      location()
+     *          file://本地磁盘文件类型
+     *
+     *
+     * DOM:
+     *      节点类型
+     *          元素节点
+     *          属性节点
+     *          文本节点
+     *
+     *         获取元素节点
+     *
+     *
+     * 绑定事件：
+     *      1.内联模式
+     *          click 单击
+     *      2.外联模式
+     *
+     *  事件类型：
+     *      鼠标事件：
+     *      键盘事件
+     *      HTML事件
+     *          1.window事件
+     *              load
+     *              unload
+     *              scroll
+     *              resize
+     *          2.表单事件
+     *              blur
+     *              focus
+     *              submit
+     *              reset
+     *  event:形参
+     *
+     *  localStorage:本地缓存计算
+     *  cookie
+     *  sessionStorage:
+     *
+     *
+     *  this:每个函数都有一个this
+     *
+     *  强制类型转换：(this强制)
+     *      call:
+     *          格式：函数名.call()
+     *          参数：第一个参数：传入该函数this执行的对象，传入什么强制指向什么
+     *               第二个参数：原函数的参数
+     *      apply:
+     *          show.apply("apply",[1,2])
+     *      bind:
+     *          show.bind("bind")(1,2)
+     *
+     *
+     * ECMA6新语法：
+     *      let 关键字 声明变量 遇到大括号就形成作用域
+     *      var 将变量或者形参所在函数的大括号作用域处理
+     *      const 声明变量(常量)，变量值只能在什么的时候确定，后面不能进行修改
+     *
+     * 箭头函数：箭头函数会默认帮我们绑定外层this的值，所以在箭头函数中this的值和最外层的this是一样的。
+     *      var json = ()=>({
+        //返回一个对象
+            })
+
+        中括号解构
+            var[x,y,z] = [1,2,3]
+        大括号解构
+     *      var {name,age,sex}={
+     *          name:2,
+     *          age:12
+     *          sex:"男"
+     *      }
+     *   使用解构的好处：
+     *      1.交换两个值
+     *      2.函数可以返回多个值
+     *      3.函数定义形参和传入的实参的顺序改变
+     *          还可以添加默认值(函数形参添加默认值)
+     *      4.快速取出数组某个元素
+     *
+     *  字符串：``
+     *       `${name}`
+     *
+     *  集合  for...of 遍历
+     *      Set
+     *      Map
+     *
+     * 面向对象：
+     *      1.构造函数
+     *      2.prototype原型 每个函数都有一个原型对象prototype
+     *          如果将方法添加到构造函数的原型prototype对象
+     *          构造函数构造出来的对象共享原型上所有方法
+     *
+     *  继承
+     *
+     *  多态
+     *
+     *  prototype 和 __proto__ 指向构造函数的原型
+     *
+     *  Dog    prototype
+     *
+     *  dog     __proto__
+     *
+     * instanceof
+     *
+     * ECMA6 class语法
+     *
+     *              ECMA         commonJS
+     *         浏览器      JavaScript  ---》node --->服务器
+     *
+     *
+     * JavaScript 错误 - Throw 和 Try to Catch
+     *
+     * debugger 关键词
+     *
+     * 7点
+     *
+     * xxxxxxxxx
+     */
+
+    function Worker(name,sex,job){
+        //1.构造函数的伪装，继承父类属性
+        Person.call(this,name,sex);
+        this.job =job;
+    }
+
+    //2.原型链方式继承父类
+    for (var funcName in Person.prototype){
+        Worker.prototype[funcName] =Persion.prototype[funcName];
+    }
+
+    Worker.prototype = Object.create(Persion.prototype)
+
+    Worker.prototype = new Person();
+
+
+    class Person{
+        constructor(name,sex,age){
+            this.name=name;
+            this.sex=sex;
+            this.age=age;
+        }
+        showSelf(){
+            alert("这是对象中的方法")
+        }
+    }
+
+    class Worker extends Person{
+        constructor(name,sex,age,job) {
+            super(name,sex,age);
+            this.job=job;
+        }
+
+
+    }
+
+
+
+
+
+    function Dog(){
+
+    }
+
+    function Teddy(){
+        //1.继承一级构造函数的所有属性
+        Dog.call(this,{
+            name,
+            age,
+            sex
+        });
+    }
+
+
+
+    var arr1 = [12,22,2];
+    var arr2 = [12,22,2];
+    
+    Array.prototype.sum = function () {
+        
+    };
+    function Persion() {
+        
+    }
+    
+    Persion.prototype.sum = function () {
+        
+    }
+
+
+
+
+
+    function showSelf({name,age,sex='男'}) {
+
+    }
+
+    showSelf({
+        name: 'tongjian',
+        age: 12
+    });
+
+    let imgs = new Set();
+    let m = new Map();
+
+    for (let item of imgs.keys()){
+
+    }
+
+</script>
+
+
+<body>
+    <button id="btn" onclick="btnClick();btnClick1()">按钮</button>
+</body>
+</html>
