@@ -14,9 +14,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.Map;
 
 public class PdfUtil {
@@ -61,5 +59,20 @@ public class PdfUtil {
         // fileStream.close();
 
         return os.toByteArray();
+    }
+
+
+    //o f 默认路径
+    public static void main(String[] args) throws Exception {
+        String fileName = "test.pdf"; //这里命名了，但是却没有路径，但是存在默认路径==>当前项目/文件名
+        File pdfFile1 = new File(fileName);
+        System.out.println(pdfFile1.getAbsolutePath());
+        OutputStream os = new FileOutputStream(fileName);
+        os.write(123);
+        os.flush();
+        os.close();
+        File pdfFile2 = new File(fileName);//Users/tongjian/Documents/apache_repository/com-example-git/test.pdf
+        System.out.println(pdfFile2.getAbsolutePath());
+
     }
 }
