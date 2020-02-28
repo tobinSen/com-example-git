@@ -55,6 +55,7 @@
         <module>com-example-spring-just-auth</module>
         <module>com-example-spring-webflux</module>
         <module>com.exmaple.sping.web</module>
+        <module>com.example.spring.hutool</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
