@@ -43,7 +43,7 @@ public class QrCodeZxingController {
     public String printQrCode(String code, HttpServletResponse response) throws Exception {
         try {
             //BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(encode(code), new MatrixToImageConfig(Color.BLACK.getRGB(), Color.WHITE.getRGB()));
-            //BufferedImage bufferedImage = encode("www.baidu.com", "static/images/test.png", true);
+            //BufferedImage bufferedImage = encode("www.baidu.com", "statics/images/test.png", true);
             //ImageIO.write(bufferedImage, "jpeg", response.getOutputStream());
             linkEncode(response);
         } catch (Exception e) {

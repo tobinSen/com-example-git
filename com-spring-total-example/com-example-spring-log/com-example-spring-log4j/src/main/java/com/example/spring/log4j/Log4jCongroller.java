@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Random;
 
@@ -13,12 +14,14 @@ public class Log4jCongroller {
     private static Logger logger = Logger.getLogger(Log4jCongroller.class);
 
     @RequestMapping("log4j.do")
-    public JSONObject log4j(String name) throws Exception {
+    public String log4j(String name) throws Exception {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name", name);
         jsonObject.put("randomNum", new Random().nextInt(100));
         logger.info(jsonObject);
-        return jsonObject;
+        ModelAndView mv = new ModelAndView();
+        mv.addAllObjects(jsonObject);
+        return "template/index.html";
     }
 
 }

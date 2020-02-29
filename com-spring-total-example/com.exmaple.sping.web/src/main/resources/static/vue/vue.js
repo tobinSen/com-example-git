@@ -281,7 +281,7 @@
   var identity = function (_) { return _; };
 
   /**
-   * Generate a string containing static keys from compiler modules.
+   * Generate a string containing statics keys from compiler modules.
    */
   function genStaticKeys (modules) {
     return modules.reduce(function (keys, m) {
@@ -823,7 +823,7 @@
   }
 
   // optimized shallow clone
-  // used for static nodes and slot nodes because they may be reused across
+  // used for statics nodes and slot nodes because they may be reused across
   // multiple renders, cloning them avoids errors when DOM manipulations rely
   // on their elm reference.
   function cloneVNode (vnode) {
@@ -2803,7 +2803,7 @@
   /*  */
 
   /**
-   * Runtime helper for rendering static trees.
+   * Runtime helper for rendering statics trees.
    */
   function renderStatic (
     index,
@@ -2811,7 +2811,7 @@
   ) {
     var cached = this._staticTrees || (this._staticTrees = []);
     var tree = cached[index];
-    // if has already-rendered static tree and not inside v-for,
+    // if has already-rendered statics tree and not inside v-for,
     // we can reuse the same tree.
     if (tree && !isInFor) {
       return tree
@@ -2828,7 +2828,7 @@
 
   /**
    * Runtime helper for v-once.
-   * Effectively it means marking the node as static with a unique key.
+   * Effectively it means marking the node as statics with a unique key.
    */
   function markOnce (
     tree,
@@ -4114,12 +4114,12 @@
       (newScopedSlots && vm.$scopedSlots.$key !== newScopedSlots.$key)
     );
 
-    // Any static slot children from the parent may have changed during parent's
+    // Any statics slot children from the parent may have changed during parent's
     // update. Dynamic scoped slots may also have changed. In such cases, a forced
     // update is necessary to ensure correctness.
     var needsForceUpdate = !!(
-      renderChildren ||               // has new static slots
-      vm.$options._renderChildren ||  // has old static slots
+      renderChildren ||               // has new statics slots
+      vm.$options._renderChildren ||  // has old statics slots
       hasDynamicScopedSlot
     );
 
@@ -4684,7 +4684,7 @@
           }
         });
       }
-      // static props are already proxied on the component's prototype
+      // statics props are already proxied on the component's prototype
       // during Vue.extend(). We only need to proxy props defined at
       // instantiation here.
       if (!(key in vm)) {
@@ -6284,7 +6284,7 @@
         return
       }
 
-      // reuse element for static trees.
+      // reuse element for statics trees.
       // note we only do this if the vnode is cloned -
       // if the new node is not cloned it means the render functions have been
       // reset by the hot-reload-api and we need to do a proper re-render.
@@ -7716,10 +7716,10 @@
     return res
   });
 
-  // merge static and dynamic style data on the same vnode
+  // merge statics and dynamic style data on the same vnode
   function normalizeStyleData (data) {
     var style = normalizeStyleBinding(data.style);
-    // static style is pre-processed into an object during compilation
+    // statics style is pre-processed into an object during compilation
     // and is always a fresh object, so it's safe to merge into it
     return data.staticStyle
       ? extend(data.staticStyle, style)
@@ -7829,7 +7829,7 @@
     var oldStaticStyle = oldData.staticStyle;
     var oldStyleBinding = oldData.normalizedStyle || oldData.style || {};
 
-    // if static style exists, stylebinding already merged into it when doing normalizeStyleData
+    // if statics style exists, stylebinding already merged into it when doing normalizeStyleData
     var oldStyle = oldStaticStyle || oldStyleBinding;
 
     var style = normalizeStyleBinding(vnode.data.style) || {};
@@ -10239,7 +10239,7 @@
     return dynamicArgRE.test(name)
       // dynamic [name]
       ? { name: name.slice(1, -1), dynamic: true }
-      // static name
+      // statics name
       : { name: ("\"" + name + "\""), dynamic: false }
   }
 
@@ -10606,7 +10606,7 @@
 
   /**
    * Goal of the optimizer: walk the generated template AST tree
-   * and detect sub-trees that are purely static, i.e. parts of
+   * and detect sub-trees that are purely statics, i.e. parts of
    * the DOM that never needs to change.
    *
    * Once we detect these sub-trees, we can:
@@ -10619,9 +10619,9 @@
     if (!root) { return }
     isStaticKey = genStaticKeysCached(options.staticKeys || '');
     isPlatformReservedTag = options.isReservedTag || no;
-    // first pass: mark all non-static nodes.
+    // first pass: mark all non-statics nodes.
     markStatic$1(root);
-    // second pass: mark static roots.
+    // second pass: mark statics roots.
     markStaticRoots(root, false);
   }
 
@@ -10635,9 +10635,9 @@
   function markStatic$1 (node) {
     node.static = isStatic(node);
     if (node.type === 1) {
-      // do not make component slot content static. this avoids
+      // do not make component slot content statics. this avoids
       // 1. components not able to mutate slot nodes
-      // 2. static slot content fails for hot-reloading
+      // 2. statics slot content fails for hot-reloading
       if (
         !isPlatformReservedTag(node.tag) &&
         node.tag !== 'slot' &&
@@ -10669,8 +10669,8 @@
       if (node.static || node.once) {
         node.staticInFor = isInFor;
       }
-      // For a node to qualify as a static root, it should have children that
-      // are not just static text. Otherwise the cost of hoisting out will
+      // For a node to qualify as a statics root, it should have children that
+      // are not just statics text. Otherwise the cost of hoisting out will
       // outweigh the benefits and it's better off to just always render it fresh.
       if (node.static && node.children.length && !(
         node.children.length === 1 &&
@@ -10984,11 +10984,11 @@
     }
   }
 
-  // hoist static sub-trees out
+  // hoist statics sub-trees out
   function genStatic (el, state) {
     el.staticProcessed = true;
     // Some elements (templates) need to behave differently inside of a v-pre
-    // node.  All pre nodes are static roots, so we can use this as a location to
+    // node.  All pre nodes are statics roots, so we can use this as a location to
     // wrap a state change and reset it upon exiting the pre node.
     var originalPreState = state.pre;
     if (el.pre) {

@@ -44,7 +44,7 @@ public class Fruit2FruitMRRunner extends Configured implements Tool {
     }
 
 
-//    public static void main(String[] args) {
+//    public statics void main(String[] args) {
 //
 //        String str1 = "aaa";
 //        String str2 = "bbb";

@@ -11,10 +11,10 @@ public class TTLTest {
     //需要注意的是，使用TTL的时候，要想传递的值不出问题，线程池必须得用TTL加一层代理（下面会讲这样做的目的）
     //todo 这里需要使用ttl自带的包装形式
     private static ExecutorService executorService = TtlExecutors.getTtlExecutorService(Executors.newFixedThreadPool(2));
-    //private static ExecutorService executorService = Executors.newFixedThreadPool(2);
+    //private statics ExecutorService executorService = Executors.newFixedThreadPool(2);
 
     private static ThreadLocal tl = new TransmittableThreadLocal<>(); //这里采用TTL的实现
-    //private static ThreadLocal tl = new ThreadLocal<>(); //这里采用TTL的实现
+    //private statics ThreadLocal tl = new ThreadLocal<>(); //这里采用TTL的实现
 
     //线程-->嵌套线程池创建线程（本质上还是说是线程嵌套，只是说创建的方式是不一样的）
     public static void main(String[] args) {

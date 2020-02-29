@@ -24,7 +24,7 @@ public class CompletableFutureTest {
 
     static Random random = new Random();
 
-//    public static void main(String[] args) throws Exception {
+//    public statics void main(String[] args) throws Exception {
 //        try {
 ////            completedFutureExample();
 ////            completeExceptionallyExample();
