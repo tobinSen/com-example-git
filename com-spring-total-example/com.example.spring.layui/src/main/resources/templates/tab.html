@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+</head>
+<body>
+
+<div class="layui-tab" lay-allowClose="true" lay-filter="demo">
+    <ul class="layui-tab-title">
+        <li class="layui-this">网站设置</li>
+        <li lay-id="1">用户管理</li>
+        <li>权限分配</li>
+        <li>商品管理</li>
+        <li>订单管理</li>
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">内容1</div>
+        <div class="layui-tab-item">内容2</div>
+        <div class="layui-tab-item">内容3</div>
+        <div class="layui-tab-item">内容4</div>
+        <div class="layui-tab-item">内容5</div>
+    </div>
+</div>
+
+<div class="layui-tab layui-tab-card">
+    <ul class="layui-tab-title">
+        <li class="layui-this">网站设置</li>
+        <li>用户管理</li>
+        <li>权限分配</li>
+        <li>商品管理</li>
+        <li>订单管理</li>
+    </ul>
+    <div class="layui-tab-content" style="height: 100px;">
+        <div class="layui-tab-item layui-show">1</div>
+        <div class="layui-tab-item">2</div>
+        <div class="layui-tab-item">3</div>
+        <div class="layui-tab-item">4</div>
+        <div class="layui-tab-item">5</div>
+        <div class="layui-tab-item">6</div>
+    </div>
+</div>
+
+<div class="site-demo-button" lay-filter="demo" style="margin-bottom: 0;">
+    <button class="layui-btn site-demo-active" id="add" data-type="tabAdd">新增Tab项</button>
+    <button class="layui-btn site-demo-active" data-type="tabDelete">删除：商品管理</button>
+    <button class="layui-btn site-demo-active" data-type="tabChange">切换到：用户管理</button>
+</div>
+
+<script type="text/javascript" src="../static/layui/layui.js"></script>
+<script>
+    //注意：选项卡 依赖 element 模块，否则无法进行功能性操作
+    layui.use(['element', 'jquery'], function () {
+        let element = layui.element;
+        const $ = layui.jquery;
+
+
+        $("#add").click(function () {
+            element.tabAdd('demo', {
+                title: '选项卡的标题',
+                content: '选项卡内容'
+            });
+            element.tabDelete('demo', '1');
+        });
+
+    });
+</script>
+
+</body>
+</html>

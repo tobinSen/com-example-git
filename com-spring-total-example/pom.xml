@@ -56,6 +56,7 @@
         <module>com-example-spring-webflux</module>
         <module>com.exmaple.sping.web</module>
         <module>com.example.spring.hutool</module>
+        <module>com.example.spring.layui</module>
     </modules>
 
     <!--导入springboot版本仲裁-->

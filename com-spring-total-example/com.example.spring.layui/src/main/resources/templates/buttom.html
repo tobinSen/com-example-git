@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+</head>
+<body>
+
+<button type="button" class="layui-btn">一个标准的按钮</button>
+<a href="http://www.layui.com" class="layui-btn">一个可跳转的按钮</a>
+
+<div class="layui-btn-group">
+    <button type="button" class="layui-btn">增加</button>
+    <button type="button" class="layui-btn">编辑</button>
+    <button type="button" class="layui-btn">删除</button>
+</div>
+
+<div class="layui-btn-group">
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe654;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe642;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe640;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm">
+        <i class="layui-icon">&#xe602;</i>
+    </button>
+</div>
+
+<div class="layui-btn-group">
+    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+        <i class="layui-icon">&#xe654;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+        <i class="layui-icon">&#xe642;</i>
+    </button>
+    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+        <i class="layui-icon">&#xe640;</i>
+    </button>
+</div>
+
+<button type="button" class="layui-btn layui-btn-fluid layui-btn-primary">流体按钮（最大化适应）</button>
+<button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
+    <i class="layui-icon layui-icon-login-wechat"></i>微信
+</button>
+
+
+<script type="text/javascript" src="../static/layui/layui.js"></script>
+<script>
+    layui.use(['jquery'], function () {
+        let $ = layui.jquery;
+        $('.layui-btn').click(function () {
+            alert($(this).html());
+        });
+
+    });
+</script>
+</body>
+</html>

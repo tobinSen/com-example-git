@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/layui/css/layui.css">
+
+</head>
+<body>
+<div id="slideTest1" class="demo-slider"></div>
+<div id="slideTest2" class="demo-slider"></div>
+<div id="slideTest3" class="demo-slider"></div>
+<div id="slideTest4" class="demo-slider"></div>
+<div id="slideTest5" class="demo-slider"></div>
+<div id="slideTest6" class="demo-slider"></div>
+<div id="slideTest7" class="demo-slider"></div>
+<div id="slideTest8" class="demo-slider"></div>
+<div id="slideTest9" class="demo-slider"></div>
+<div id="slideTest10" class="demo-slider"></div>
+
+<div id="slideTest11" style="margin: 45px 30px; display: inline-block;"></div>
+<div id="slideTest12" style="margin: 45px 30px; display: inline-block;"></div>
+<div id="slideTest13" style="margin: 45px 30px; display: inline-block;"></div>
+<div id="slideTest14" style="margin: 45px 30px; display: inline-block;"></div>
+
+
+<div id="slideTest15" class="demo-slider"></div>
+<div id="slideTest16" class="demo-slider"></div>
+<div id="slideTest17" class="demo-slider"></div>
+<div id="slideTest18" class="demo-slider"></div>
+
+<script type="text/javascript" src="../static/layui/layui.js"></script>
+<script>
+    layui.use('slider', function () {
+        const $ = layui.jquery;
+        const slider = layui.slider;
+
+        //默认滑块
+        slider.render({
+            elem: '#slideTest1'
+        });
+
+        //定义初始值
+        slider.render({
+            elem: '#slideTest2'
+            ,value: 20 //初始值
+        });
+
+        //设置最大最小值
+        slider.render({
+            elem: '#slideTest3'
+            ,min: 20 //最小值
+            ,max: 50 //最大值
+        });
+
+        //设置步长
+        slider.render({
+            elem: '#slideTest4'
+            ,step: 10 //步长
+        });
+
+        slider.render({
+            elem: '#slideTest5'
+            ,step: 10 //步长
+            ,showstep: true //开启间隔点
+        });
+
+        //form表单中如何有个原始的组件变为layui组件需要重新渲染
+    });
+</script>
+</body>
+</html>
