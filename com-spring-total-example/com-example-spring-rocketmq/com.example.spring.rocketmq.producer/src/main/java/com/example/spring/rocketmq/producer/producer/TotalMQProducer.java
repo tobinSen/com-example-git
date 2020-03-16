@@ -26,6 +26,18 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.*;
 
+
+/**                  MQAdmin
+ *                      |
+ * ClientConfig     MQProducer
+ *               |
+ *          DefaultMQProducer ->DefaultMQProducerImpl
+ *                                     ServiceState
+ *
+ *
+ *
+ */
+
 public class TotalMQProducer {
 
     //-------------------------producer------------------------------
@@ -34,6 +46,8 @@ public class TotalMQProducer {
         public static void main(String[] args) throws Exception {
             // 实例化消息生产者Producer
             DefaultMQProducer producer = new DefaultMQProducer("please_rename_unique_group_name");
+            producer.setProducerGroup("product-group");
+            producer.setInstanceName("product-instance"); //一个生产者组一个实例
             // 设置NameServer的地址
             producer.setNamesrvAddr("localhost:9876");
             // 启动Producer实例
@@ -424,6 +438,7 @@ public class TotalMQProducer {
 
                 Random random = new Random();
 
+                //保证的是队列中的消息的顺序性，而消费者需要保证一个队列由一个消费者进行消费，消费的顺序性了
                 @Override
                 public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgS, ConsumeOrderlyContext context) {
                     context.setAutoCommit(true);
@@ -495,6 +510,7 @@ public class TotalMQProducer {
         public static void main(String[] args) throws Exception {
             DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("please_rename_unique_group_name_4");
             // 只有订阅的消息有这个属性a, a >=0 and a <= 3
+            // msg.putUserProperty("a", String.valueOf(i)); 对应
             consumer.subscribe("TopicTest", MessageSelector.bySql("a between 0 and 3"));
             consumer.registerMessageListener(new MessageListenerConcurrently() {
                 @Override
