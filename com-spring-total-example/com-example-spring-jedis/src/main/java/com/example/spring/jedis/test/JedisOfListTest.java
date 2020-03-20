@@ -12,7 +12,7 @@ public class JedisOfListTest {
         //lpush, rpush, lrange
         System.out.println(jedis.lpush("key4", "value4", "value4", "value4"));//从左边添加,list不能进行覆盖，一直追加到里面
         System.out.println(jedis.rpush("key6", "value6", "value6", "value6"));
-        System.out.println(jedis.lrange("key4", 0, 1)); //左右都包含
+        System.out.println(jedis.lrange("key4", 0, -1)); //左右都包含
     }
 
     @Test

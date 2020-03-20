@@ -55,5 +55,13 @@ public class Cat extends Animal {
         for (Field field : fields) {
             System.out.println(field.getName());
         }
+
+        //catName
+        //catAge
+        //catAddress
+        //catBirthday
+        //================
+        //catBirthday
+        //birthday
     }
 }
