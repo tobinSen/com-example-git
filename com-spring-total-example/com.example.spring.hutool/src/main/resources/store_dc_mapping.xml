@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list>
+    <item storeNo="1001" dcNo="C001" desc="百安居上海沪太"/>
+    <item storeNo="1003" dcNo="C002" desc="百安居上海杨浦"/>
+    <item storeNo="1004" dcNo="C003" desc="百安居上海龙阳"/>
+    <item storeNo="1005" dcNo="C004" desc="百安居上海闵行"/>
+    <item storeNo="1008" dcNo="C005" desc="百安居上海莘庄"/>
+    <item storeNo="1009" dcNo="C006" desc="百安居上海徐泾"/>
+    <item storeNo="1101" dcNo="C034" desc="百安居苏州工业园区"/>
+    <item storeNo="1201" dcNo="C025" desc="百安居昆明"/>
+    <item storeNo="1301" dcNo="C030" desc="百安居深圳罗湖"/>
+    <item storeNo="1302" dcNo="C031" desc="百安居深圳南山"/>
+    <item storeNo="1303" dcNo="C032" desc="百安居深圳泰然"/>
+    <item storeNo="1306" dcNo="C033" desc="百安居深圳西丽"/>
+    <item storeNo="1401" dcNo="C011" desc="百安居北京金四季"/>
+    <item storeNo="1402" dcNo="C012" desc="百安居北京九龙店"/>
+    <item storeNo="1403" dcNo="C013" desc="百安居北京来广营"/>
+    <item storeNo="1405" dcNo="C014" desc="百安居北京立水桥"/>
+    <item storeNo="1502" dcNo="C023" desc="百安居杭州杭海"/>
+    <item storeNo="1601" dcNo="C028" desc="百安居青岛"/>
+    <item storeNo="1701" dcNo="C035" desc="百安居武昌"/>
+    <item storeNo="1801" dcNo="C021" desc="百安居广州天河店"/>
+    <item storeNo="1802" dcNo="C022" desc="百安居广州海珠"/>
+    <item storeNo="1901" dcNo="C020" desc="百安居福州"/>
+    <item storeNo="2003" dcNo="C026" desc="百安居南京雨花"/>
+    <item storeNo="2101" dcNo="C036" desc="百安居无锡"/>
+    <item storeNo="2104" dcNo="C037" desc="百安居无锡橙风"/>
+    <item storeNo="2303" dcNo="C018" desc="百安居重庆龙湖"/>
+    <item storeNo="2501" dcNo="C038" desc="百安居厦门思明"/>
+    <item storeNo="2602" dcNo="C019" desc="百安居东莞元美"/>
+    <item storeNo="2801" dcNo="C015" desc="百安居北京马连道"/>
+    <item storeNo="3501" dcNo="C027" desc="百安居宁波万达"/>
+    <item storeNo="8701" dcNo="C016" desc="百安居成都金沙"/>
+    <item storeNo="8702" dcNo="C017" desc="百安居成都科华"/>
+    <item storeNo="9101" dcNo="C007" desc="百安居上海闸北"/>
+    <item storeNo="9102" dcNo="C008" desc="百安居上海梅陇"/>
+    <item storeNo="9103" dcNo="C009" desc="百安居上海普陀"/>
+    <item storeNo="9104" dcNo="C010" desc="百安居上海金桥"/>
+    <item storeNo="9401" dcNo="C029" desc="百安居青岛市北"/>
+    <item storeNo="9601" dcNo="C024" desc="百安居杭州拱墅"/>
+    <item storeNo="1904" dcNo="C039" desc="百安居福州陆庄"/>
+    <item storeNo="3901" dcNo="C041" desc="百安居杭州临平店"/>
+    <item storeNo="4301" dcNo="C042" desc="百安居重庆大渡口店"/>
+    <item storeNo="4401" dcNo="C043" desc="百安居唐山南北家园店"/>
+    <item storeNo="4501" dcNo="C044" desc="百安居杭州港龙城店"/>
+    <item storeNo="4601" dcNo="C045" desc="百安居长沙梅溪店"/>
+</list>
