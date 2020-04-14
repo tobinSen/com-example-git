@@ -58,6 +58,7 @@
         <module>com.example.spring.hutool</module>
         <module>com.example.spring.layui</module>
         <module>com.example.spring.mongodb</module>
+        <module>com.example.spring.rabbit</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
