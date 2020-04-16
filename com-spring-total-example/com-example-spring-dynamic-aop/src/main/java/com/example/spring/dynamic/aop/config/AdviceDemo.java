@@ -40,6 +40,7 @@ package com.example.spring.dynamic.aop.config;
  * BeanNameAutoProxyCreator -> 接口实现bean + 切面(通知,指定运用到了method)
  * AspectJExpressionPointcutAdvisor -> DefaultAdvisorAutoProxyCreator + 切面(通知，表达式)
  * AbstractBeanFactoryPointcutAdvisor
+ * AbstractPointcutAdvisor
  *
  *
  * DefaultBeanFactoryPointcutAdvisor
