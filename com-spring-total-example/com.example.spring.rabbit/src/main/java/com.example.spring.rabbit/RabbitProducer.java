@@ -1,7 +1,9 @@
 package com.example.spring.rabbit;
 
+import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.core.MessageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -97,7 +99,16 @@ public class RabbitProducer {
         MessageProperties messageProperties = new MessageProperties();
         messageProperties.setHeader("header.a", "header.a");
         Message message = new Message(dateString.getBytes(), messageProperties);
-        this.rabbitTemplate.convertAndSend("headerExchange", message);
+        //发送延时消息
+        this.rabbitTemplate.convertAndSend("headerExchange", message, new MessagePostProcessor() {
+            //发送延时消息
+            @Override
+            public Message postProcessMessage(Message message) throws AmqpException {
+                //给消息设置延迟毫秒值
+                message.getMessageProperties().setExpiration(String.valueOf(1000));
+                return message;
+            }
+        });
     }
 
 
