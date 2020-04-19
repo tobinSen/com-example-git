@@ -111,6 +111,13 @@
             <version>2.2.0.RELEASE</version>
         </dependency>
 
+        <!--easy-mapper-->
+        <dependency>
+            <groupId>com.baidu.unbiz</groupId>
+            <artifactId>easy-mapper</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+
     </dependencies>
 
 
