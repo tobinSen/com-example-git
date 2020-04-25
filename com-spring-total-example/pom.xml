@@ -60,6 +60,8 @@
         <module>com.example.spring.mongodb</module>
         <module>com.example.spring.rabbit</module>
         <module>com.example.spring.profile</module>
+        <module>com.example.spring.cloud.oauth2</module>
+        <module>com.example.spring.grpc</module>
     </modules>
 
     <!--导入springboot版本仲裁-->

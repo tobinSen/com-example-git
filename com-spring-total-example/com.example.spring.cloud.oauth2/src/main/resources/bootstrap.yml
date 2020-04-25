@@ -1,0 +1,34 @@
+management:
+  endpoint:
+    restart:
+      enabled: true
+    health:
+      enabled: true
+    info:
+      enabled: true
+
+spring:
+  application:
+    name: cas-server
+      #redis: #redis相关配置
+      #database: 8
+      #host: localhost
+      #port: 6379
+      #password:  #有密码时设置
+      #jedis:
+      #pool:
+      #max-active: 8
+      #max-idle: 8
+    #min-idle: 0
+    #timeout: 10000ms
+
+
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+  main:
+    allow-bean-definition-overriding: true # 当遇到同样名称时，是否允许覆盖注册

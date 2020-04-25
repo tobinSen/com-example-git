@@ -1,0 +1,25 @@
+server:
+  port: 2000
+  undertow:
+    accesslog:
+      enabled: false
+      pattern: combined
+  servlet:
+    session:
+      timeout: PT120M
+
+logging:
+  path: /data/${spring.application.name}/logs
+
+
+#sso_redirect_urls: http://localhost:2001/login,http://localhost:2003/login
+
+client:
+  http:
+    request:
+      connectTimeout: 8000
+      readTimeout: 30000
+
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: com.damon.*.model

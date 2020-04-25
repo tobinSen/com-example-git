@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package example; //编译出来的文件存放目录
+
+service FormatData {
+    rpc DoFormat (Data) returns (Data) {
+    } //这里后面会用到，注意！！！
+    // DoForma 客户端调用服务端使用的方法
+    // Data 消息体，跟实体类类似，传参和返回都是一个实体接收
+}
+
+message Data {
+    string text = 1; // 1：代表第一个参数
+    string flag = 2; // 2：代表第二个参数
+}
