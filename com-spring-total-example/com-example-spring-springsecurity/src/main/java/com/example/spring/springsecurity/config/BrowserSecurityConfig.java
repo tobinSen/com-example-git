@@ -89,6 +89,17 @@ import sun.misc.SharedSecrets;
  *  ClientCredentialsTokenGranter -->客户端模式(适用于没有前端的命令行应用(应用间认证),这种方式给出的令牌，是针对第三方应用的，而不是针对用户的，即有可能多个用户共享同一个令牌)
  *
  *
+ *
+ *   //3点
+ *       AbstractTokenGranter
+ *
+ *       AuthorizationCodeTokenGranter
+ *       ImplicitTokenGranter
+ *       ClientCredentialsTokenGranter
+ *       ResourceOwnerPasswordTokenGranter
+ *
+ *       RefreshTokenGranter
+ *
  */
 @Configuration
 @EnableWebSecurity
