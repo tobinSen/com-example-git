@@ -20,6 +20,7 @@ public class WebSocketServerInitializer extends ChannelInitializer<SocketChannel
         pipeline.addLast(new ChunkedWriteHandler());
         //对http消息进行聚合（netty会将消息进行分段(分块)进行发送）
         pipeline.addLast(new HttpObjectAggregator(8192));
+        //将http服务转换为ws服务
         pipeline.addLast(new WebSocketServerProtocolHandler("/ws"));
 
         pipeline.addLast(new WebSocketServerHandler());

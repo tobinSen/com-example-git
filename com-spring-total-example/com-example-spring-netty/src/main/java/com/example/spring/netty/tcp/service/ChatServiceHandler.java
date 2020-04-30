@@ -1,4 +1,4 @@
-package com.example.spring.netty.chat.service;
+package com.example.spring.netty.tcp.service;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;

@@ -8,7 +8,7 @@ package com.example.spring.netty.protobuf;
 
 option optimize_for = SPEED;
 option java_package = "com.example.spring.netty.protobuf";
-option java_outer_classname = "DataInfo1";
+option java_outer_classname = "DataInfo1"; // 外部类类名，同时也是文件名
 /*
     1.protoBuf实现多消息（多协议）
 */
