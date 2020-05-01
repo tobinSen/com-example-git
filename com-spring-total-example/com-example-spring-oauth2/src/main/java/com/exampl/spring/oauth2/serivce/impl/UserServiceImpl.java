@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService {
             return UserDetailConverter.convert(user.get());
     }
 
+    @Override
+    public com.exampl.spring.oauth2.social.qq.User select(Long id) {
+        return null;
+    }
+
     private static class UserDetailConverter {
         static UserDetails convert(User user) {
             return new MyUserDetails(user);
