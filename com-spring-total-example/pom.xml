@@ -62,6 +62,7 @@
         <module>com.example.spring.profile</module>
         <module>com.example.spring.cloud.oauth2</module>
         <module>com.example.spring.grpc</module>
+        <module>com.example.spring.webssh</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
