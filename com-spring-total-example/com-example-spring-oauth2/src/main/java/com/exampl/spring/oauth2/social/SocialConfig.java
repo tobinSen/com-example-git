@@ -38,4 +38,6 @@ package com.exampl.spring.oauth2.social;
  *
  */
 public class SocialConfig {
+
+
 }
