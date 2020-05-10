@@ -1,6 +1,7 @@
 package com.example.spring.rabbit.api;
 
 import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.ConfirmListener;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
@@ -27,6 +28,22 @@ public class Sender {
 
         //创建一个通道
         Channel channel = connection.createChannel();
+        //开启provider到broker的confirm机制
+        channel.confirmSelect();
+//        channel.txCommit() 阻塞的
+        //增加确认监听机制
+        channel.addConfirmListener(new ConfirmListener() {
+            @Override
+            public void handleAck(long deliveryTag, boolean multiple) throws IOException {
+                System.out.println("消息已经ack，tag: " + deliveryTag);
+            }
+
+            @Override
+            public void handleNack(long deliveryTag, boolean multiple) throws IOException {
+                // 对于消费者没有ack的消息，可以做一些特殊处理
+                System.out.println("消息被拒签，tag: " + deliveryTag);
+            }
+        });
 
         //申明通道发送消息的队列，把消息发送至消息队列‘hello’
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);

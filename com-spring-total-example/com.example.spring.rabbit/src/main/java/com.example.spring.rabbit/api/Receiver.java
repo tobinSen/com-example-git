@@ -35,9 +35,16 @@ public class Receiver {
                                        AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String message = new String(body, "UTF-8");
                 System.out.println(" 收到了消息: '" + message + "'");
+                // 手动确认消息接受成功
+                /**
+                 * 首先需要讲清楚一个概念「deliveryTag」，即投递消息唯一标识符，它是一个「单调递增」的Long类型正整数。
+                 * 假设此次basicAck的tag为123130，如果multiple=false，
+                 * 那么表示只确认签收这一条消息。如果multiple=true，那么表示确认签收tag小于或等于123130的所有消息
+                 */
+                channel.basicAck(envelope.getDeliveryTag(), false);
             }
         };
-        channel.basicConsume(QUEUE_NAME, true, consumer);
+        channel.basicConsume(QUEUE_NAME, false/*关闭consumer自动确认机制*/, consumer);
     }
 
 }

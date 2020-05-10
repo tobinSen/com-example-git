@@ -29,7 +29,6 @@ public class RabbitProducer {
         this.rabbitTemplate.convertAndSend("demoQueue", dateString);
     }
 
-
     //fanout广播模式
     public void sendFanout() {
         Date date = new Date();
