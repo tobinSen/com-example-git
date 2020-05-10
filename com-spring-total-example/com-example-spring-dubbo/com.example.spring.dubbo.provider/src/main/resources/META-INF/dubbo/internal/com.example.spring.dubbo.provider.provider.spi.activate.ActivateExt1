@@ -1,0 +1,5 @@
+group=com.example.spring.dubbo.provider.provider.spi.activate.GroupActivateExtImpl
+value=com.example.spring.dubbo.provider.provider.spi.activate.ValueActivateExtImpl
+order1=com.example.spring.dubbo.provider.provider.spi.activate.OrderActivateExtImpl1
+order2=com.example.spring.dubbo.provider.provider.spi.activate.OrderActivateExtImpl2
+com.example.spring.dubbo.provider.provider.spi.activate.ActivateExt1Impl1

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConsumerImpl implements Consumer {
 
-    @Reference
+    @Reference(stub = "com.example.spring.dubbo.consumer.stub.ProviderImplStub")
     private Provider provider;
 
     @Override

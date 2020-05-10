@@ -4,7 +4,8 @@ dubbo:
   application:
     name: dubbo-consumer
   registry:
-    register: false
-    address: N/A
+    register: true
+    address: 127.0.0.1
+    port: 2181
   scan:
     base-packages: com.example.spring.dubbo.consumer.consumer
