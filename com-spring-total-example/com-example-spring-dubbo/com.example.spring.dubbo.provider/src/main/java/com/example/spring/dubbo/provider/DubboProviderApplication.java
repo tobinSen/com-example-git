@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableDubbo
+@EnableDubbo //todo 属性注入只能使用注解的方式
 public class DubboProviderApplication {
 
     public static void main(String[] args) {
