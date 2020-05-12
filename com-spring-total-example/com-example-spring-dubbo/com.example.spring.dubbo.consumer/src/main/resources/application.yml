@@ -9,3 +9,5 @@ dubbo:
     port: 2181
   scan:
     base-packages: com.example.spring.dubbo.consumer.consumer
+  consumer:
+    check: false
