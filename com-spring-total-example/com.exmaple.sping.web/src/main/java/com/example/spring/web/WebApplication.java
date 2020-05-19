@@ -10,7 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 @Controller
@@ -37,6 +41,9 @@ public class WebApplication {
     @RequestMapping("pdf.do")
     public ModelAndView pdf(@RequestParam("ids") List<Long> ids, HttpServletRequest request, HttpServletResponse response) throws Exception {
         System.out.println(ids);
+
+        Map<String, String> map = new HashMap<>();
+        map.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (s, s2) -> s, TreeMap::new));
 
         return new ModelAndView(pdfViewConfig);
     }
