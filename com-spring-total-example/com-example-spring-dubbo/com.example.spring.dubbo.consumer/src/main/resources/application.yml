@@ -11,3 +11,5 @@ dubbo:
     base-packages: com.example.spring.dubbo.consumer.consumer
   consumer:
     check: false
+    timeout: 1000
+    retries: 2

@@ -1,9 +1,6 @@
 package com.example.spring.rabbit.api;
 
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.ConfirmListener;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.*;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -42,6 +39,14 @@ public class Sender {
             public void handleNack(long deliveryTag, boolean multiple) throws IOException {
                 // 对于消费者没有ack的消息，可以做一些特殊处理
                 System.out.println("消息被拒签，tag: " + deliveryTag);
+            }
+        });
+
+        //returnCallback
+        channel.addReturnListener(new ReturnListener() {
+            @Override
+            public void handleReturn(int replyCode, String replyText, String exchange, String routingKey, AMQP.BasicProperties properties, byte[] body) throws IOException {
+
             }
         });
 

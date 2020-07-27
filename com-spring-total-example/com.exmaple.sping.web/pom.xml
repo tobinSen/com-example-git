@@ -16,21 +16,92 @@
             <artifactId>poi-ooxml</artifactId>
             <version>4.1.1</version>
         </dependency>
+
+        <!--gson-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+
         <dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
             <version>2.1.7</version>
         </dependency>
 
-
         <!--tx-lcn分布式事务框架-->
         <!--<dependency>-->
-            <!--<groupId>com.codingapi.txlcn</groupId>-->
-            <!--<artifactId>txlcn-tm</artifactId>-->
-            <!--<version>5.0.2.RELEASE</version>-->
+        <!--<groupId>com.codingapi.txlcn</groupId>-->
+        <!--<artifactId>txlcn-tm</artifactId>-->
+        <!--<version>5.0.2.RELEASE</version>-->
         <!--</dependency>-->
 
+        <dependency>
+            <groupId>com.sap</groupId>
+            <artifactId>com.sap.cn</artifactId>
+            <version>1.1.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/sapjco3.jar</systemPath>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArguments>
+                        <extdirs>${project.basedir}/lib</extdirs><!--指定外部lib-->
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+
+            <!--修改核心插件的默认配置信息-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <!--<resources>-->
+            <!--<resource>-->
+                <!--<directory>${project.basedir}/lib</directory>-->
+                <!--&lt;!&ndash;没有前缀默认是target/classes目录下面&ndash;&gt;-->
+                <!--<targetPath>BOOT-INF/lib</targetPath>-->
+                <!--<includes>-->
+                    <!--<include>**/*.jnilib</include>-->
+                    <!--<include>**/*.so</include>-->
+                    <!--<include>**/*.dll</include>-->
+                    <!--<include>**/*.jar</include>-->
+                    <!--<include>**/*.pdb</include>-->
+                <!--</includes>-->
+            <!--</resource>-->
+        <!--</resources>-->
+    </build>
 
 
 </project>

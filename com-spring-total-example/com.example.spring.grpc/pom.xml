@@ -45,12 +45,6 @@
             <artifactId>grpc-stub</artifactId>
             <version>1.14.0</version>
         </dependency>
-        <dependency>
-            <groupId>com.rpc.proto</groupId>
-            <artifactId>grpc_lib</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>

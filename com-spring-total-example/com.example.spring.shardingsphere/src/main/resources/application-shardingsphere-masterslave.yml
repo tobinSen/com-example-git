@@ -1,0 +1,84 @@
+dataSources:
+  ds0: !!org.apache.commons.dbcp.BasicDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds0
+    username: root
+    password:
+  ds0_slave0: !!org.apache.commons.dbcp.BasicDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds0_slave0
+    username: root
+    password:
+  ds0_slave1: !!org.apache.commons.dbcp.BasicDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds0_slave1
+    username: root
+    password:
+  ds1: !!org.apache.commons.dbcp.BasicDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds1
+    username: root
+    password:
+  ds1_slave0: !!org.apache.commons.dbcp.BasicDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds1_slave0
+    username: root
+    password:
+  ds1_slave1: !!org.apache.commons.dbcp.BasicDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ds1_slave1
+    username: root
+    password:
+# 分片规则
+shardingRule:
+  tables:
+    t_order:
+      actualDataNodes: ms_ds${0..1}.t_order${0..1} # 这里的数据源是master-slave中定义的
+      databaseStrategy:
+        inline:
+          shardingColumn: user_id
+          algorithmExpression: ms_ds${user_id % 2}
+      tableStrategy:
+        inline:
+          shardingColumn: order_id
+          algorithmExpression: t_order${order_id % 2}
+      keyGeneratorColumnName: order_id
+    t_order_item:
+      actualDataNodes: ms_ds${0..1}.t_order_item${0..1}
+      databaseStrategy:
+        inline:
+          shardingColumn: user_id
+          algorithmExpression: ms_ds${user_id % 2}
+      tableStrategy:
+        inline:
+          shardingColumn: order_id
+          algorithmExpression: t_order_item${order_id % 2}
+  bindingTables:
+  - t_order,t_order_item
+  broadcastTables:
+  - t_config
+  defaultDataSourceName: ds_0
+  defaultTableStrategy:
+    none:
+  defaultKeyGeneratorClassName: io.shardingsphere.core.keygen.DefaultKeyGenerator
+
+# 主从配置
+masterSlaveRules:
+  ms_ds0: # 自定义名称
+    masterDataSourceName: ds0
+    slaveDataSourceNames:
+      - ds0_slave0
+      - ds0_slave1
+    loadBalanceAlgorithmType: ROUND_ROBIN
+    configMap:
+      master-slave-key0: master-slave-value0
+  ms_ds1:
+    masterDataSourceName: ds1
+    slaveDataSourceNames:
+    - ds1_slave0
+    - ds1_slave1
+    loadBalanceAlgorithmType: ROUND_ROBIN
+    configMap:
+      master-slave-key1: master-slave-value1
+props:
+  sql.show: true

@@ -7,6 +7,10 @@ public class Animal {
     String address;
     public String birthday;
 
+    public Animal() {
+        System.err.println("animal construct method is init");
+    }
+
     public String getName() {
         return name;
     }
@@ -38,4 +42,6 @@ public class Animal {
     public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
+
+
 }

@@ -1,5 +1,7 @@
 package com.exampl.spring.oauth2.social;
 
+import java.lang.invoke.MethodHandles;
+
 /**
  *      ServiceProvider
  *
@@ -38,6 +40,10 @@ package com.exampl.spring.oauth2.social;
  *
  */
 public class SocialConfig {
+
+    public static void main(String[] args) {
+        System.out.println(MethodHandles.lookup().lookupClass());
+    }
 
 
 }

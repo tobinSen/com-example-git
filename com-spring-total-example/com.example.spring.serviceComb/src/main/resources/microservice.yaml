@@ -1,0 +1,10 @@
+APPLICATION_ID: sample
+service_description:
+  name: helloworld
+  version: 1.0.0
+servicecomb:
+  service:
+    registry:
+      address: http://127.0.0.1:30100
+  rest:
+    address: 0.0.0.0:8080

@@ -63,6 +63,10 @@
         <module>com.example.spring.cloud.oauth2</module>
         <module>com.example.spring.grpc</module>
         <module>com.example.spring.webssh</module>
+        <module>com.example.spring.serviceComb</module>
+        <module>com.example.spring.shiro</module>
+        <module>com.example.spring.shardingsphere</module>
+        <module>com.example.spring.poi-tl</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
@@ -112,6 +116,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
        <!-- &lt;!&ndash;添加热部署&ndash;&gt;
         <dependency>

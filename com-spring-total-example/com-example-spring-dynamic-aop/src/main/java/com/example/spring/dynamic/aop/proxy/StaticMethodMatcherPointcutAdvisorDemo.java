@@ -1,6 +1,7 @@
 package com.example.spring.dynamic.aop.proxy;
 
-import org.springframework.aop.MethodBeforeAdvice;
+import org.aopalliance.intercept.MethodInterceptor;
+import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.StaticMethodMatcherPointcutAdvisor;
 
@@ -55,10 +56,15 @@ public class StaticMethodMatcherPointcutAdvisorDemo {
     /**
      * 定义增强，此处定义了一个方法前置增强
      */
-    static class WaitressAdvice implements MethodBeforeAdvice {
+    static class WaitressAdvice implements MethodInterceptor {
+
         @Override
-        public void before(Method method, Object[] args, Object target) throws Throwable {
-            System.out.println("Morning " + args[0] + "!");
+        public Object invoke(MethodInvocation invocation) throws Throwable {
+            System.err.println("before");
+            Object proceed = invocation.proceed();
+            System.err.println("after");
+            return proceed;
+
         }
     }
 }

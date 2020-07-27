@@ -4,7 +4,6 @@ server:
 dubbo:
   application:
     name: dubbo-provider
-
   registry:
     register: true
     address: 127.0.0.1

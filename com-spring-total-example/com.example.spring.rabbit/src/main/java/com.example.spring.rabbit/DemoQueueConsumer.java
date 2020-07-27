@@ -1,5 +1,6 @@
 package com.example.spring.rabbit;
 
+import com.rabbitmq.client.Channel;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Header;
@@ -67,7 +68,19 @@ public class DemoQueueConsumer {
     }
 
     @RabbitListener(queues = "header.a")
-    public void receivedHeader(@Payload Message message, @Header Map<String,Object> header) {
+    public void receivedHeader(@Payload Message message, @Header Map<String, Object> header, Channel channel) throws Exception {
+
         System.out.println(message.toString());
+
+        long deliveryTag = message.getMessageProperties().getDeliveryTag();
+        channel.basicAck(deliveryTag, false); //deliveryTag是单调自增的long类型，false表示只确认当前这条消息，true表示确认小于deliveryTag的标签
+        channel.basicNack(deliveryTag, false, true);
+
     }
+
+    public static void main(String[] args) {
+        Integer ints = 12;
+        System.out.println(ints);
+    }
+
 }

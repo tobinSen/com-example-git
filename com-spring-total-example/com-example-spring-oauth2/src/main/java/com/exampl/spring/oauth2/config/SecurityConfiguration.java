@@ -10,8 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 /**
  * AuthenticationManager -->Authentication
@@ -41,13 +39,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
-    //jdbcTokenRepository.
-        jdbcTokenRepository.setCreateTableOnStartup(false); //是否自动创建表，在启动的时候
-        return jdbcTokenRepository;
-    }
+//    @Bean
+//    public PersistentTokenRepository persistentTokenRepository() {
+//        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+//    //jdbcTokenRepository.
+//        //jdbcTokenRepository.setCreateTableOnStartup(false); //是否自动创建表，在启动的时候
+//        return jdbcTokenRepository;
+//    }
 
     /**
      * 加密方式

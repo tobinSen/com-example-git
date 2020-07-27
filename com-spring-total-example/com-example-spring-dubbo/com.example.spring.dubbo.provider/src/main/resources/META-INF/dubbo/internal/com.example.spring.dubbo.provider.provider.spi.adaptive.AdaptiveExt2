@@ -1,0 +1,3 @@
+cloud=com.example.spring.dubbo.provider.provider.spi.adaptive.SpringCloudAdaptiveExt2
+thrift=com.example.spring.dubbo.provider.provider.spi.adaptive.ThriftAdaptiveExt2
+dubbo=com.example.spring.dubbo.provider.provider.spi.adaptive.DubboAdaptiveExt2

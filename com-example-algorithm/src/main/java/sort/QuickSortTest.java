@@ -1,7 +1,15 @@
 package sort;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.Arrays;
 
+
+/**
+ * 快排思路：
+ * 1.先定一个中间的数，左右两边进行比较，让左边的数全部小于中间数，右边的数都是大于中间数
+ * 2.左边的数再次取中间数递归重复第一步的操作，右边的数也重复第一步的操作
+ */
 public class QuickSortTest {
 
     public static void main(String[] args) {
@@ -11,7 +19,7 @@ public class QuickSortTest {
         System.out.println(Arrays.toString(arr));
     }
 
-    public static void quickSort(int[] arr, int left, int right) {
+    public static void quickSort(@NotNull int[] arr, int left, int right) {
         int l = left;
         int r = right;
         int temp = 0;

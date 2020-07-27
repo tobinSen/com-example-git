@@ -23,6 +23,18 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.45</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.servicecomb.saga</groupId>
+            <artifactId>omega-spring-starter</artifactId>
+            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.servicecomb.saga</groupId>
+            <artifactId>omega-transport-resttemplate</artifactId>
+            <version>RELEASE</version>
+        </dependency>
     </dependencies>
 
 </project>

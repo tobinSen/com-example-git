@@ -20,7 +20,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.example.spring.pay")
 public class PayApplication {
 
     public static void main(String[] args) {

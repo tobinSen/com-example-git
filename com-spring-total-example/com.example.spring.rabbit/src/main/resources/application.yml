@@ -4,5 +4,8 @@ spring:
     port: 5672
     username: guest
     password: guest
+    addresses:
+    publisher-confirms: true
+    publisher-returns: true
 server:
   port: 9999

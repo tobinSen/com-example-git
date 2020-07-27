@@ -12,11 +12,11 @@
     <artifactId>com.example.spring.apollo</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.ctrip.framework.apollo</groupId>
-            <artifactId>apollo-client</artifactId>
-            <version>1.1.0</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.ctrip.framework.apollo</groupId>-->
+            <!--<artifactId>apollo-client</artifactId>-->
+            <!--<version>1.1.0</version>-->
+        <!--</dependency>-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.cloud</groupId>-->
             <!--<artifactId>spring-cloud-context</artifactId>-->

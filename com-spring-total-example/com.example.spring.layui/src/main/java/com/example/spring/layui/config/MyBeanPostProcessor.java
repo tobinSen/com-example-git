@@ -6,6 +6,10 @@ import org.springframework.lang.Nullable;
 
 public class MyBeanPostProcessor implements BeanPostProcessor {
 
+    public MyBeanPostProcessor() {
+        System.err.println("MyBeanPostProcessor is constructor start ...");
+    }
+
     @Override
     public Object postProcessBeforeInitialization(@Nullable Object bean, String beanName) throws BeansException {
         System.out.println("postProcessBeforeInitialization====>" + beanName);

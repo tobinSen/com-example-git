@@ -23,7 +23,7 @@ public class Receiver {
         Channel channel = connection.createChannel();
 
         //申明接收消息的队列，与发送消息队列"hello"对应
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueDeclare(QUEUE_NAME, true, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
         //The extra DefaultConsumer is a class implementing the Consumer interface
         //we'll use to buffer the messages pushed to us by the server.
