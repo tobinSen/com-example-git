@@ -16,6 +16,7 @@ public class GitApplication {
     }
 
 
+
     @Order(1)
 //    @Async
     @EventListener(value = {ContextRefreshedEvent.class}) //收影响
