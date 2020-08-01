@@ -31,7 +31,7 @@
         <appender-ref ref="D"/>
     </logger>
 
-    <!--logger：存在一个继承的关系，先去对应该类的logger->包->rootLogger进行查找，additivity就是为了避免向下找继承关系
+    <!--logger：存在一个继承的关系，先去对应该类的logger->包->rootLogger进行查找，
         log4j
         log4j2
         logback

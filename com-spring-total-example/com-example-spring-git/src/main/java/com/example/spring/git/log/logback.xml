@@ -1,0 +1,23 @@
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<configuration>-->
+
+    <!--&lt;!&ndash;要配置在类classpath下面才会被扫描到&ndash;&gt;-->
+    <!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--&lt;!&ndash; encoder 默认配置为PatternLayoutEncoder &ndash;&gt;-->
+        <!--<encoder>-->
+            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
+
+    <!--&lt;!&ndash; logback为java中的包 &ndash;&gt;-->
+    <!--<logger name="com.example.spring.git.log"/>-->
+    <!--&lt;!&ndash;logback.LogbackDemo：类的全路径 &ndash;&gt;-->
+    <!--<logger name="com.example.spring.git.log" level="INFO" additivity="false">-->
+        <!--<appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
+
+    <!--<root level="debug">-->
+        <!--<appender-ref ref="STDOUT"/>-->
+    <!--</root>-->
+
+<!--</configuration>-->

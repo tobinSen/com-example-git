@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Configuration status="INFO">
+<Configuration status="INFO" xmlns="http://logging.apache.org/log4j/2.0/config">
 
     <properties>
         <property name="Console_Pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} |-%-5level [%thread] %c [%L] -| %msg%n</property>
