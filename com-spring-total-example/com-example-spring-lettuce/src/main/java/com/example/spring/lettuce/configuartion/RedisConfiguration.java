@@ -34,7 +34,8 @@ import java.util.function.Consumer;
 public class RedisConfiguration {
 
 
-    /** 4,4,2,3点
+    /**
+     * 4,4,2,3点
      * 连接Redis
      * 单机、主从、哨兵、集群模式下连接Redis需要一个统一的标准去表示连接的细节信息，在Lettuce中这个统一的标准是RedisURI。
      * 可以通过三种方式构造一个RedisURI实例：

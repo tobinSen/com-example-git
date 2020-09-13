@@ -16,9 +16,9 @@ public class HelloController {
     private PayService payService;
 
     @GetMapping("/createOrder")
-    public String createOrder(@RequestParam int num) throws Exception{
-        int remainingnum = payService.minGoodsnum(num == 0 ? 1: num);
-        logger.info("剩余的数量==="+remainingnum);
+    public String createOrder(@RequestParam int num) throws Exception {
+        int remainingnum = payService.minGoodsnum(num == 0 ? 1 : num);
+        logger.info("剩余的数量===" + remainingnum);
         return "库库存成功";
     }
 

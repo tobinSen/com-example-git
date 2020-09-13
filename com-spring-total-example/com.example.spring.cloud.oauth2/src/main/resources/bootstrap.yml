@@ -18,7 +18,7 @@ spring:
       #jedis:
       #pool:
       #max-active: 8
-      #max-idle: 8
+    #max-idle: 8
     #min-idle: 0
     #timeout: 10000ms
 

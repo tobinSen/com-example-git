@@ -30,7 +30,7 @@ public class MockMvcTest {
     public void mockmvcTest() throws Exception {
         MvcResult mvcResult = mockMvc.perform(
                 MockMvcRequestBuilders.get("/mock.do").param("name", "Tom")
-                .accept(MediaType.TEXT_HTML_VALUE))
+                        .accept(MediaType.TEXT_HTML_VALUE))
                 .andDo(MockMvcResultHandlers.print())
                 .andReturn();
 

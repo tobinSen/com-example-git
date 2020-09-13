@@ -14,7 +14,7 @@ public class controller {
     private BService bService;
 
     @RequestMapping("test.do")
-    public void test(){
+    public void test() {
         aService.a();
         bService.b();
     }

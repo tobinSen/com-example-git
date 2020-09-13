@@ -6,8 +6,8 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 
 /**
- *   PUBLISH __keyspace@0__:sampleKey del :订阅指定key的所有操作
- *   PUBLISH __keyevent@0__:del sampleKey :订阅指定操作的key
+ * PUBLISH __keyspace@0__:sampleKey del :订阅指定key的所有操作
+ * PUBLISH __keyevent@0__:del sampleKey :订阅指定操作的key
  */
 @Configuration
 public class RedisListenerConfig {

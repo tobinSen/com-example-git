@@ -37,6 +37,5 @@ public class CaptchaDemo {
         System.out.println(lineCaptcha.getCode());
 
 
-
     }
 }

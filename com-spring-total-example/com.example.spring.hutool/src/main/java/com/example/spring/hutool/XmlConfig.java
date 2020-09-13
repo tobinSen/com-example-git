@@ -23,7 +23,7 @@ import java.util.Map;
 public class XmlConfig {
     static Logger logger = LoggerFactory.getLogger(XmlConfig.class);
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         System.out.println(getHoneypotsPortNameMap());
     }
 
@@ -31,7 +31,7 @@ public class XmlConfig {
         return read("store_dc_mapping", StoreDcMapping.class);
     }
 
-    public static Map<String, String> getHoneypotsPortNameMap() throws Exception{
+    public static Map<String, String> getHoneypotsPortNameMap() throws Exception {
         Map<String, String> map = Maps.newHashMap();
         Object store_dc_mapping = parseFromXmlFile("resources/store_dc_mapping", StoreDcMapping.class);
         System.out.println(store_dc_mapping);

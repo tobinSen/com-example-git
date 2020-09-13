@@ -15,7 +15,7 @@ public class JedisOfHashTest {
         //hset, hget, hmset, hmget, hgetAll, hdel
 //        System.out.println(jedis.hset("key11", "key11", "value11"));
 //        System.out.println(jedis.hget("key11", "key11"));
-        Map<String,String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
         map.put("map1", "1");
         map.put("map2", "1");
         map.put("map3", "1");
@@ -25,6 +25,7 @@ public class JedisOfHashTest {
         System.out.println(jedis.hdel("map", "map1"));
         System.out.println(jedis.hgetAll("map"));
     }
+
     @Test
     public void testHash1() {
         //hlen, hexists

@@ -14,7 +14,7 @@ public class RedisMqConsumerSub implements MessageListener {
     /**
      * @param message 消息体
      * @param bytes   topic
-     *     注意：必须使用redis的序列化工具
+     *                注意：必须使用redis的序列化工具
      */
     @Override
     public void onMessage(Message message, byte[] bytes) {

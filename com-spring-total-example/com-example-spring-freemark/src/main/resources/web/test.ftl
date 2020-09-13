@@ -106,11 +106,11 @@ ${(x/2)?int}
     <a href="${latestProduct.url}">${latestProduct.name}</a>!
 <#switch .caller_template_name>
 
-<#list map?keys as key>
+    <#list map?keys as key>
 <ul>
     <li>${map[key].name}</li>
 </ul>
-</#list>
+    </#list>
 
 </#switch>
 </body>

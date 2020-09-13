@@ -67,6 +67,8 @@
         <module>com.example.spring.shiro</module>
         <module>com.example.spring.shardingsphere</module>
         <module>com.example.spring.poi-tl</module>
+        <module>com.example.spring.flowable.moduler</module>
+        <module>com.example.spring.third</module>
     </modules>
 
     <!--导入springboot版本仲裁-->

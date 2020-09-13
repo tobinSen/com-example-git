@@ -27,6 +27,6 @@ public class ProfileConfig {
 
     @PostConstruct
     public void init() {
-        System.out.println(id + "--" + name + "--" + age + "--" );
+        System.out.println(id + "--" + name + "--" + age + "--");
     }
 }

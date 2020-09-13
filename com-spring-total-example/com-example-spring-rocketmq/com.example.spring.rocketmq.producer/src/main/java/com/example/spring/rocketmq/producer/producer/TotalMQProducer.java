@@ -27,15 +27,13 @@ import java.util.Random;
 import java.util.concurrent.*;
 
 
-/**                  MQAdmin
- *                      |
+/**
+ * MQAdmin
+ * |
  * ClientConfig     MQProducer
- *               |
- *          DefaultMQProducer ->DefaultMQProducerImpl
- *                                     ServiceState
- *
- *
- *
+ * |
+ * DefaultMQProducer ->DefaultMQProducerImpl
+ * ServiceState
  */
 
 public class TotalMQProducer {

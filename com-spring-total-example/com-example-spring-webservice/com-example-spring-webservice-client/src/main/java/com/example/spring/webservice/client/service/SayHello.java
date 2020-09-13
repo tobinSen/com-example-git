@@ -8,9 +8,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>sayHello complex type的 Java 类。
- * 
+ *
  * <p>以下模式片段指定包含在此类中的预期内容。
- * 
+ *
  * <pre>
  * &lt;complexType name="sayHello">
  *   &lt;complexContent>
@@ -22,12 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "sayHello", propOrder = {
-    "arg0"
+        "arg0"
 })
 public class SayHello {
 
@@ -35,11 +33,9 @@ public class SayHello {
 
     /**
      * 获取arg0属性的值。
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getArg0() {
         return arg0;
@@ -47,11 +43,9 @@ public class SayHello {
 
     /**
      * 设置arg0属性的值。
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setArg0(String value) {
         this.arg0 = value;

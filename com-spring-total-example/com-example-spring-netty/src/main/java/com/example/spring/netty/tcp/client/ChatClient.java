@@ -23,7 +23,7 @@ public class ChatClient {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-            for (; ;) {
+            for (; ; ) {
                 channel.writeAndFlush(br.readLine() + "\r\n");
             }
 

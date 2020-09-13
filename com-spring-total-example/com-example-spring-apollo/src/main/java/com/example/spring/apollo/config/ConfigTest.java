@@ -24,9 +24,9 @@ public class ConfigTest {
             logger.info("{}", "is debug enable");
         }
 
-       // Config config = ConfigService.getAppConfig();
-       // String property = config.getProperty("java_apollo", "null");
-       // System.out.println(property);
+        // Config config = ConfigService.getAppConfig();
+        // String property = config.getProperty("java_apollo", "null");
+        // System.out.println(property);
         System.out.println("-------------");
         //System.out.println(config1.getProperty("java_apollo", null));
         return javaApollo;

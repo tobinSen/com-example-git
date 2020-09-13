@@ -18,7 +18,7 @@ public class ApolloApplication {
     private Person person;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println(person.toString());
     }
 }

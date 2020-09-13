@@ -25,7 +25,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
 
     //国际化
     @Bean
-    public ResourceBundleMessageSource messageSource(){
+    public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasenames("messages");
         messageSource.setDefaultEncoding("UTF-8");

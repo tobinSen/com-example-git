@@ -11,8 +11,8 @@ public class PersonAttributesMapper implements AttributesMapper<Person> {
     @Override
     public Person mapFromAttributes(Attributes attrs) throws NamingException, javax.naming.NamingException {
         Person person = new Person();
-        person.setPersonName((String)attrs.get("cn").get());
-        person.setOrgId((String)attrs.get("orgId").get());
+        person.setPersonName((String) attrs.get("cn").get());
+        person.setOrgId((String) attrs.get("orgId").get());
         return person;
     }
 }

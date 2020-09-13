@@ -39,7 +39,7 @@ public class PayService {
         return totalNum;
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         RetryTemplate template = new RetryTemplate();
 
         TimeoutRetryPolicy policy = new TimeoutRetryPolicy();

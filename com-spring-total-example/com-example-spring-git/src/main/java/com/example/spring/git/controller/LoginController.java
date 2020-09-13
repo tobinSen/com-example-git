@@ -13,7 +13,7 @@ import java.util.UUID;
 public class LoginController {
 
     @RequestMapping("login.do")
-    public String test(@RequestParam("ids") List<Long> ids ,String name, HttpServletResponse response) throws Exception {
+    public String test(@RequestParam("ids") List<Long> ids, String name, HttpServletResponse response) throws Exception {
         response.addCookie(new Cookie("name", name));
         response.addCookie(new Cookie("id", UUID.randomUUID().toString()));
 

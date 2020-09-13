@@ -10,7 +10,7 @@ public class YamlDemo {
     public static void main(String[] args) {
         //指定yaml文件的root对象解析成Person类型
         Yaml yaml = new Yaml(new Constructor(Person.class));
-        Person ret = yaml.loadAs(YamlDemo.class.getClassLoader().getResourceAsStream("test.yml"),Person.class);
+        Person ret = yaml.loadAs(YamlDemo.class.getClassLoader().getResourceAsStream("test.yml"), Person.class);
         System.out.println(ret);
     }
 

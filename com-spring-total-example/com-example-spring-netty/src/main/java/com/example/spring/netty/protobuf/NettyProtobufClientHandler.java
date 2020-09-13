@@ -16,34 +16,33 @@ public class NettyProtobufClientHandler extends SimpleChannelInboundHandler<Data
      * 1.动态实现protoBuf（多协议）
      * 2.如何使用git来进行proto文件在client 和server 中共享？
      * git submodule:git仓库里面的一个仓库
-     *
+     * <p>
      * serverProject:pull拉取，protoBuf仓库
-     *
+     * <p>
      * data.proto
      * protoBuf_java :本地编译，push到远程仓库
-     *
-     *
+     * <p>
+     * <p>
      * clientProject:pull拉取，protoBuf仓库
-     *
-     *
+     * <p>
+     * <p>
      * git subtree ：这个仓库会做个serverProject仓库的一个子仓库，然后一起进行提交和拉取
      * photoshop
-     *     |
-     *     |-- sub/
-     *     |   |
-     *     |   |--libpng/
-     *     |       |
-     *     |       |-- libpng.c
-     *     |       |-- libpng.h
-     *     |       |-- README.md
-     *     |
-     *     |-- photoshop.c
-     *     |-- photoshop.h
-     *     |-- main.c
-     *     |-- README.md
-     *
+     * |
+     * |-- sub/
+     * |   |
+     * |   |--libpng/
+     * |       |
+     * |       |-- libpng.c
+     * |       |-- libpng.h
+     * |       |-- README.md
+     * |
+     * |-- photoshop.c
+     * |-- photoshop.h
+     * |-- main.c
+     * |-- README.md
+     * <p>
      * maven jar 方式
-     *
      */
 
     @Override

@@ -54,8 +54,8 @@ public class GitController {
     }
 
     /**
-     * @RequestParam Map<String   ,       String> params
-     * @RequestBody Map<String   ,       String> params
+     * @RequestParam Map<String       ,               String> params
+     * @RequestBody Map<String       ,               String> params
      * @RequestParam List<Long> ids, String name
      * @RequestBody String params
      */

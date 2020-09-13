@@ -1,6 +1,7 @@
 package com.example.spring.layui.cli;
 
 //内部类导包的问题
+
 import com.example.spring.layui.Inner.Outer.Inner;
 
 public class DemoMain {

@@ -15,6 +15,8 @@ import org.springframework.context.annotation.Bean;
 @Configurable
 public class WSConfiguration {
 
+    //方式1 直接调用new 接口
+    //方式2 通过jaxwsProxy代理对象
     @Bean
     public DemoWebService ofcWebService() {
         // 接口地址

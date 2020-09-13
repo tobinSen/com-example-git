@@ -5,8 +5,21 @@
     <title>Title</title>
     <link rel="stylesheet" href="../static/layui/css/layui.css">
     <style>
-        .site-doc-icon li{width: 222px;}
-        .site-doc-icon li .layui-anim{width: 150px; height: 150px; line-height: 150px; margin: 0 auto 10px; text-align: center; background-color: #009688; cursor: pointer; color: #fff; border-radius: 50%;}
+        .site-doc-icon li {
+            width: 222px;
+        }
+
+        .site-doc-icon li .layui-anim {
+            width: 150px;
+            height: 150px;
+            line-height: 150px;
+            margin: 0 auto 10px;
+            text-align: center;
+            background-color: #009688;
+            cursor: pointer;
+            color: #fff;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -140,26 +153,26 @@
 <script type="text/javascript" src="../static/layui/layui.js"></script>
 
 <script>
-    layui.use('jquery', function(){
+    layui.use('jquery', function () {
         var $ = layui.$;
 
         //演示动画
-        $('.site-doc-icon .layui-anim').on('click', function(){
+        $('.site-doc-icon .layui-anim').on('click', function () {
             var othis = $(this), anim = othis.data('anim');
 
             //停止循环
-            if(othis.hasClass('layui-anim-loop')){
+            if (othis.hasClass('layui-anim-loop')) {
                 return othis.removeClass(anim);
             }
 
             othis.removeClass(anim);
 
-            setTimeout(function(){
+            setTimeout(function () {
                 othis.addClass(anim);
             });
             //恢复渐隐
-            if(anim === 'layui-anim-fadeout'){
-                setTimeout(function(){
+            if (anim === 'layui-anim-fadeout') {
+                setTimeout(function () {
                     othis.removeClass(anim);
                 }, 1300);
             }

@@ -305,17 +305,35 @@ public class CompletableFutureTest {
         CompletableFuture<Void> future = CompletableFuture.supplyAsync(() -> {
             //System.out.println("CompletableFuture-->whenComplete");
             return "CompletableFuture-->whenComplete";
-        })      .whenComplete((s, throwable) -> System.out.println(s))
+        }).whenComplete((s, throwable) -> System.out.println(s))
                 .whenCompleteAsync((s, throwable) -> System.out.println(s))
                 .whenCompleteAsync((s, throwable) -> System.out.println(s), executor)
 
-                .thenApply(s -> {System.out.println(s);return s;})
-                .thenApplyAsync(s -> {System.out.println(s);return s;})
-                .thenApplyAsync(s -> {System.out.println(s);return s;}, executor)
+                .thenApply(s -> {
+                    System.out.println(s);
+                    return s;
+                })
+                .thenApplyAsync(s -> {
+                    System.out.println(s);
+                    return s;
+                })
+                .thenApplyAsync(s -> {
+                    System.out.println(s);
+                    return s;
+                }, executor)
 
-                .handle((s, throwable) -> {System.out.println(s);return s;})
-                .handleAsync((s, throwable) -> {System.out.println(s);return s;})
-                .handleAsync((s, throwable) -> {System.out.println(s);return s;},executor)
+                .handle((s, throwable) -> {
+                    System.out.println(s);
+                    return s;
+                })
+                .handleAsync((s, throwable) -> {
+                    System.out.println(s);
+                    return s;
+                })
+                .handleAsync((s, throwable) -> {
+                    System.out.println(s);
+                    return s;
+                }, executor)
 
                 .thenAccept(System.out::println)
                 .thenAcceptAsync(System.out::println)
@@ -323,7 +341,7 @@ public class CompletableFutureTest {
 
                 .thenRun(() -> System.out.println("thenRun"))
                 .thenRunAsync(() -> System.out.println("thenRun"))
-                .thenRunAsync(() -> System.out.println("thenRun"),executor);
+                .thenRunAsync(() -> System.out.println("thenRun"), executor);
 
         CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> {
             return "abc";
@@ -333,22 +351,22 @@ public class CompletableFutureTest {
         });
 
         //将2个future的结果进行返回
-        CompletableFuture<String> f1 = future1.thenCombine(future2, (x,y) -> y + "-" + x);
+        CompletableFuture<String> f1 = future1.thenCombine(future2, (x, y) -> y + "-" + x);
         CompletableFuture<String> f2 = future1.thenCombineAsync(future1, (x, y) -> y + "-" + x);
-        CompletableFuture<String> f3 = future1.thenCombineAsync(future1, (x, y) -> y + "-" + x ,executor);
+        CompletableFuture<String> f3 = future1.thenCombineAsync(future1, (x, y) -> y + "-" + x, executor);
         System.out.println(f1.get()); //abc-100
         System.out.println(f2.get()); //abc-100
         System.out.println(f3.get()); //abc-100
 
         //纯消费
-        future1.thenAcceptBoth(f2, (x, y)-> System.out.println(x+"---"+y));
-        future1.thenAcceptBothAsync(f2, (x, y)-> System.out.println(x+"---"+y));
-        future1.thenAcceptBothAsync(f2, (x, y)-> System.out.println(x+"---"+y),executor);
+        future1.thenAcceptBoth(f2, (x, y) -> System.out.println(x + "---" + y));
+        future1.thenAcceptBothAsync(f2, (x, y) -> System.out.println(x + "---" + y));
+        future1.thenAcceptBothAsync(f2, (x, y) -> System.out.println(x + "---" + y), executor);
 
         //2个future的类型必须一致（谁先执行完，就执行谁的返回结果后消费）
         future1.acceptEither(future2, System.out::println);
         future1.acceptEitherAsync(future2, System.out::println);
-        future1.acceptEitherAsync(future2, System.out::println,executor);
+        future1.acceptEitherAsync(future2, System.out::println, executor);
 
         //谁先执行完，就是执行function，并返回值
         CompletableFuture<String> toEither = future1.applyToEither(future2, s -> s);
@@ -359,9 +377,9 @@ public class CompletableFutureTest {
         System.out.println(toEitherAsync.get());
 
         //第一个操作完成时，将其结果作为参数传递给第二个操作,返回一个新的CompletableFuture（串行操作）
-        future1.thenCompose(x ->CompletableFuture.supplyAsync(() -> (x + 10) + ""));
-        future1.thenComposeAsync(x ->CompletableFuture.supplyAsync(() -> (x + 10) + ""));
-        future1.thenComposeAsync(x ->CompletableFuture.supplyAsync(() -> (x + 10) + ""),executor);
+        future1.thenCompose(x -> CompletableFuture.supplyAsync(() -> (x + 10) + ""));
+        future1.thenComposeAsync(x -> CompletableFuture.supplyAsync(() -> (x + 10) + ""));
+        future1.thenComposeAsync(x -> CompletableFuture.supplyAsync(() -> (x + 10) + ""), executor);
 
         CompletableFuture.allOf(future1, future2);
         Void join1 = CompletableFuture.allOf(future1, future2).join();   //null

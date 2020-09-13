@@ -19,7 +19,7 @@ public class ChatServiceHandler extends SimpleChannelInboundHandler<String> {
         //ctx.executor().scheduleAtFixedRate(, , , )
 
         channelGroup.forEach(ch -> {
-            if(channel != ch) {
+            if (channel != ch) {
                 ch.writeAndFlush(channel.remoteAddress() + " 发送的消息：" + msg + "\n");
             } else {
                 ch.writeAndFlush("【自己】" + msg + "\n");

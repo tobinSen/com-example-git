@@ -29,6 +29,7 @@ public class RabbitTopicConfig {
 
     /**
      * 定义个topic交换器
+     *
      * @return
      */
     @Bean
@@ -45,6 +46,7 @@ public class RabbitTopicConfig {
 
     /**
      * 将定义的topicA队列与topicExchange交换机绑定
+     *
      * @return
      */
     @Bean
@@ -54,6 +56,7 @@ public class RabbitTopicConfig {
 
     /**
      * 将定义的topicB队列与topicExchange交换机绑定
+     *
      * @return
      */
     @Bean
@@ -63,6 +66,7 @@ public class RabbitTopicConfig {
 
     /**
      * 将定义的topicC队列与topicExchange交换机绑定
+     *
      * @return
      */
     @Bean

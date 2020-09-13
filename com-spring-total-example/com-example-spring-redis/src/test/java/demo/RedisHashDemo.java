@@ -11,11 +11,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * 命令行查询：
- *  get
- *  lrange
- *  smembers
- *  zrange
- *  hkeys
+ * get
+ * lrange
+ * smembers
+ * zrange
+ * hkeys
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = RedisMqApplication.class)
@@ -42,6 +42,6 @@ public class RedisHashDemo {
      */
     @Test
     public void hashDemo() {
-    //redisTemplate.execute(new DefaultRedisScript<>(), )
+        //redisTemplate.execute(new DefaultRedisScript<>(), )
     }
 }

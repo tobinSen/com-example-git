@@ -7,10 +7,9 @@ import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 /**
- * @Description:
- * registerStompEndpoints(StompEndpointRegistry registry)
+ * @Description: registerStompEndpoints(StompEndpointRegistry registry)
  * configureMessageBroker(MessageBrokerRegistry config)
- *
+ * <p>
  * 这个方法的作用是定义消息代理，通俗一点讲就是设置消息连接请求的各种规范信息。
  * registry.enableSimpleBroker("/topic")表示客户端订阅地址的前缀信息，也就是客户端接收服务端消息的地址的前缀信息（比较绕，看完整个例子，大概就能明白了）
  * registry.setApplicationDestinationPrefixes("/app")指服务端接收地址的前缀，意思就是说客户端给服务端发消息的地址的前缀

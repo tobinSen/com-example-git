@@ -33,10 +33,9 @@ public class Application {
     }
 
     @PostConstruct
-    public void init(){
+    public void init() {
         context.publishEvent(new MyApplicationEvent(this, UUID.randomUUID().toString()));
     }
-
 
 
 }

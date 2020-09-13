@@ -67,8 +67,8 @@ masterSlaveRules:
   ms_ds0: # 自定义名称
     masterDataSourceName: ds0
     slaveDataSourceNames:
-      - ds0_slave0
-      - ds0_slave1
+    - ds0_slave0
+    - ds0_slave1
     loadBalanceAlgorithmType: ROUND_ROBIN
     configMap:
       master-slave-key0: master-slave-value0

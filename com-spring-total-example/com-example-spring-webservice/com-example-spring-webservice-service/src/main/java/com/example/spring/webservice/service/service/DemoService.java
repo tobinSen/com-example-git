@@ -1,5 +1,8 @@
 package com.example.spring.webservice.service.service;
 
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebResult;
 import javax.jws.WebService;
 
 @WebService(name = "DemoService", // 暴露服务名称
@@ -8,6 +11,8 @@ import javax.jws.WebService;
 )
 public interface DemoService {
 
-    public String sayHello(String user);
+    @WebMethod
+    @WebResult(name = "sayHello")
+    public String sayHello(@WebParam(name = "user") String user);
 
 }

@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.core.annotation.Order;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
@@ -16,9 +17,8 @@ public class GitApplication {
     }
 
 
-
     @Order(1)
-//    @Async
+    @Async
     @EventListener(value = {ContextRefreshedEvent.class}) //收影响
     public void event1() {
         System.err.println("event1...");
@@ -26,7 +26,7 @@ public class GitApplication {
     }
 
     @Order(2)
-//    @Async
+    @Async
     @EventListener(value = {ContextRefreshedEvent.class})
     public void event2() {
         System.err.println("event2...");

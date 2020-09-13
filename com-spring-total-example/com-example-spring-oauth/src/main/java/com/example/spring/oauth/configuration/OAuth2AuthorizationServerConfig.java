@@ -12,31 +12,29 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 
 /**
  * 1.配置认证服务器AuthorizationServer
- *      client的注册到授权务器信息
- *              clientId
- *              secret
- *              authorizationType
- *              scopes
- *              redirectUris
- *
+ * client的注册到授权务器信息
+ * clientId
+ * secret
+ * authorizationType
+ * scopes
+ * redirectUris
+ * <p>
  * 2.配置认证服务器WebSecurityConfigurerAdapter
- *         验证username + password
- *
+ * 验证username + password
+ * <p>
  * 3.获取授权码：http://localhost:8080/oauth/authorize?client_id=client&response_type=code
  * 4.第一次页面
  * 5.点击approve
  * 6.回调http://www.funtl.com/?code=1JuO6V 返回code
  * 7.http://client:secret@localhost:8080/oauth/token
- *      参数  grant_type authorization_code
- *           code = 1JuO6V
- *      返回：{
- *              "access_token": "140dedd2-a163-4b7f-b5b6-b9dc922b40b3",
- *              "token_type": "bearer",
- *              "expires_in": 43199,
- *              "scope": "app"
- *           }
- *
- *
+ * 参数  grant_type authorization_code
+ * code = 1JuO6V
+ * 返回：{
+ * "access_token": "140dedd2-a163-4b7f-b5b6-b9dc922b40b3",
+ * "token_type": "bearer",
+ * "expires_in": 43199,
+ * "scope": "app"
+ * }
  */
 @Configuration
 @EnableAuthorizationServer//认证服务器

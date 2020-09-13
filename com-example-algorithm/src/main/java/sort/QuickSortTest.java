@@ -19,7 +19,7 @@ public class QuickSortTest {
         System.out.println(Arrays.toString(arr));
     }
 
-    public static void quickSort(@NotNull int[] arr, int left, int right) {
+    private static void quickSort(@NotNull int[] arr, int left, int right) {
         int l = left;
         int r = right;
         int temp = 0;

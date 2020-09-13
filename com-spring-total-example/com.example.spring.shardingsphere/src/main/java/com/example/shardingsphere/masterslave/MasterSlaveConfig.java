@@ -22,7 +22,7 @@ import java.util.Properties;
 /**
  * ShardingDataSourceFactory    -->ShardingRuleConfiguration -->TableRuleConfiguration
  * MasterSlaveDataSourceFactory -->MasterSlaveRuleConfiguration
- *
+ * <p>
  * OrchestrationShardingDataSourceFactory -->OrchestrationConfiguration -->RegistryCenterConfiguration
  */
 @Configuration

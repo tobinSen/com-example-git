@@ -13,7 +13,6 @@ public class BossTaskHandler implements TaskListener {
     }
 
 
-
     /**/
     @SagaStart(timeout = 10)
     public boolean transferMoney(String from, String to, int amount) {
@@ -32,6 +31,7 @@ public class BossTaskHandler implements TaskListener {
         //repo.addBalanceByUsername(from, amount);
         return false;
     }
+
     @Compensable(timeout = 5, compensationMethod = "cancel")
     public boolean transferIn(String from, int amount) {
         //repo.reduceBalanceByUsername(from, amount);

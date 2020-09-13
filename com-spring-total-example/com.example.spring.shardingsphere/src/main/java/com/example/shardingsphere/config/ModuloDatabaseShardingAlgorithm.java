@@ -12,9 +12,10 @@ public class ModuloDatabaseShardingAlgorithm implements SingleKeyDatabaseShardin
 
     /**
      * 分库规则 =
+     *
      * @param availableTargetNames 所有数据库名称
      * @param shardingValue        分库键的值
-     * @return                     实际的数据库名称
+     * @return 实际的数据库名称
      */
     @Override
     public String doEqualSharding(Collection<String> availableTargetNames, ShardingValue<Integer> shardingValue) {
@@ -28,6 +29,7 @@ public class ModuloDatabaseShardingAlgorithm implements SingleKeyDatabaseShardin
 
     /**
      * in 分库规则
+     *
      * @param availableTargetNames 所有数据库名称
      * @param shardingValue        分库键的值
      * @return
@@ -48,6 +50,7 @@ public class ModuloDatabaseShardingAlgorithm implements SingleKeyDatabaseShardin
 
     /**
      * between 分库规则
+     *
      * @param availableTargetNames
      * @param shardingValue
      * @return

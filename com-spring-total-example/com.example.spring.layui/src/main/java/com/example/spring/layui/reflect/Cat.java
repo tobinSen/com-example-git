@@ -49,7 +49,7 @@ public class Cat extends Animal {
 
     public static void main(String[] args) {
         //让当前线程直接去执行这个任务，执行完后在返回
-        MoreExecutors.directExecutor().execute(()->{
+        MoreExecutors.directExecutor().execute(() -> {
             System.out.println(Thread.currentThread().getName());
             try {
                 Thread.sleep(4000);

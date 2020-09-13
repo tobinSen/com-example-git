@@ -19,7 +19,7 @@ public class GsonDemo {
 
     public static void main(String[] args) {
         JsonObject object = new JsonObject();
-        object.addProperty("name","tom");
+        object.addProperty("name", "tom");
         object.addProperty("age", 12);
         JsonArray array = new JsonArray();
         array.add(object);

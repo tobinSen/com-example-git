@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * 定制 OAuth2Template
- *
  */
 public class QQOauth2Template extends OAuth2Template {
 

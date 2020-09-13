@@ -5,19 +5,19 @@
     <title></title>
 </head>
 <body>
-	<table border="1">
-		<thead>
-			<tr>
-				<th>书名</th>
-				<th>作者</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="book:${books}">
-				<td th:text="${book.btitle}"></td>
-				<td th:text="${book.bauthor}"></td>
-			</tr>
-		</tbody>
-	</table>
+<table border="1">
+    <thead>
+    <tr>
+        <th>书名</th>
+        <th>作者</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book:${books}">
+        <td th:text="${book.btitle}"></td>
+        <td th:text="${book.bauthor}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

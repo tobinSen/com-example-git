@@ -11,7 +11,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  * /{label}/{application}-{profile}.yml
  * /{application}-{profile}.properties
  * /{label}/{application}-{profile}.properties
- *
+ * <p>
  * 访问：http://127.0.0.1:9999/spring-cloud-config-server/master
  * http://127.0.0.1:9999/spring-cloud-config-server/dev/master
  * http://127.0.0.1:9999/{应用名称}/{环境}/{分支}

@@ -16,12 +16,12 @@ public class Outer {
         }
     }
 
-    public void innerMethod(){
+    public void innerMethod() {
         Integer id = 0;
-         class partyInner{
+        class partyInner {
             //int id;
 
-            public void show(){
+            public void show() {
                 //System.out.println(this.id);
                 System.out.println(id);
             }

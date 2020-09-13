@@ -18,6 +18,7 @@ public class jedisOfSortSetTest {
         System.out.println(jedis.zcard("z1")); //多少个数
         System.out.println(jedis.zcount("z1", 60, 70)); //分数之间有几个数
     }
+
     @Test
     public void testSortSe1() {
         //System.out.println(jedis.zrangeWithScores("z1", 0, -1));
@@ -25,6 +26,7 @@ public class jedisOfSortSetTest {
         System.out.println(jedis.zrank("z1", "优秀")); //返回值的下标
         System.out.println(jedis.zscore("z1", "优秀")); //返回值的分数
     }
+
     @Test
     public void testSortSe2() {
         //zrevranke, zrevrange

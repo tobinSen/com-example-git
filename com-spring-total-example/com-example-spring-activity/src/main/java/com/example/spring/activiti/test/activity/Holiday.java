@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Holiday implements Serializable {
-    
+
     private Integer id;
     private String holidayName;
     private Date beginDate;

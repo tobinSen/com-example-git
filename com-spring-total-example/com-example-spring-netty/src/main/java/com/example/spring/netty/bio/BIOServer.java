@@ -9,9 +9,8 @@ import java.util.concurrent.Executors;
 
 /**
  * 测试方法：使用telnet命令
- *
+ * <p>
  * telnet 127.0.0.1 6666 进入telnet页面
- *
  */
 public class BIOServer {
 

@@ -31,3 +31,12 @@ mybatis:
   type-handlers-package: com.example.spring.mybatis.config  #handler的包路径
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql语句到控制台
+
+################txMapper配置####
+#mybatis:
+#  mapper-locations: classpath:mapper/*.xml #定义xml文件位置，不是必须的，如果需要在xml写sql请配置此选项
+#  type-aliases-package: com.gogle.mgt.domain  # 注意：对应实体类的路径
+mapper:
+  mappers: com.example.spring.mybatis.txMapper.BaseMapper #通用基类配置
+  identity: MYSQL
+  notEmpty: false

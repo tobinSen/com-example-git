@@ -79,7 +79,7 @@ public class SPELDemo {
         System.out.println(parser.parseExpression("new Person()").getValue()); //A problem occurred whilst attempting to const
     }
 
-    public static class Person{
+    public static class Person {
         public String name;
         public Integer age;
 

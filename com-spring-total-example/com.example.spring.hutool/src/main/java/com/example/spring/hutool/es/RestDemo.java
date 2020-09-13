@@ -23,7 +23,7 @@ import java.util.Map;
 
 public class RestDemo {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         //lowLevel
         RestClient restClient = RestClient.builder(
                 new HttpHost("localhost", 9200, "http"),
@@ -41,7 +41,7 @@ public class RestDemo {
 //        });
         String method = "PUT";
         String endpoint = "/test-index";
-        Response response = restClient.performRequest(method,endpoint);
+        Response response = restClient.performRequest(method, endpoint);
 
         //highLevel
         RestHighLevelClient restHighLevelClient = new RestHighLevelClient(
@@ -111,11 +111,11 @@ public class RestDemo {
 
         BulkRequest request5 = new BulkRequest();
         request5.add(new IndexRequest("posts", "doc", "1")
-                .source(XContentType.JSON,"field", "foo")); // 将第一个 IndexRequest 添加到批量请求中
+                .source(XContentType.JSON, "field", "foo")); // 将第一个 IndexRequest 添加到批量请求中
         request5.add(new IndexRequest("posts", "doc", "2")
-                .source(XContentType.JSON,"field", "bar")); // 第二个
+                .source(XContentType.JSON, "field", "bar")); // 第二个
         request5.add(new IndexRequest("posts", "doc", "3")
-                .source(XContentType.JSON,"field", "baz")); // 第三个
+                .source(XContentType.JSON, "field", "baz")); // 第三个
 
         MultiGetRequest request6 = new MultiGetRequest();
         request6.add(new MultiGetRequest.Item(

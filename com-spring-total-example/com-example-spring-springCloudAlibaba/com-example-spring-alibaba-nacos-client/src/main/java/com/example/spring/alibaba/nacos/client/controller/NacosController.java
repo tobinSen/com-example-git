@@ -21,7 +21,7 @@ public class NacosController {
     private LoadBalancerClient loadBalancerClient;
 
     @RequestMapping("client.do")
-    public Map<String,Object> nacosClient(@RequestParam("name") String name) throws Exception {
+    public Map<String, Object> nacosClient(@RequestParam("name") String name) throws Exception {
         ServiceInstance serviceInstance = loadBalancerClient.choose("nacos-server");
 
         String url = serviceInstance.getUri() + "/nacos/server.do?name=" + name;

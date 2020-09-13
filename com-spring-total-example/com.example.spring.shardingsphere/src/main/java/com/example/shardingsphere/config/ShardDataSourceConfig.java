@@ -23,22 +23,20 @@ import java.util.Map;
 
 /**
  * sharding-jdbc的原理思路：4，4
- *  1、分库：找那个dataSource数据源 DataSourceRule
- *  2、分表：逻辑表-->真实表        TableRule
- *  3、分片：分片规则-->分库规则+分片规则 + 分库策略 + 分表策略  DatabaseShardingStrategy + TableShardingStrategy
- *  4、代理dataSource：ShardingDataSourceFactory.createDataSource(shardingRule());
- *
- *  查询的原理思路：3
- *   1、先看查询中是否含有分库键或分表键，如果存在其中一个键根据对应的分片算法获取实际的节点
- *   2、然后将获取所有的实际节点和指定的库或者表进行笛卡尔积
- *   3、如果没有指定任何分库键或分片键则直接返回空
- *
- *  特殊关键字的处理：3
- *  group by的规则：对每个SQL都会添加group by语句
- *  order by的规则：对每个SQL都会添加order by语句
- *  limit的规则：如果是2，2 ==》0，4对应每个表进行查询
- *
- *
+ * 1、分库：找那个dataSource数据源 DataSourceRule
+ * 2、分表：逻辑表-->真实表        TableRule
+ * 3、分片：分片规则-->分库规则+分片规则 + 分库策略 + 分表策略  DatabaseShardingStrategy + TableShardingStrategy
+ * 4、代理dataSource：ShardingDataSourceFactory.createDataSource(shardingRule());
+ * <p>
+ * 查询的原理思路：3
+ * 1、先看查询中是否含有分库键或分表键，如果存在其中一个键根据对应的分片算法获取实际的节点
+ * 2、然后将获取所有的实际节点和指定的库或者表进行笛卡尔积
+ * 3、如果没有指定任何分库键或分片键则直接返回空
+ * <p>
+ * 特殊关键字的处理：3
+ * group by的规则：对每个SQL都会添加group by语句
+ * order by的规则：对每个SQL都会添加order by语句
+ * limit的规则：如果是2，2 ==》0，4对应每个表进行查询
  */
 @Configuration
 @EnableConfigurationProperties(ShardDataSourceProperties.class)

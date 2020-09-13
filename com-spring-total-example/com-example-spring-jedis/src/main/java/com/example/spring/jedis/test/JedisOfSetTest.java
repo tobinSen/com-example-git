@@ -16,6 +16,7 @@ public class JedisOfSetTest {
         System.out.println(jedis.sismember("key8", "value8")); //判断是否存在这个成员的值
         System.out.println(jedis.scard("key8")); //统计key8里值的个数
     }
+
     @Test
     public void testSet1() {
         //srem, srandmember, spop
@@ -24,6 +25,7 @@ public class JedisOfSetTest {
         System.out.println(jedis.srandmember("key8")); //随机获取一个值
         System.out.println(jedis.spop("key8")); //删除第一个值
     }
+
     @Test
     public void testSet2() {
         //sdiff, sinter, sunion

@@ -12,10 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
- * AuthenticationManager -->Authentication
- *                      -->UsernamePasswordAuthenticationToken
- * ProviderManager -->
- *  AuthenticationProvider
+ * AuthenticationManager -->Authentication -->UsernamePasswordAuthenticationToken
+ * ProviderManager -->  AuthenticationProvider
  * <p>
  * AbstractUserDetailsAuthenticationProvider
  * <p>
@@ -33,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
      */
     @Bean
     @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
+    public AuthenticationManager authenticationManager() throws Exception {
         AuthenticationManager manager = super.authenticationManagerBean();
         return manager;
     }

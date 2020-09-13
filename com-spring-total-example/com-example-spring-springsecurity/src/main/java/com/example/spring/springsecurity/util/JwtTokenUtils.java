@@ -16,14 +16,14 @@ import java.util.stream.Collectors;
 
 /**
  * SecurityConfig
- *      UsernamePasswordAuthenticationFilter -> 登录验证 + 返回token
- *
- *      BasicAuthenticationFilter -> 请求拦截验证token的有效性
- *
- *         // 如果请求头中有token，则进行解析，并且设置授权信息
- *         SecurityContextHolder.getContext().setAuthentication(getAuthentication(authorization));
- *
- *         JwtUser jwtUser = (JwtUser) authentication.getPrincipal();
+ * UsernamePasswordAuthenticationFilter -> 登录验证 + 返回token
+ * <p>
+ * BasicAuthenticationFilter -> 请求拦截验证token的有效性
+ * <p>
+ * // 如果请求头中有token，则进行解析，并且设置授权信息
+ * SecurityContextHolder.getContext().setAuthentication(getAuthentication(authorization));
+ * <p>
+ * JwtUser jwtUser = (JwtUser) authentication.getPrincipal();
  */
 public class JwtTokenUtils {
 

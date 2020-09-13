@@ -58,6 +58,7 @@ public class JedisOfListTest {
         System.out.println(jedis.lset("key7", 0, "value7-1"));//指定索引位置下修改值
         System.out.println(jedis.lrange("key7", 0, -1));
     }
+
     @Test
     public void testList7() {
         //linsert

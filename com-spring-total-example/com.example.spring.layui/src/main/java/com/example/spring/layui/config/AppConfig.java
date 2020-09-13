@@ -33,9 +33,9 @@ public class AppConfig {
      * <p>
      * postProcessBeanFactory(beanFactory)：先进行BeanPostProcessor注入到，在注入appConfig
      * <p>
-     *
-     *  BeanFactoryPostProcessor
-     *  BeanPostProcessor
+     * <p>
+     * BeanFactoryPostProcessor
+     * BeanPostProcessor
      */
     @Bean
     public static MyBeanPostProcessor myBeanPostProcessor() {

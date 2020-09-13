@@ -12,7 +12,7 @@ public class TransactionConfig {
 
     @ShardingTransactionType(TransactionType.XA)
     @Transactional
-    public void test(){
+    public void test() {
 
     }
 

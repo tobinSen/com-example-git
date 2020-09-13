@@ -21,7 +21,7 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        Map<String, String> filterChainDefinitionMap  = new HashMap<>();
+        Map<String, String> filterChainDefinitionMap = new HashMap<>();
         filterChainDefinitionMap.put("/login.do", "anno"); //authc是过滤器简称
         filterChainDefinitionMap.put("/**", "authc"); //authc是过滤器简称
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);

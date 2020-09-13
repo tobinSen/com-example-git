@@ -32,7 +32,8 @@ public class EventStorage {
     }
 
     public synchronized void get() {
-        th:while (storage.size() == 0) { //wait等待被激活的时候，还会进行判断while里的条件十分符合
+        th:
+        while (storage.size() == 0) { //wait等待被激活的时候，还会进行判断while里的条件十分符合
             try {
                 wait();
             } catch (InterruptedException e) {

@@ -9,7 +9,6 @@ public class PropertyMapperDemo {
     public String name = "tongjian";
 
 
-
     public static void main(String[] args) {
         Cat from = new Cat() {{
             setAge(1);

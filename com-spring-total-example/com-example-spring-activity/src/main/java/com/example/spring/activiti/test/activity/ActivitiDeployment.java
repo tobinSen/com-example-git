@@ -19,10 +19,10 @@ import org.activiti.engine.repository.Deployment;
  * 流程实例好比是java中一个实例（对象）
  * <p>
  * 流程实例启动步骤：
- *  RepositoryService  --->流程部署  | 查询流程定义 | 删除流程定义(级联删除) | 获取到png和bpmn文件 |所有流程实例激活和挂起
- *  RuntimeService     --->流程实例  | 管理businessKey 业务表 | 流程实例激活和挂起
- *  TaskService        --->完成流程  | 查询流程任务
- *  HistoryService     --->历史信息查询
+ * RepositoryService  --->流程部署  | 查询流程定义 | 删除流程定义(级联删除) | 获取到png和bpmn文件 |所有流程实例激活和挂起
+ * RuntimeService     --->流程实例  | 管理businessKey 业务表 | 流程实例激活和挂起
+ * TaskService        --->完成流程  | 查询流程任务
+ * HistoryService     --->历史信息查询
  */
 public class ActivitiDeployment {
 

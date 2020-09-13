@@ -10,7 +10,7 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageProtoc
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        
+
         //使用客户端发送10条记录
 
         for (int i = 0; i < 10; i++) {
@@ -24,7 +24,7 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageProtoc
             ctx.writeAndFlush(messageProtocol);
 
         }
-        
+
     }
 
     @Override
@@ -35,6 +35,6 @@ public class ChatClientHandler extends SimpleChannelInboundHandler<MessageProtoc
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         cause.printStackTrace();
-        
+
     }
 }

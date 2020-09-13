@@ -18,7 +18,7 @@ public class Log4j2Controller {
 
 
     @Autowired
-    PushServiceImpl pushService ;
+    PushServiceImpl pushService;
 
     @RequestMapping("log4j2.do")
     public JSONObject log4j2(String name) throws Exception {
@@ -31,8 +31,8 @@ public class Log4j2Controller {
 
     @RequestMapping("/getData")
     @ResponseBody
-    public DeferredResult<String> getPushData(){
-        return pushService.getDeferredResult() ;
+    public DeferredResult<String> getPushData() {
+        return pushService.getDeferredResult();
     }
 
 }

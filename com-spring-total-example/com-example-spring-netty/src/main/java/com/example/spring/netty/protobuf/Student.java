@@ -2,7 +2,7 @@ package com.example.spring.netty.protobuf;
 
 public class Student {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         DataInfo.Student student = DataInfo.Student.newBuilder().setName("张三").setAge(19).setAddress("北京").build();
         byte[] student2ByteArray = student.toByteArray();
 

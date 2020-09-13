@@ -88,18 +88,18 @@
         </plugins>
 
         <!--<resources>-->
-            <!--<resource>-->
-                <!--<directory>${project.basedir}/lib</directory>-->
-                <!--&lt;!&ndash;没有前缀默认是target/classes目录下面&ndash;&gt;-->
-                <!--<targetPath>BOOT-INF/lib</targetPath>-->
-                <!--<includes>-->
-                    <!--<include>**/*.jnilib</include>-->
-                    <!--<include>**/*.so</include>-->
-                    <!--<include>**/*.dll</include>-->
-                    <!--<include>**/*.jar</include>-->
-                    <!--<include>**/*.pdb</include>-->
-                <!--</includes>-->
-            <!--</resource>-->
+        <!--<resource>-->
+        <!--<directory>${project.basedir}/lib</directory>-->
+        <!--&lt;!&ndash;没有前缀默认是target/classes目录下面&ndash;&gt;-->
+        <!--<targetPath>BOOT-INF/lib</targetPath>-->
+        <!--<includes>-->
+        <!--<include>**/*.jnilib</include>-->
+        <!--<include>**/*.so</include>-->
+        <!--<include>**/*.dll</include>-->
+        <!--<include>**/*.jar</include>-->
+        <!--<include>**/*.pdb</include>-->
+        <!--</includes>-->
+        <!--</resource>-->
         <!--</resources>-->
     </build>
 

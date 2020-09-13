@@ -1,14 +1,11 @@
-
 given: Chris
 family: Dumars
 address:
-  -
-    lines: 458 Walkman
-    city    : Royal Oak
-    state   : MI
-    postal  : 48046
-  -
-    lines: 459 Walkman
-    city    : Royal Oak
-    state   : MI
-    postal  : 48046
+- lines: 458 Walkman
+  city: Royal Oak
+  state: MI
+  postal: 48046
+- lines: 459 Walkman
+  city: Royal Oak
+  state: MI
+  postal: 48046

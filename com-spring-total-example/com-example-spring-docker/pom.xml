@@ -31,11 +31,11 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <!--加入下面两项配置-->
                 <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<goals>-->
-                            <!--<goal>repackage</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
+                <!--<execution>-->
+                <!--<goals>-->
+                <!--<goal>repackage</goal>-->
+                <!--</goals>-->
+                <!--</execution>-->
                 <!--</executions>-->
             </plugin>
         </plugins>

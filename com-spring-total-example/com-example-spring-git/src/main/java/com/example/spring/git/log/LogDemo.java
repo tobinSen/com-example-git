@@ -9,15 +9,17 @@ public class LogDemo {
      * 1、只配置了<root></root>标签
      * 2、添加了<logger></logger>多个logger匹配的时候，只会匹配更加精确的
      * 3、appender
-     *      ConsoleAppender
-     *      FileAppender
-     *      RollingFileAppender
-     *          rollingPolicy
-     *              TimeBasedRollingPolicy    -->时间
-     *              FixedWindowRollingPolicy  -->固定窗口
-     *          triggeringPolicy
-     *              SizeBasedTriggeringPolicy -->大小
+     * ConsoleAppender
+     * FileAppender
+     * RollingFileAppender
+     * rollingPolicy
+     * TimeBasedRollingPolicy    -->时间
+     * FixedWindowRollingPolicy  -->固定窗口
+     * triggeringPolicy
+     * SizeBasedTriggeringPolicy -->大小
      *
+     *
+     * 【*】可以匹配当前包和当前父包或者子包
      */
 
     private static Logger log = LoggerFactory.getLogger(LogDemo.class);
@@ -27,6 +29,8 @@ public class LogDemo {
         log.debug("======debug");
         log.info("======info");
         log.warn("======warn");
-        log.error("======error");
+        log.error("======error","什么东西");
     }
+
+
 }

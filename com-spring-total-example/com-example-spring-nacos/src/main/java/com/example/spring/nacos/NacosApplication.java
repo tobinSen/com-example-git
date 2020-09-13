@@ -8,11 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 多环境
  * 多配置加载
  * 共享配置
- *
+ * <p>
  * dataId 组成：
- *  ${spring.cloud.nacos.config.prefix}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
- *  ==》默认值
- *  ${spring.application.name}-${spring.profiles.active}.properties
+ * ${spring.cloud.nacos.config.prefix}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+ * ==》默认值
+ * ${spring.application.name}-${spring.profiles.active}.properties
  */
 @SpringBootApplication
 public class NacosApplication {

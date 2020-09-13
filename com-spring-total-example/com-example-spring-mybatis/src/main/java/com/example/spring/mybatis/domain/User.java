@@ -148,8 +148,9 @@ public class User {
                 .expireAfterWrite(1, TimeUnit.MINUTES)
                 .buildAsync(k -> DataObject.get("Data for " + k));
 
-        asyncLoadingCache.get("key").thenRun(() -> {});
-        
+        asyncLoadingCache.get("key").thenRun(() -> {
+        });
+
 
     }
 }

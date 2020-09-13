@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 
 /**
  * 监听所有db的过期事件__keyevent@*__:expired"
-
-
- KeyExpirationEventMessageListener
- KeyspaceEventMessageListener
-
- 总结：6点
+ * <p>
+ * <p>
+ * KeyExpirationEventMessageListener
+ * KeyspaceEventMessageListener
+ * <p>
+ * 总结：6点
  */
 
 @Component
