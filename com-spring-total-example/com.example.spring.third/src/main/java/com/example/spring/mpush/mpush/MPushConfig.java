@@ -23,6 +23,7 @@ public class MPushConfig {
         return mPushClient;
     }
 
+
     @Bean(name = {"pushSender"})
     public PushSender getPushSenderBean(MPushClient mPushClient) {
         PushClientFactory factory = new PushClientFactory();
