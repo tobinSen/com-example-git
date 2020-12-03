@@ -22,7 +22,7 @@ public class JedisOfFutureTest {
         pipelined.mset("key1", "value", "key2", "value");
         pipelined.sync();
 
-        pipelined.close();
+        //pipelined.close();
         jedis.close();
 
     }

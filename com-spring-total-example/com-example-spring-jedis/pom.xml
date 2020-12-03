@@ -55,6 +55,15 @@
             <artifactId>jrebloom</artifactId>
             <version>1.2.0</version>
         </dependency>
+
+
+        <!-- 支持高级语法 -->
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>0.10.0</version>
+        </dependency>
+
     </dependencies>
 
 </project>
