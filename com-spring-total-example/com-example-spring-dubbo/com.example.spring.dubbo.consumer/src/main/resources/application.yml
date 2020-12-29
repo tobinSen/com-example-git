@@ -4,7 +4,7 @@ dubbo:
   application:
     name: dubbo-consumer
   registry:
-    register: true
+    register: false
     address: 127.0.0.1
     port: 2181
   scan:
