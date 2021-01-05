@@ -1,20 +1,19 @@
 server:
   port: 9999
+
+  #sping-getway配置（方式一）
+
 spring:
-  application:
-    name: spring-cloud-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: tongjian_route
+        uri: http://www.tongjian.org:9999/
+        predicates:
+        - Path=/tongjian
 
-#sping-getway配置（方式一）
-#  cloud:
-#    gateway:
-#      routes:
-#      - id: tongjian_route
-#        uri: http://www.tongjian.org:9999/
-#        predicates:
-#        - Path=/tongjian
-
-spring.route.path: /baidu
-spring.route.uri: www.baid.com
+#spring.route.path: /baidu
+#spring.route.uri: www.baid.com
 
 #日志等级配置
 logging:

@@ -69,6 +69,8 @@
         <module>com.example.spring.poi-tl</module>
         <module>com.example.spring.flowable.moduler</module>
         <module>com.example.spring.third</module>
+        <module>spring.example.spring.springcloudgray</module>
+        <module>com.example.spring.disconfi</module>
     </modules>
 
     <!--导入springboot版本仲裁-->

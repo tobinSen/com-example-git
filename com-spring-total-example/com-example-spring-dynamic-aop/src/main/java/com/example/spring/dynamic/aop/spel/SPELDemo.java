@@ -32,7 +32,7 @@ public class SPELDemo {
         System.out.println(exp.getValue(context)); //3
     }
 
-    public static void main(String[] args) {
+    public static void main02(String[] args) {
         ExpressionParser parser = new SpelExpressionParser();
 
         Person person = new Person("fsx", 30);
@@ -77,6 +77,31 @@ public class SPELDemo {
         System.out.println(parser.parseExpression("new String[]{'java','spring'}").getValue()); //[Ljava.lang.String;@30b8a058
         System.out.println(parser.parseExpression("{'java','c语言','PHP'}").getValue()); //[java, c语言, PHP] 创建List
         System.out.println(parser.parseExpression("new Person()").getValue()); //A problem occurred whilst attempting to const
+    }
+
+    public static void main03(String[] args) {
+        String expressionStr1 = "#person.name";
+        String expressionStr2 = "#person.age";
+        EvaluationContext ctx = new StandardEvaluationContext();
+        Person person = new Person("fsx", 30);
+        ctx.setVariable("person", person);
+        ExpressionParser parser = new SpelExpressionParser();
+        String name = (String) parser.parseExpression(expressionStr1).getValue(ctx);
+        Integer age = (Integer) parser.parseExpression(expressionStr2).getValue(ctx);
+
+        System.out.println("lock-key:" + name + "_" + age);
+    }
+
+    public static void main(String[] args) {
+        String expression = "#person.name#person.age"; //复合key
+        EvaluationContext ctx = new StandardEvaluationContext();
+        Person person = new Person("fsx", 30);
+        ctx.setVariable("person", person);
+        ExpressionParser parser = new SpelExpressionParser();
+        String[] split = expression.split("#");
+        for (String express : split) {
+            
+        }
     }
 
     public static class Person {

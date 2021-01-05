@@ -38,6 +38,16 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private UserDetailsService userService; //这里是用户对应自己的项目信息
 
+    /**
+     * TokenStore
+     * TokenEnhancer
+     * TokenEnhancerChain
+     *
+     *
+     * AuthenticationEntryPoint 用来解决匿名用户访问无权限资源时的异常
+     *
+     * AccessDeineHandler 用来解决认证过的用户访问无权限资源时的异常
+     */
     @Autowired
     private TokenStore tokenStore;//access_token存储方式(jdbc redis jwt)
 

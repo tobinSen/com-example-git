@@ -45,6 +45,25 @@
             <systemPath>${basedir}/lib/sapjco3.jar</systemPath>
         </dependency>
 
+        <!--验证码 -->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.3.10</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.baidu.disconf</groupId>
+            <artifactId>disconf-client</artifactId>
+            <version>2.6.36</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -85,6 +104,9 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+
+
+
         </plugins>
 
         <!--<resources>-->

@@ -1,6 +1,5 @@
 package com.example.spring.ttl.ttl;
 
-import com.alibaba.ttl.TransmittableThreadLocal;
 import com.alibaba.ttl.threadpool.TtlExecutors;
 
 import java.util.concurrent.ExecutorService;
@@ -13,8 +12,8 @@ public class TTLTest {
     private static ExecutorService executorService = TtlExecutors.getTtlExecutorService(Executors.newFixedThreadPool(2));
     //private statics ExecutorService executorService = Executors.newFixedThreadPool(2);
 
-    private static ThreadLocal tl = new TransmittableThreadLocal<>(); //这里采用TTL的实现
-    //private statics ThreadLocal tl = new ThreadLocal<>(); //这里采用TTL的实现
+    //private static ThreadLocal tl = new TransmittableThreadLocal<>(); //这里采用TTL的实现
+    private static ThreadLocal tl = new ThreadLocal<>(); //这里采用TTL的实现
 
     //线程-->嵌套线程池创建线程（本质上还是说是线程嵌套，只是说创建的方式是不一样的）
     public static void main(String[] args) {

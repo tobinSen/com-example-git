@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="configproperties_disconf"
+          class="com.baidu.disconf.client.addons.properties.ReloadablePropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:/autoconfig.properties</value>
+                <value>classpath:/autoconfig2.properties</value>
+                <value>classpath:/myserver_slave.properties</value>
+                <value>classpath:/testJson.json</value>
+                <value>classpath:/testXml2.xml</value>
+                <value>myserver.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="propertyConfigurer"
+          class="com.baidu.disconf.client.addons.properties.ReloadingPropertyPlaceholderConfigurer">
+        <property name="propertiesArray">
+            <list>
+                <ref bean="configproperties_disconf"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="autoService" class="com.example.disconf.demo.service.AutoService">
+        <property name="auto" value="${auto=100}"/>
+    </bean>
+
+</beans>

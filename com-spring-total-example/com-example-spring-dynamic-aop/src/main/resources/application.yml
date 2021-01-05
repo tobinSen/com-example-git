@@ -2,3 +2,6 @@ server:
   port: 9999
 
 expression: execution(public * com.example.spring.dynamic.aop.config.*.*(..))
+spring:
+  aop:
+    auto: true

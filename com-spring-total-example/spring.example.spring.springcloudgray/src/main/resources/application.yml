@@ -1,0 +1,36 @@
+server:
+  port: 20202
+spring:
+  application:
+    name: gray-server
+  #数据库配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/gray_server01?charset=utf8mb4&useSSL=false
+    username: root
+    password: root
+  # JPA 相关配置
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+# eureka
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:20001/eureka/
+#灰度管理
+gray:
+  server:
+    evictionIntervalTimerInMs: 30000
+    instance:
+      normalInstanceStatus: STARTING,UP,OUT_OF_SERVICE
+      eviction:
+        enabled: true
+        evictionIntervalTimerInMs: 86400000
+        evictionInstanceStatus: DOWN,UNKNOWN
+        lastUpdateDateExpireDays: 1

@@ -5,15 +5,24 @@ import com.example.spring.springsecurity.sms.SmsCodeFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import sun.misc.JavaLangAccess;
 import sun.misc.SharedSecrets;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 
 /**
@@ -101,7 +110,7 @@ import sun.misc.SharedSecrets;
  */
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true) //对方法开启权限控制
+@EnableGlobalMethodSecurity(prePostEnabled = true) //对这个注解的开启
 public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -160,9 +169,29 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .and().csrf().disable();
 
+        http.exceptionHandling().authenticationEntryPoint(new AuthenticationEntryPoint() {
+            /**
+             * 认证失败处理类 返回未授权
+             * 用来解决匿名
+             */
+            @Override
+            public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+
+            }
+        }).accessDeniedHandler(new AccessDeniedHandler() {
+            /**
+             * 认证失败处理类 返回未授权
+             * 用来解决认证过的用户访问无权限资源时的异常
+             */
+            @Override
+            public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
+
+            }
+        });
+
     }
 
-    public static void main(String[] args) {
+    public static void main01it(String[] args) {
         JavaLangAccess access = SharedSecrets.getJavaLangAccess();
         Throwable throwable = new Throwable();
 
@@ -173,5 +202,34 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
             StackTraceElement frame = access.getStackTraceElement(throwable, i);
             System.out.println(frame);
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(test());
+
+        StringBuffer x = new StringBuffer("A");
+        StringBuffer y = new StringBuffer("B");
+        str(x, y);
+        System.out.println(x + "---" + y);
+
+        Integer a = new Integer(1);
+        Long b = new Long(1);
+        System.out.println(a.equals(b)); //Integer中重写的equal是从写了，然后必须是同一个类型才会进行比较
+
+    }
+
+    public static int test() {
+        int i = 0;
+        try {
+            ++i;
+        } finally {
+            i += 2;
+        }
+        return ++i;
+    }
+
+    public static void str(StringBuffer x, StringBuffer y) {
+        x.append(y);
+        y = x;  //这里是形参复制不对的
     }
 }

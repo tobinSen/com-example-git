@@ -1,10 +1,12 @@
 package com.example.spring.mybatis.dao;
 
 import com.example.spring.mybatis.domain.User;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+@Mapper
 public interface UserMapper {
 
     int deleteByPrimaryKey(Integer userId);

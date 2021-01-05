@@ -41,7 +41,7 @@ public class NIOServer {
 
                 //链接事件
                 if (selectionKey.isAcceptable()) {
-                    //生成一个socketChannel 分配一个socketChannel
+                    //生成一个socketChannel 分配一个socketChannel,这里是激活的客户端的socketChannel
                     SocketChannel socketChannel = serverSocketChannel.accept();
 
                     //将socketChannel注册到selector ,关注事件为OP_READ

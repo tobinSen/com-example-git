@@ -39,6 +39,52 @@ import java.lang.invoke.MethodHandles;
  *  SocialAuthenticationToken
  *
  */
+
+/**
+ *
+ * TokenEndpoint
+ *
+ * ConsumerTokenServices --> DefaultTokenServices
+ *
+ * TokenStore
+ *
+ * TokenEnhancerChain
+ *      TokenEnhancer               ---> jwt 中添加额外的用户信息
+ *      JwtAccessTokenConverter     ---> jwt 增强额外信息
+ *
+ * TokenGranter
+ *      AbstractTokenGranter
+ *
+ *      OAuth2Authentication
+ *      OAuth2RequestFactory
+ * TokenRequest -->  OAuth2Request --> OAuth2Authentication (父 AbstractAuthenticationToken)
+ * AuthorizationRequest
+ *
+ *
+ *      CompositeTokenGranter
+ *
+ *
+ *  tokenValue --> OAuth2AccessToken  --> OAuth2Authentication
+ *
+ *  // 逆向操作
+ *  OAuth2AccessToken accessToken = authorizationServerTokenServices.createAccessToken(oAuth2Authentication);
+ *
+ *
+ *  UserDetailsService
+ *
+ *  ClientDetailsServiceImpl
+ *
+ *  AuthenticationManager
+ *
+ *
+ *  SecurityConfigurerAdapter
+ *
+ *  AbstractAuthenticationProcessingFilter
+ *      AuthenticationManager
+ *          AuthenticationProvider(DaoAuthenticationProvider) | SmsAuthenticationProvider(自定义)
+ *
+ */
+
 public class SocialConfig {
 
     public static void main(String[] args) {

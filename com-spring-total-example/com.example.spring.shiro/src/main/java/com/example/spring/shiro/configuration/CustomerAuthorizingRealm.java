@@ -15,7 +15,7 @@ import org.apache.shiro.util.ByteSource;
 
 public class CustomerAuthorizingRealm extends AuthorizingRealm {
 
-    //修改默认的凭证匹配器
+    //todo 修改默认的凭证匹配器
     @Override
     public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
         HashedCredentialsMatcher matcher = new HashedCredentialsMatcher();
