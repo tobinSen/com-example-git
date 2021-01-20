@@ -5,6 +5,9 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RefreshScope  //动态刷新
 public class ConfigClientController {
@@ -25,5 +28,13 @@ public class ConfigClientController {
     @RequestMapping("client.do")
     public void test() {
         System.out.println(name + age + like);
+    }
+
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>();
+        for (Integer integer : list) {
+            System.out.println(integer);
+        }
+
     }
 }
