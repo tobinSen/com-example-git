@@ -54,6 +54,14 @@
             <artifactId>dubbo</artifactId>
             <version>2.7.8</version>
         </dependency>
+
+
+        <!-- 此依赖是链接dashboard -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-transport-simple-http</artifactId>
+            <version>RELEASE</version>
+        </dependency>
     </dependencies>
 
 

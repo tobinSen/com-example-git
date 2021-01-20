@@ -71,6 +71,7 @@
         <module>com.example.spring.third</module>
         <module>spring.example.spring.springcloudgray</module>
         <module>com.example.spring.disconfi</module>
+        <module>com.example.spring.graphql</module>
         <module>com.example.spring.sentinel</module>
     </modules>
 

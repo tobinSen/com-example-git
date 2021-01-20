@@ -1,0 +1,62 @@
+public-key: 【your public key】  # 工具生成的公钥
+spring:
+  application:
+    name: flow-effects-system
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      dbType: 【your db type】
+      driverClassName: 【your db driver】
+      url: 【your db url】
+      username: 【your db user name】
+      password: 【your encrypted Password】
+      #配置初始化大小
+      initialSize: 5
+      #最小空闲连接
+      minIdle: 5
+      #最大连接数量
+      maxActive: 20
+      #配置获取连接等待超时的时间
+      maxWait: 60000
+      #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 2000
+      #配置一个连接在池中最小、最大生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 600000
+      maxEvictableIdleTimeMillis: 900000
+      #是否自动回收超时连接
+      removeAbandoned: true
+      #指定连接应该被废弃的时间 秒
+      removeAbandonedTimeout: 1800
+      #测试sql
+      validationQuery: SELECT 1 FROM DUAL
+      #建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+      testWhileIdle: true
+      #申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。
+      testOnBorrow: false
+      #归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      testOnReturn: false
+      #通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      #这里要开启密码解密，并配置公钥
+      connectionProperties: config.decrypt=true;config.decrypt.key=${public-key};druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      #是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的 数据库 性能提升巨大，比如说oracle。在 mysql 下建议关闭。
+      poolPreparedStatements: true
+      #要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在 Oracle 下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+      maxPoolPreparedStatementPerConnectionSize: 50
+      #属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有： 监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall
+  filters: stat,wall,log4j,config  # 要开启configFilter过滤器
+  web-stat-filter:
+    enabled: true
+    exclusions: '*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*'
+  stat-view-servlet:
+    enabled: true
+    reset-enable: false
+    url-pattern: /druid/*
+    login-username: admin
+    login-password: admin
+  filter:
+    slf4j:
+      enabled: true
+      statement-create-after-log-enabled: false
+      statement-close-after-log-enabled: false
+      result-set-open-after-log-enabled: false
+      result-set-close-after-log-enabled: false
