@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: sentinel
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8718
+      eager: true
+      datasource:
+        ds:
+          apollo:
+            namespace-name: application
+            flow-rules-key: sentinel.flowRules
+            rule-type: flow
+server:
+  port: 8889
+  tomcat:
+    max-threads: 20
+
+app:
+  id: sentinel
+
+apollo:
+  meta: http://**.**.*.171:8080/
+  cacheDir: /app/war/apollo/temp/

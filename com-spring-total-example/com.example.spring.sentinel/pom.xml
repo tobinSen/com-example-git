@@ -43,6 +43,12 @@
         </dependency>
 
 
+        <!-- 动态数据源配置 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-sentinel-datasource</artifactId>
+        </dependency>
+
         <!-- <optional>true</optional> 是可选的需要额外的进行依赖 -->
         <dependency>
             <groupId>com.alibaba.csp</groupId>
