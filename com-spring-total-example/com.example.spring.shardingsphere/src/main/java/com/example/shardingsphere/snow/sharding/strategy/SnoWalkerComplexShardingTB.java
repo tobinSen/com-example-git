@@ -1,9 +1,9 @@
 package com.example.shardingsphere.snow.sharding.strategy;
 
 import com.alibaba.fastjson.JSON;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.constant.DbAndTableEnum;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.constant.ShardingConstant;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.util.StringUtil;
+import com.example.shardingsphere.snow.sharding.constant.DbAndTableEnum;
+import com.example.shardingsphere.snow.sharding.constant.ShardingConstant;
+import com.example.shardingsphere.snow.sharding.util.StringUtil;
 import io.shardingsphere.api.algorithm.sharding.ListShardingValue;
 import io.shardingsphere.api.algorithm.sharding.ShardingValue;
 import io.shardingsphere.api.algorithm.sharding.complex.ComplexKeysShardingAlgorithm;
@@ -34,6 +34,7 @@ public class SnoWalkerComplexShardingTB implements ComplexKeysShardingAlgorithm 
         // shardingValues:[{"columnName":"order_id","logicTableName":"t_new_order","values":["OD010001011903261549424993200011"]},{"columnName":"user_id","logicTableName":"t_new_order","values":["UD030001011903261549424973200007"]}]
         Collection<String> collection = new ArrayList<>();
 
+        // 如果存在多个 shardingValue
         for (ShardingValue var : shardingValues) {
             ListShardingValue<String> listShardingValue = (ListShardingValue<String>)var;
             List<String> shardingValue = (List<String>)listShardingValue.getValues();

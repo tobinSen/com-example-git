@@ -1,7 +1,7 @@
 package com.example.shardingsphere.snow.service;
 
-import com.snowalker.shardingjdbc.snowalker.demo.entity.OrderInfo;
-import com.snowalker.shardingjdbc.snowalker.demo.mapper.OrderMapper;
+import com.example.shardingsphere.snow.entity.OrderInfo;
+import com.example.shardingsphere.snow.mapper.OrderMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

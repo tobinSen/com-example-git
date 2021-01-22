@@ -1,9 +1,9 @@
 package com.example.shardingsphere.snow.sharding.sequence.redis;
 
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.constant.DbAndTableEnum;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.constant.ShardingConstant;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.sequence.SequenceGenerator;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.util.StringUtil;
+import com.example.shardingsphere.snow.sharding.constant.DbAndTableEnum;
+import com.example.shardingsphere.snow.sharding.constant.ShardingConstant;
+import com.example.shardingsphere.snow.sharding.sequence.SequenceGenerator;
+import com.example.shardingsphere.snow.sharding.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,9 @@ import org.springframework.stereotype.Component;
 @Component(value = "redisSequenceGenerator")
 public class RedisSequenceGenerator implements SequenceGenerator {
 
-    /**序列生成器key前缀*/
+    /**
+     * 序列生成器key前缀
+     */
     public static String LOGIC_TABLE_NAME = "sequence:redis:";
 
     public static int SEQUENCE_LENGTH = 5;
@@ -30,6 +32,7 @@ public class RedisSequenceGenerator implements SequenceGenerator {
 
     /**
      * redis序列获取实现方法
+     *
      * @param targetEnum
      * @param dbIndex
      * @param tbIndex
@@ -49,7 +52,7 @@ public class RedisSequenceGenerator implements SequenceGenerator {
                 .append(targetEnum.getShardingKey()).toString();
 
         String increKey = new StringBuilder(LOGIC_TABLE_NAME).append(redisKeySuffix).toString();
-        long sequenceId = stringRedisTemplate.opsForValue().increment(increKey);
+        long sequenceId = stringRedisTemplate.opsForValue().increment(increKey, 1);
         //达到指定值重置序列号，预留后10000个id以便并发时缓冲
         if (sequenceId == sequence_max) {
             stringRedisTemplate.delete(increKey);

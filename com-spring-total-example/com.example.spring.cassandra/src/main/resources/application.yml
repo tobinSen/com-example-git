@@ -1,0 +1,9 @@
+spring:
+  data:
+    cassandra:
+      keyspace-name: czenv
+      #entity-base-packages:
+      contact-points: 192.168.213.128,192.168.213.129,192.168.213.130
+      port: 9042
+      session-name: cz001 #新版本为session-name,老版本为cluster_name
+      local-datacenter: dc1

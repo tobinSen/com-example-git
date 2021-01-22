@@ -1,7 +1,7 @@
 package com.example.shardingsphere.snow.sharding.service;
 
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.entity.OrderNewInfoEntity;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.mapper.OrderNewMapper;
+import com.example.shardingsphere.snow.sharding.entity.OrderNewInfoEntity;
+import com.example.shardingsphere.snow.sharding.mapper.OrderNewMapper;
 import groovy.util.logging.Log4j2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

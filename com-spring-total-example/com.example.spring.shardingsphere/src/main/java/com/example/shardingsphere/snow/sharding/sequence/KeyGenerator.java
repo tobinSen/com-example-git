@@ -1,9 +1,9 @@
 package com.example.shardingsphere.snow.sharding.sequence;
 
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.constant.DbAndTableEnum;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.constant.ShardingConstant;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.util.DateUtil;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.util.StringUtil;
+import com.example.shardingsphere.snow.sharding.constant.DbAndTableEnum;
+import com.example.shardingsphere.snow.sharding.constant.ShardingConstant;
+import com.example.shardingsphere.snow.sharding.util.DateUtil;
+import com.example.shardingsphere.snow.sharding.util.StringUtil;
 import io.shardingsphere.core.keygen.DefaultKeyGenerator;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.SystemUtils;

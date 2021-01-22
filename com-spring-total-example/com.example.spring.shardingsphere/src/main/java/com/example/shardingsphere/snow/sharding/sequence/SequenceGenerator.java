@@ -1,6 +1,6 @@
 package com.example.shardingsphere.snow.sharding.sequence;
 
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.constant.DbAndTableEnum;
+import com.example.shardingsphere.snow.sharding.constant.DbAndTableEnum;
 
 /**
  * @author snowalker

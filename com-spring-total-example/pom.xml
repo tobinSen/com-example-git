@@ -73,6 +73,7 @@
         <module>com.example.spring.disconfi</module>
         <module>com.example.spring.graphql</module>
         <module>com.example.spring.sentinel</module>
+        <module>com.example.spring.cassandra</module>
     </modules>
 
     <!--导入springboot版本仲裁-->

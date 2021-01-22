@@ -1,6 +1,6 @@
 package com.example.shardingsphere.snow.service;
 
-import com.snowalker.shardingjdbc.snowalker.demo.entity.OrderInfo;
+import com.example.shardingsphere.snow.entity.OrderInfo;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package com.example.shardingsphere.snow.sharding.strategy;
 
 import com.alibaba.fastjson.JSON;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.constant.DbAndTableEnum;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.constant.ShardingConstant;
-import com.snowalker.shardingjdbc.snowalker.demo.complex.sharding.util.StringUtil;
+import com.example.shardingsphere.snow.sharding.constant.DbAndTableEnum;
+import com.example.shardingsphere.snow.sharding.constant.ShardingConstant;
+import com.example.shardingsphere.snow.sharding.util.StringUtil;
 import io.shardingsphere.api.algorithm.sharding.ListShardingValue;
 import io.shardingsphere.api.algorithm.sharding.ShardingValue;
 import io.shardingsphere.api.algorithm.sharding.complex.ComplexKeysShardingAlgorithm;
@@ -40,6 +40,7 @@ public class SnoWalkerComplexShardingDB implements ComplexKeysShardingAlgorithm 
         // {"columnName":"order_id","logicTableName":"order_info","values":["OD020000011902261234512595300002"]}]
         List<String> shardingResults = new ArrayList<>();
 
+        // 1.多个shardingKey --> 多个shardingValue
         for (ShardingValue var : shardingValues) {
 
             ListShardingValue<String> listShardingValue = (ListShardingValue<String>)var;
@@ -50,7 +51,7 @@ public class SnoWalkerComplexShardingDB implements ComplexKeysShardingAlgorithm 
             //根据列名获取索引规则，得到索引值
             String index = getIndex(listShardingValue.getLogicTableName(),
                                     listShardingValue.getColumnName(),
-                                    shardingValue.get(0));
+                                    shardingValue.get(0)); // 这里只有一个分片值
 
             //循环匹配数据源
             for (String name : availableTargetNames) {
@@ -73,10 +74,10 @@ public class SnoWalkerComplexShardingDB implements ComplexKeysShardingAlgorithm 
 
     /**
      * 根据分片键计算分片节点
-     * @param logicTableName
-     * @param columnName
-     * @param shardingValue
-     * @return
+     * @param logicTableName  逻辑表名
+     * @param columnName      列名
+     * @param shardingValue   分片值
+     * @return                index
      */
     public String getIndex(String logicTableName, String columnName, String shardingValue) {
         String index = "";
@@ -86,7 +87,8 @@ public class SnoWalkerComplexShardingDB implements ComplexKeysShardingAlgorithm 
         //截取分片键值-下标循环主键规则枚举类，匹配主键列名得到规则
         for (DbAndTableEnum targetEnum : DbAndTableEnum.values()) {
 
-            /**目标表路由
+            /**
+             * 目标表路由
              * 如果逻辑表命中，判断路由键是否与列名相同
              */
             if (targetEnum.getTableName().equals(logicTableName)) {
@@ -125,7 +127,7 @@ public class SnoWalkerComplexShardingDB implements ComplexKeysShardingAlgorithm 
      * @return
      */
     public String getDbIndexBySubString(DbAndTableEnum targetEnum, String shardingValue) {
-        int indexBegin = targetEnum.getDbIndexBegin();
+        int indexBegin = targetEnum.getDbIndexBegin(); // 分片库所在的下标
         int indexEnd = targetEnum.getDbIndexBegin() + ShardingConstant.DB_SUFFIX_LENGTH;
         return StringUtil.deleteZero(shardingValue.substring(indexBegin, indexEnd));
     }
