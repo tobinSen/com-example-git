@@ -1,6 +1,7 @@
 package com.example.spring.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +27,10 @@ public class WebApplication {
     private AbstractPdfViewConfig pdfViewConfig;
 
     public static void main(String[] args) {
-        //SpringApplication.run(WebApplication.class, args);
-        System.out.println(isNodeReachable("192.168.6.12"));
-        System.out.println(isNodeReachable("127.0.0.1"));
-        System.out.println(isNodeReachable("localhost"));
+        SpringApplication.run(WebApplication.class, args);
+//        System.out.println(isNodeReachable("192.168.6.12"));
+//        System.out.println(isNodeReachable("127.0.0.1"));
+//        System.out.println(isNodeReachable("localhost"));
     }
 
     @RequestMapping("xls.do")
@@ -59,6 +60,8 @@ public class WebApplication {
             return false;
         }
     }
+
+
 
 
 }
