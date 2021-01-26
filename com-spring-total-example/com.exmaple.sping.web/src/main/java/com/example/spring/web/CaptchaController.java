@@ -2,6 +2,7 @@ package com.example.spring.web;
 
 import com.alibaba.fastjson.JSON;
 import com.google.code.kaptcha.Producer;
+import faker.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -115,6 +116,12 @@ public class CaptchaController {
         System.out.println("manufacturer:" + manufacturer);
         System.out.println("model:" + dob);
         return "";
+    }
+
+    //TODO get方式和post方式都可以映射为一个实体类
+    @RequestMapping("/userInfo")
+    public void post(UserInfo userInfo) {
+        System.out.println(userInfo);
     }
 
 
