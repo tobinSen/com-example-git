@@ -239,4 +239,17 @@ public class RedissonConfig {
         System.out.println(future.get());
     }
 
+    public static void main(String[] args) throws Exception {
+        RedissonClient redissonClient = redissonClientSimple();
+        RLock lock = redissonClient.getLock("lockName");
+        boolean b = lock.tryLock();
+        if (b) {
+            System.out.println("加锁成功");
+        }
+        Thread.sleep(10000);
+
+        lock.unlock();
+
+
+    }
 }
