@@ -5,12 +5,19 @@ import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.async.RedisAsyncCommands;
 import io.lettuce.core.api.reactive.RedisReactiveCommands;
 import io.lettuce.core.api.sync.RedisCommands;
+import io.lettuce.core.cluster.ClusterClientOptions;
+import io.lettuce.core.cluster.ClusterTopologyRefreshOptions;
 import io.lettuce.core.cluster.RedisClusterClient;
 import io.lettuce.core.cluster.api.StatefulRedisClusterConnection;
 import io.lettuce.core.cluster.api.sync.RedisAdvancedClusterCommands;
+import io.lettuce.core.codec.RedisCodec;
+import io.lettuce.core.codec.StringCodec;
 import io.lettuce.core.codec.Utf8StringCodec;
 import io.lettuce.core.masterslave.MasterSlave;
 import io.lettuce.core.masterslave.StatefulRedisMasterSlaveConnection;
+import io.lettuce.core.output.StatusOutput;
+import io.lettuce.core.protocol.CommandArgs;
+import io.lettuce.core.protocol.CommandType;
 import io.lettuce.core.pubsub.RedisPubSubAdapter;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands;
@@ -46,6 +53,50 @@ public class RedisConfiguration {
      * RedisURI uri = RedisURI.builder().withHost("localhost").withPort(6379).build();
      * 直接通过构造函数实例化：
      * RedisURI uri = new RedisURI("localhost", 6379, 60, TimeUnit.SECONDS);
+     *
+     * RedisClient 中核心方法
+     *  public static RedisClient create(String uri)
+     *  public <K, V> StatefulRedisConnection<K, V> connect(RedisCodec<K, V> codec)  //自定义编解码器
+     *  public StatefulRedisPubSubConnection<String, String> connectPubSub()
+     *  StatefulRedisSentinelConnection<String, String> connectSentinel()
+     *  public void setOptions(ClientOptions clientOptions)
+     *
+     * StatefulConnection 中核心实现类
+     *
+     *  StatefulRedisConnection                                  // 主从和哨兵都是这个connection
+     *      StatefulRedisConnectionImpl
+     *          StatefulRedisPubSubConnectionImpl
+     *              StatefulRedisClusterPubSubConnectionImpl
+     *
+     *      StatefulRedisMasterSlaveConnection
+     *          StatefulRedisMasterSlaveConnectionImpl
+     *
+     *      StatefulRedisPubSubConnection
+     *          StatefulRedisPubSubConnectionImpl
+     *             StatefulRedisClusterPubSubConnectionImpl
+     *
+     *          StatefulRedisClusterPubSubConnection
+     *             StatefulRedisClusterPubSubConnectionImpl       // 集群的发布订阅
+     *
+     *  StatefulRedisSentinelConnection                           //这个只是哨兵的额外属性接口
+     *      StatefulRedisSentinelConnectionImpl
+     *
+     *  StatefulRedisClusterConnection
+     *      StatefulRedisClusterConnectionImpl
+     *
+     *
+     * RedisCommands 实现类
+     *  RedisPubSubCommands
+     *      RedisClusterPubSubCommands
+     *
+     *拓扑发现机制
+     *
+     *  哨兵模式
+     *      由于Lettuce自身提供了哨兵的拓扑发现机制，所以只需要随便配置一个哨兵节点的RedisURI实例即可：
+     *  集群模式
+     *      对于集群（Cluster）模式，Lettuce提供了一套独立的API
+     *      redisClusterClient.setOptions(ClusterClientOptions.builder().topologyRefreshOptions(options).build());
+     *
      */
 
     @Test
@@ -210,8 +261,71 @@ public class RedisConfiguration {
     }
 
 
+    //基于约定大于配置的原则
+
     @Test
-    public void testUseConnectionPool() throws Exception {
+    public void testAdaptiveClusterTopology() throws Exception {
+        // 拓扑模式： 集群连接 和 集群的发布订阅
+        RedisURI uri = RedisURI.builder().withHost("192.168.56.200").withPort(7001).build();
+        RedisClusterClient redisClusterClient = RedisClusterClient.create(uri);
+        ClusterTopologyRefreshOptions options = ClusterTopologyRefreshOptions.builder()
+                .enableAdaptiveRefreshTrigger(
+                        ClusterTopologyRefreshOptions.RefreshTrigger.MOVED_REDIRECT,
+                        ClusterTopologyRefreshOptions.RefreshTrigger.PERSISTENT_RECONNECTS
+                )
+                .adaptiveRefreshTriggersTimeout(Duration.of(30, ChronoUnit.SECONDS))
+                .build();
+        redisClusterClient.setOptions(ClusterClientOptions.builder().topologyRefreshOptions(options).build());
+        StatefulRedisClusterConnection<String, String> connection = redisClusterClient.connect();
+        RedisAdvancedClusterCommands<String, String> commands = connection.sync();
+        commands.setex("name", 10, "throwable");
+        String value = commands.get("name");
+        //log.info("Get value:{}", value);
+        Thread.sleep(Integer.MAX_VALUE);
+        connection.close();
+        redisClusterClient.shutdown();
+    }
+
+    @Test
+    public void testCustomPing() throws Exception {
+        RedisURI redisUri = RedisURI.builder()
+                .withHost("localhost")
+                .withPort(6379)
+                .withTimeout(Duration.of(10, ChronoUnit.SECONDS))
+                .build();
+        RedisClient redisClient = RedisClient.create(redisUri);
+        StatefulRedisConnection<String, String> connect = redisClient.connect();
+        RedisCommands<String, String> sync = connect.sync();
+        RedisCodec<String, String> codec = StringCodec.UTF8;
+        String result = sync.dispatch(CommandType.PING, new StatusOutput<>(codec));
+       // log.info("PING:{}", result);
+        connect.close();
+        redisClient.shutdown();
+    }
+    // PING:PONG
+
+    // 自定义实现Set方法
+    @Test
+    public void testCustomSet() throws Exception {
+        RedisURI redisUri = RedisURI.builder()
+                .withHost("localhost")
+                .withPort(6379)
+                .withTimeout(Duration.of(10, ChronoUnit.SECONDS))
+                .build();
+        RedisClient redisClient = RedisClient.create(redisUri);
+        StatefulRedisConnection<String, String> connect = redisClient.connect();
+        RedisCommands<String, String> sync = connect.sync();
+        RedisCodec<String, String> codec = StringCodec.UTF8;
+        sync.dispatch(CommandType.SETEX, new StatusOutput<>(codec),
+                new CommandArgs<>(codec).addKey("name").add(5).addValue("throwable"));
+        String result = sync.get("name");
+        //log.info("Get value:{}", result);
+        connect.close();
+        redisClient.shutdown();
+    }
+
+    @Test
+    public void testUseConnectionPool1() throws Exception {
         RedisURI redisUri = RedisURI.builder()
                 .withHost("localhost")
                 .withPort(6379)
@@ -219,6 +333,8 @@ public class RedisConfiguration {
                 .build();
         RedisClient redisClient = RedisClient.create(redisUri);
         GenericObjectPoolConfig poolConfig = new GenericObjectPoolConfig();
+
+        // 【资源池】 同步连接的池化支持需要用ConnectionPoolSupport，异步连接的池化支持需要用AsyncConnectionPoolSupport
         GenericObjectPool<StatefulRedisConnection<String, String>> pool
                 = ConnectionPoolSupport.createGenericObjectPool(redisClient::connect, poolConfig);
         try (StatefulRedisConnection<String, String> connection = pool.borrowObject()) {
@@ -231,7 +347,5 @@ public class RedisConfiguration {
         pool.close();
         redisClient.shutdown();
     }
-    //基于约定大于配置的原则
-
 
 }
