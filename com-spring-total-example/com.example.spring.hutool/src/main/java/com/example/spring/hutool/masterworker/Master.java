@@ -44,7 +44,7 @@ public class Master {
 
     public boolean isCompleted() {
         //遍历所有的worker 只要有一个没有停止 那么就代表没有结束
-        for (Map.Entry<String, Thread> me : workers.entrySet()) {
+        for (Map.Entry<String, Thread> me : workers.entrySet()) { //线程执行完后是中断状态，生命周期已经结束了
             if (me.getValue().getState() != Thread.State.TERMINATED) {
                 return false;
 
