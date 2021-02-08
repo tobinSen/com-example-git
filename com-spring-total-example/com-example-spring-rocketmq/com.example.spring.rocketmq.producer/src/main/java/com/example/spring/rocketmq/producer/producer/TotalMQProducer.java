@@ -439,6 +439,7 @@ public class TotalMQProducer {
                 //保证的是队列中的消息的顺序性，而消费者需要保证一个队列由一个消费者进行消费，消费的顺序性了
                 @Override
                 public ConsumeOrderlyStatus consumeMessage(List<MessageExt> msgS, ConsumeOrderlyContext context) {
+                    //设置自动提交,如果不设置自动提交就算返回SUCCESS,消费者关闭重启 还是会重复消费的
                     context.setAutoCommit(true);
                     for (MessageExt msg : msgS) {
                         // 可以看到每个queue有唯一的consume线程来消费, 订单对每个queue(分区)有序
@@ -450,6 +451,8 @@ public class TotalMQProducer {
                         TimeUnit.SECONDS.sleep(random.nextInt(10));
                     } catch (Exception e) {
                         e.printStackTrace();
+                        //如果出现异常,消费失败，挂起消费队列一会会，稍后继续消费
+                        return ConsumeOrderlyStatus.SUSPEND_CURRENT_QUEUE_A_MOMENT;
                     }
                     return ConsumeOrderlyStatus.SUCCESS;
                 }

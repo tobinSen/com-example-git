@@ -1,10 +1,13 @@
 package com.example.spring.mybatis.controller;
 
+import com.example.spring.mybatis.convert.CustomMovieEditor;
 import com.example.spring.mybatis.convert.DateConvertEditor;
+import com.example.spring.mybatis.convert.Movie;
 import com.example.spring.mybatis.dao.UserMapper;
 import com.example.spring.mybatis.domain.User;
 import com.google.common.collect.Maps;
 import com.google.common.eventbus.EventBus;
+import com.sun.org.apache.bcel.internal.generic.MONITORENTER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
@@ -56,5 +59,8 @@ public class UserController {
 //		binder.registerCustomEditor(Date.class, new CustomDateEditor(
 //				dateFormat, true));
         binder.registerCustomEditor(Date.class, new DateConvertEditor());
+        binder.registerCustomEditor(Movie.class, new CustomMovieEditor());
     }
+
+
 }
