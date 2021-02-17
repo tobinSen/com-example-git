@@ -24,6 +24,8 @@ public class WeixinApplication {
     public PDFConverter pdfConverter(FreeMarkerConfigurer freeMarkerConfigurer) {
         PDFConverter pdfConverter = new PDFConverter(ResourceUtils.CLASSPATH_URL_PREFIX + "fonts/simsun.ttf");
         pdfConverter.setFreeMarkerConfigurer(freeMarkerConfigurer);
+
         return pdfConverter;
+
     }
 }

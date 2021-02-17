@@ -43,11 +43,6 @@
             <artifactId>swagger-more-core</artifactId>
             <version>1.0.3-SNAPSHOT</version>
         </dependency>
-        <!--      新增web功能-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
     </dependencies>
 
 

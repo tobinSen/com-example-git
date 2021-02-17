@@ -62,11 +62,11 @@
         </dependency>
 
         <!-- p3 starter quick -->
-        <dependency>
-            <groupId>org.jeewxframework.boot</groupId>
-            <artifactId>jeewx-boot-start-core</artifactId>
-            <version>1.0.6</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.jeewxframework.boot</groupId>-->
+            <!--<artifactId>jeewx-boot-start-core</artifactId>-->
+            <!--<version>1.0.6</version>-->
+        <!--</dependency>-->
 
     </dependencies>
 
