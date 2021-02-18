@@ -1,0 +1,14 @@
+grpc:
+  client:
+    device-grpc-server:
+      host:
+      - 127.0.0.1
+      port:
+      - 7052
+
+  server:
+    port: 7052
+
+spring:
+  application:
+    name: device-grpc-server
