@@ -74,6 +74,7 @@
         <module>com.example.spring.graphql</module>
         <module>com.example.spring.sentinel</module>
         <module>com.example.spring.cassandra</module>
+        <module>com.example.spring.rocksdb</module>
     </modules>
 
     <!--导入springboot版本仲裁-->
