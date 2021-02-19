@@ -68,10 +68,10 @@ public class RedisConfiguration {
      *          StatefulRedisPubSubConnectionImpl
      *              StatefulRedisClusterPubSubConnectionImpl
      *
-     *      StatefulRedisMasterSlaveConnection
+     *      StatefulRedisMasterSlaveConnection           --> m
      *          StatefulRedisMasterSlaveConnectionImpl
      *
-     *      StatefulRedisPubSubConnection
+     *      StatefulRedisPubSubConnection                --> p
      *          StatefulRedisPubSubConnectionImpl
      *             StatefulRedisClusterPubSubConnectionImpl
      *
