@@ -1,4 +1,4 @@
-package binary;
+package com.example.spring.git.binary;
 
 /**
  * 进制转换
@@ -80,10 +80,10 @@ package binary;
 public class BinaryDemo {
 
     public static void main(String[] args) {
-        System.out.println("==========binary to ten================");
+        System.out.println("==========com.example.spring.git.binary to ten================");
         System.out.println(Integer.toBinaryString(49)); //00010100
         System.out.println(Integer.toBinaryString(-49)); //00010100
-        System.out.println("==========ten to binary================");
+        System.out.println("==========ten to com.example.spring.git.binary================");
         System.out.println(Integer.parseInt("1110010", 2)); //114
 
 
