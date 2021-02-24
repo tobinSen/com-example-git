@@ -169,7 +169,7 @@ public class RedisConfiguration {
         });
         // 同步命令
         RedisPubSubCommands<String, String> sync = connection.sync();
-        sync.subscribe("channel");
+        sync.psubscribe("__keyspace@0__:mykey:*"); // not support sync.psubscribe("__keyspace@?__:mykey:*");
 
         // 异步命令
         RedisPubSubAsyncCommands<String, String> async = connection.async();
