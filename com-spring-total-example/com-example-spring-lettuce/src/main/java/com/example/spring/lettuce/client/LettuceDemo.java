@@ -70,7 +70,7 @@ public class LettuceDemo {
                 System.out.println("pattern:" + pattern + "channel:" + count);
             }
         });
-        commands.psubscribe("__keyspace@?__:cool:*");  // pSubscribe 支持通配符
+        commands.psubscribe("__keyspace*__:cool:*");  // pSubscribe 支持通配符
         syncCommands.setex("cool:tongjian", 4, "val");
 
         syncCommands.set("tong", "val");
