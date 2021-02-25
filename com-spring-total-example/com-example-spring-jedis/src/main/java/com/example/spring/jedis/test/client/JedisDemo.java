@@ -17,39 +17,7 @@ public class JedisDemo {
         jedis.setex("key", 5, "val");
         jedis.setex("key:tongjian", 5, "val");
 
-        jedis.subscribe(new JedisPubSub() {
-            @Override
-            public void onMessage(String channel, String message) {
-                System.out.println("channel:" + channel + "message:" + message);
-            }
-
-            @Override
-            public void onPMessage(String pattern, String channel, String message) {
-                System.out.println("pattern" + pattern + "channel:" + channel + "message:" + message);
-            }
-
-            @Override
-            public void onSubscribe(String channel, int subscribedChannels) {
-                System.out.println("channel:" + channel + "s" + subscribedChannels);
-            }
-
-            @Override
-            public void onUnsubscribe(String channel, int subscribedChannels) {
-                System.out.println("channel:" + channel + "s" + subscribedChannels);
-            }
-
-            @Override
-            public void onPUnsubscribe(String pattern, int subscribedChannels) {
-                System.out.println("pattern:" + pattern + "s" + subscribedChannels);
-            }
-
-            @Override
-            public void onPSubscribe(String pattern, int subscribedChannels) {
-                System.out.println("pattern:" + pattern + "s" + subscribedChannels);
-            }
-        }, "__keyspace@0__:key"); // subscribe 不支持通配
-
-//        jedis.psubscribe(new JedisPubSub() {
+//        jedis.subscribe(new JedisPubSub() {
 //            @Override
 //            public void onMessage(String channel, String message) {
 //                System.out.println("channel:" + channel + "message:" + message);
@@ -79,8 +47,39 @@ public class JedisDemo {
 //            public void onPSubscribe(String pattern, int subscribedChannels) {
 //                System.out.println("pattern:" + pattern + "s" + subscribedChannels);
 //            }
-//        },"__keyspace@?__:key:*"); // psubscribe 支持通配
+//        }, "__keyspace@0__:key"); // subscribe 不支持通配
 
+        jedis.psubscribe(new JedisPubSub() {
+            @Override
+            public void onMessage(String channel, String message) {
+                System.out.println("channel:" + channel + "message:" + message);
+            }
+
+            @Override
+            public void onPMessage(String pattern, String channel, String message) {
+                System.out.println("pattern" + pattern + "channel:" + channel + "message:" + message);
+            }
+
+            @Override
+            public void onSubscribe(String channel, int subscribedChannels) {
+                System.out.println("channel:" + channel + "s" + subscribedChannels);
+            }
+
+            @Override
+            public void onUnsubscribe(String channel, int subscribedChannels) {
+                System.out.println("channel:" + channel + "s" + subscribedChannels);
+            }
+
+            @Override
+            public void onPUnsubscribe(String pattern, int subscribedChannels) {
+                System.out.println("pattern:" + pattern + "s" + subscribedChannels);
+            }
+
+            @Override
+            public void onPSubscribe(String pattern, int subscribedChannels) {
+                System.out.println("pattern:" + pattern + "s" + subscribedChannels);
+            }
+        },"__keyspace*__:key:*"); // psubscribe 支持通配 "__key*__:*" 或者 __keyspace*__:key:* 或者 __keyspace@?__:key:*匹配
 
 
 
