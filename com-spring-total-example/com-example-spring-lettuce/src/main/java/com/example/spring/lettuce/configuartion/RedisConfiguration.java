@@ -9,7 +9,12 @@ import io.lettuce.core.cluster.ClusterClientOptions;
 import io.lettuce.core.cluster.ClusterTopologyRefreshOptions;
 import io.lettuce.core.cluster.RedisClusterClient;
 import io.lettuce.core.cluster.api.StatefulRedisClusterConnection;
+import io.lettuce.core.cluster.api.async.RedisAdvancedClusterAsyncCommands;
 import io.lettuce.core.cluster.api.sync.RedisAdvancedClusterCommands;
+import io.lettuce.core.cluster.models.partitions.RedisClusterNode;
+import io.lettuce.core.cluster.pubsub.StatefulRedisClusterPubSubConnection;
+import io.lettuce.core.cluster.pubsub.api.sync.PubSubNodeSelection;
+import io.lettuce.core.cluster.pubsub.api.sync.RedisClusterPubSubCommands;
 import io.lettuce.core.codec.RedisCodec;
 import io.lettuce.core.codec.StringCodec;
 import io.lettuce.core.codec.Utf8StringCodec;
@@ -31,10 +36,14 @@ import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Configuration;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 @Configuration
@@ -298,7 +307,7 @@ public class RedisConfiguration {
         RedisCommands<String, String> sync = connect.sync();
         RedisCodec<String, String> codec = StringCodec.UTF8;
         String result = sync.dispatch(CommandType.PING, new StatusOutput<>(codec));
-       // log.info("PING:{}", result);
+        // log.info("PING:{}", result);
         connect.close();
         redisClient.shutdown();
     }
@@ -346,6 +355,74 @@ public class RedisConfiguration {
         }
         pool.close();
         redisClient.shutdown();
+    }
+
+    public RedisClusterClient init(){
+        RedisURI uri = RedisURI.builder()
+                .withHost("")
+                .withPort(8080)
+                .withPassword("").build();
+
+        RedisClusterClient redisClusterClient = RedisClusterClient.create(uri);
+
+        ClusterTopologyRefreshOptions options = ClusterTopologyRefreshOptions
+                .builder()
+                .enablePeriodicRefresh(Duration.of(10, ChronoUnit.MINUTES))
+                .build();
+        redisClusterClient.setOptions(ClusterClientOptions.builder().topologyRefreshOptions(options).build());
+        return redisClusterClient;
+    }
+
+
+    @Test
+    public void testRedisCluster() throws IOException, ExecutionException, InterruptedException {
+        RedisClusterClient redisClusterClient = init();
+        StatefulRedisClusterPubSubConnection<String, String> connectPubSub = redisClusterClient.connectPubSub();
+        RedisClusterPubSubCommands<String, String> commands = connectPubSub.sync();
+
+        // All cluster master
+        PubSubNodeSelection<String, String> masters = commands.masters();
+        Set<RedisClusterNode> redisClusterNodes = masters.asMap().keySet();
+        for (RedisClusterNode node : redisClusterNodes) {
+            //1.单节点的uri
+            RedisURI uri = node.getUri();
+            uri.setPassword("");
+            //2.创建redisClient
+            RedisClient redisClient = RedisClient.create(uri);
+            //3.创建链接
+            StatefulRedisPubSubConnection<String, String> simpleNodeConnection = redisClient.connectPubSub();
+            simpleNodeConnection.addListener(new RedisPubSubAdapter<String, String>() {
+                @Override
+                public void psubscribed(String pattern, long count) {
+                    System.err.println("pattern:" + pattern + " count:" + count);
+                }
+
+                @Override
+                public void message(String pattern, String channel, String message) {
+                    System.err.println("pattern:" + pattern + " channel:" + channel + " message:" + message);
+                }
+            });
+            RedisPubSubCommands<String, String> simpleNodeCommands = simpleNodeConnection.sync();
+            simpleNodeCommands.psubscribe("__keyspace@?__:cool*");
+            //4.关闭资源
+//            simpleNodeConnection.close();
+//            redisClient.shutdown();
+        }
+        System.in.read(); //阻塞
+    }
+
+    @Test
+    public void testRedisClient() throws Exception {
+        RedisClusterClient redisClusterClient = init();
+        StatefulRedisClusterConnection<String, String> connection = redisClusterClient.connect();
+        RedisAdvancedClusterAsyncCommands<String, String> commands = connection.async();
+        for (int i = 0; i < 5; i++) {
+            commands.setex("cool:tong" + i, 1, "val");
+            TimeUnit.SECONDS.sleep(1);
+        }
+
+//        System.in.read(); //阻塞
+
     }
 
 }
