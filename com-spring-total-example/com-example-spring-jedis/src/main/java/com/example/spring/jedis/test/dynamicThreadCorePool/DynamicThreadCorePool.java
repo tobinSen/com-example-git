@@ -70,7 +70,7 @@ public class DynamicThreadCorePool {
 
 
     /**
-     * setCorePoolSize方法：
+     * setCorePoolSize方法：允许运行时进行修改
      * 工作线程
      * 核心线程
      * 最大线程
