@@ -60,7 +60,7 @@ usage(){
   echo "Usage: $0 [DEPLOY_TYPE ITEM  PJ version] | rollback-list | rollback "
 }
 
-build_pkg(){
+build_pkg() {
   echo "build pkg"
   shell_log "Build pkg"
   /bin/sh /data/jenkins/mvn/${PJ}.mvn
