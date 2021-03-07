@@ -95,6 +95,14 @@
             <artifactId>fastutil</artifactId>
             <version>6.5.7</version>
         </dependency>
+
+
+        <dependency>
+            <groupId>com.taobao.arthas</groupId>
+            <artifactId>arthas-spring-boot-starter</artifactId>
+            <version>3.3.7</version>
+        </dependency>
+
     </dependencies>
 
     <build>

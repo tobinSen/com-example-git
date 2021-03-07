@@ -18,3 +18,9 @@ boss:
   python:
     name: perter
     age: 12
+
+#  arthas.agent-id=hsehdfsfghhwertyfad
+#  arthas.tunnel-server=ws://47.75.156.201:7777/ws
+arthas:
+  tunnel-server: ws://127.0.0.1:7777/ws:
+  agent-id:
