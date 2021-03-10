@@ -13,12 +13,13 @@
 function fun()
     print("123")
 end
-print(type(nil))             -- nil
-print(type(1))               -- number
-print(type(true))            -- boolean
-print(type(fun))             -- function
-print(type("hello world"))   -- string
-print(type({ 1, 2, 3, 4 }))  -- table
+
+print(type(nil)) -- nil
+print(type(1)) -- number
+print(type(true)) -- boolean
+print(type(fun)) -- function
+print(type("hello world")) -- string
+print(type({ 1, 2, 3, 4 })) -- table
 
 --- 赋值运算符
 str = "hello " .. "world" --- .. lua 中的字符串拼接
@@ -91,230 +92,232 @@ for i = 1, 10, 2 do
 
     print(i, "no continue")
     :: continue ::
-    print("continue")  -- 这里还是会执行
-end
+    print("continue") -- 这里还是会执行 end
 
-for i = 10, 1, -3 do
-    print(i)
-end
-
-a = { "one", "two", "three" };
-for i, v in ipairs(a) do
-    -- ipairs 迭代函数
-    print(i, v);
-end
-
-for i, v in pairs(a) do
-    print(i, v)
-end
-
-a = 10;
-repeat
-    print(a)
-    a = a + 4
-    if a == 8 then
-        break ;
+    for i = 10, 1, -3 do
+        print(i)
     end
-until a < 20     -- 直到为 true 就结束，
 
---[[
-lua中的 ipairs 和 pairs区别？
-1、ipairs遇到nil会停止，pairs会输出nil值然后继续下去
-2、ipairs并不会输出table中的键值对，会跳过键值对，然后顺序输出table，遇到nil则会停止
-   pairs会输出table中的键值对，先顺序输出值，再乱序(键的哈希值)输出键值对
-  这是因为，table在存储值的时候是按照顺序的，但是在存储键值对的时候是按照键的哈希值存储的，并不会按照键的字母顺序或是数字顺序存储。
-也就是说，ipairs知识按照索引值顺序，打印出了table中有索引的数据，没有索引值的不管。也就是说table并不会给键值对一个索引值。
-而pairs是先按照索引值打印，打印完成后再按照键值对的键的哈希值打印它的值。
+    a = { "one", "two", "three" };
+    for i, v in ipairs(a) do
+        -- ipairs 迭代函数
+        print(i, v);
+    end
 
-]]
-
-
---- lua 数组大小不固定的，lua中数组的下标是从 1 开始
-arr = { key = 1, vak = 1 }
-for i = 1, #arr do
-    print(arr[i])
-end
-
-for i, v in ipairs(arr) do
-    print(i, v)
-end
-
---- 数组 ，二维数组，获取数组
-
---- 函数 --> 数据类型
---- 形参个数和实参个数可以不一致
---- 全局函数还是局部函数(local)
-local function fun(a, b, c)
-    return a, b, c; -- 可以返回多个值
-end
-val1, val2, val3 = fun(1, 2);
-print(val);
-
---- 函数表达式
-myPrint = function(a)
-    return a;
-end
-
---[[
-通常在遍历变长参数的时候只需要使用 {…}，然而变长参数可能会包含一些 nil，那么就可以用 select 函数来访问变长参数了：select('#', …) 或者 select(n, …)
-
-select('#', …) 返回可变参数的长度
-select(n, …) 用于返回 n 到 select('#',…) 的参数
-
-]]
-
-function myPrint(...)
-    --可变参数
-    for i, v in ipairs({ ... }) do
+    for i, v in pairs(a) do
         print(i, v)
     end
-end
+
+    a = 10;
+    repeat
+        print(a)
+        a = a + 4
+        if a == 8 then
+            break ;
+        end
+    until a < 20 -- 直到为 true 就结束，
+
+    --[[
+    lua中的 ipairs 和 pairs区别？
+    1、ipairs遇到nil会停止，pairs会输出nil值然后继续下去
+    2、ipairs并不会输出table中的键值对，会跳过键值对，然后顺序输出table，遇到nil则会停止
+       pairs会输出table中的键值对，先顺序输出值，再乱序(键的哈希值)输出键值对
+      这是因为，table在存储值的时候是按照顺序的，但是在存储键值对的时候是按照键的哈希值存储的，并不会按照键的字母顺序或是数字顺序存储。
+    也就是说，ipairs知识按照索引值顺序，打印出了table中有索引的数据，没有索引值的不管。也就是说table并不会给键值对一个索引值。
+    而pairs是先按照索引值打印，打印完成后再按照键值对的键的哈希值打印它的值。
+
+    ]]
 
 
---[[
-#{...} 不会计算 nil
-select('#',...) 会计算nil
-]]
+    --- lua 数组大小不固定的，lua中数组的下标是从 1 开始
+    arr = { key = 1, vak = 1 }
+    for i = 1, #arr do
+        print(arr[i])
+    end
 
-do
-    function foo(...)
-        for i = 1, select('#', ...) do
-            -->获取参数总数
-            local arg = select(i, ...); -->读取参数
-            print("arg", arg);
+    for i, v in ipairs(arr) do
+        print(i, v)
+    end
+
+    --- 数组 ，二维数组，获取数组
+
+    --- 函数 --> 数据类型
+    --- 形参个数和实参个数可以不一致
+    --- 全局函数还是局部函数(local)
+    local function fun(a, b, c)
+        return a, b, c; -- 可以返回多个值
+    end
+
+    val1, val2, val3 = fun(1, 2);
+    print(val);
+
+    --- 函数表达式
+    myPrint = function(a)
+        return a;
+    end
+
+    --[[
+    通常在遍历变长参数的时候只需要使用 {…}，然而变长参数可能会包含一些 nil，那么就可以用 select 函数来访问变长参数了：select('#', …) 或者 select(n, …)
+
+    select('#', …) 返回可变参数的长度
+    select(n, …) 用于返回 n 到 select('#',…) 的参数
+
+    ]]
+
+    function myPrint(...)
+        --可变参数
+        for i, v in ipairs({ ... }) do
+            print(i, v)
         end
     end
 
-    foo(1, 2, 3, 4, nil);
-end
 
---- 模块和包
-module {}
-module.index = 1
-function module.sum(a, b)
-    return a + b
-end
+    --[[
+    #{...} 不会计算 nil
+    select('#',...) 会计算nil
+    ]]
 
-require("module")
-print(module.index)
-print(module.sum(1, 2))
+    do
+        function foo(...)
+            for i = 1, select('#', ...) do
+                -->获取参数总数
+                local arg = select(i, ...); -->读取参数
+                print("arg", arg);
+            end
+        end
 
-str = [["tongjian]]
---- 字符串类型
-string.upper(str);
---- table类型 --》js中的对象
-table.sort(str)
---- 时间
-print(os.time())
---- 数学库
-math.rad(x)
---- 文件操作
-file = io.input("test1.txt")    -- 使用 io.input() 函数打开文件
-
-local args = { ... } or {}
-
---- 元表操作
-local myTable = {}
-local myMetaTable = {}
-setmetatable(myTable, myMetaTable)
---[[
-1.重载操作符 __add
-2.重载元方法
-    __index:当你通过键来访问 table 的时候，如果这个键没有值，那么Lua就会寻找该table的metatable（假定有metatable）中的__index 键。如果__index包含一个表格，Lua会在表格中查找相应的键
-    __newindex:当你给表的一个缺少的索引赋值，解释器就会查找__newindex 元方法：如果存在则调用这个函数而不进行赋值操作。
-    __call:每次获取值都会去调用
-    __tostring 元方法
-    __metatable 元方法：对象使其使用者既看不到也不能修改 metatables
-]]
-function union(self, another)
-    print(self, another)
-end
-myTable = setmetatable(myTable, { __add = union }) -- 重载 myTable 表的 __add 元方法
-myTable = myTable + myMetaTable
-
--- 现在myTable中查找，无关查不到就去__index表中查找
-local mytable = setmetatable({ key1 = "value1" }, { __index = function(self, key)
-    if key == "key2" then
-        return "metatablevalue"
+        foo(1, 2, 3, 4, nil);
     end
-end
-})
-arr1 = { 1, 2, [3] = "hello", key = vale, [key] = "world" }
-local corp = {
-    web = "www.google.com", --索引为字符串，key = "web",
-    --            value = "www.google.com"
-    telephone = "12345678", --索引为字符串
-    staff = { "Jack", "Scott", "Gary" }, --索引为字符串，值也是一个表
-    100876, --相当于 [1] = 100876，此时索引为数字
-    --      key = 1, value = 100876
-    100191, --相当于 [2] = 100191，此时索引为数字
-    [10] = 360, --直接把数字索引给出
-    ["city"] = "Beijing" --索引为字符串
-}
 
-t = setmetatable({ [1] = "hello" }, { __index = { [2] = "world" } })
-print(t[1], t[2])   -->hello world
+    --- 模块和包
+    module {}
+    module.index = 1
+    function module.sum(a, b)
+        return a + b
+    end
 
+    require("module")
+    print(module.index)
+    print(module.sum(1, 2))
 
-functor = { "functor" }
-function func1(self, arg)
-    print("called from", arg)
-end
+    str = [["tongjian]]
+    --- 字符串类型
+    string.upper(str);
+    --- table类型 --》js中的对象
+    table.sort(str)
+    --- 时间
+    print(os.time())
+    --- 数学库
+    math.rad(x)
+    --- 文件操作
+    file = io.input("test1.txt") -- 使用 io.input() 函数打开文件
 
-setmetatable(functor, { __call = func1 })
+    local args = { ... } or {}
 
-functor("functor")  --> called from functor
+    --- 元表操作
+    local myTable = {}
+    local myMetaTable = {}
+    setmetatable(myTable, myMetaTable)
+    --[[
+    1.重载操作符 __add
+    2.重载元方法
+        __index:当你通过键来访问 table 的时候，如果这个键没有值，那么Lua就会寻找该table的metatable（假定有metatable）中的__index 键。如果__index包含一个表格，Lua会在表格中查找相应的键
+        __newindex:当你给表的一个缺少的索引赋值，解释器就会查找__newindex 元方法：如果存在则调用这个函数而不进行赋值操作。
+        __call:每次获取值都会去调用
+        __tostring 元方法
+        __metatable 元方法：对象使其使用者既看不到也不能修改 metatables
+    ]]
+    function union(self, another)
+        print(self, another)
+    end
 
+    myTable = setmetatable(myTable, { __add = union }) -- 重载 myTable 表的 __add 元方法
+    myTable = myTable + myMetaTable
 
---- 面向对象
--- 元类
-Shape = { area = 0 }
+    -- 现在myTable中查找，无关查不到就去__index表中查找
+    local mytable = setmetatable({ key1 = "value1" }, {
+        __index = function(self, key)
+            if key == "key2" then
+                return "metatablevalue"
+            end
+        end
+    })
+    arr1 = { 1, 2, [3] = "hello", key = vale, [key] = "world" }
+    local corp = {
+        web = "www.google.com", --索引为字符串，key = "web",
+        --            value = "www.google.com"
+        telephone = "12345678", --索引为字符串
+        staff = { "Jack", "Scott", "Gary" }, --索引为字符串，值也是一个表
+        100876, --相当于 [1] = 100876，此时索引为数字
+        --      key = 1, value = 100876
+        100191, --相当于 [2] = 100191，此时索引为数字
+        [10] = 360, --直接把数字索引给出
+        ["city"] = "Beijing" --索引为字符串
+    }
 
--- 基础类方法 new 构造函数
-function Shape:new (o, side)
-    o = o or {}
-    setmetatable(o, self)
-    self.__index = self
-    next()
-    side = side or 0
-    self.area = side * side;
-    return o
-end
-
--- 基础类方法 printArea
-function Shape:printArea ()
-    print("面积为 ", self.area)
-end
-
--- 创建对象
-myShape = Shape:new(nil, 10)
--- : 用于调用方法
-myShape:printArea()
-
---- 虚变量 用它来表示丢弃不需要的数值，仅仅起到占位的作用
-local _, finish = string.find("hello", "he")   --采用虚变量（即下划线），接收起
-
---- 点号与冒号操作符的区别
---- 冒号操作会带入一个 self 参数，用来代表 自己。而点号操作，只是 内容 的展开
---- 在函数定义时，使用冒号将默认接收一个 self 参数，而使用点号则需要显式传入 self 参数。
-local str = "abcde"
-print("case 1:", str:sub(1, 2))
-print("case 2:", str.sub(str, 1, 2))
-obj = { x = 20 }
-function obj:fun1()
-    print(self.x)
-end
---- 等价
-obj = { x = 20 }
-function obj.fun1(self)
-    print(self.x)
-end
-debug()
-
---[[
-总结：8，3，3    3 3 2 bg  3 31
-     5,3,3 2
-
-]]
+    t = setmetatable({ [1] = "hello" }, { __index = { [2] = "world" } })
+    print(t[1], t[2]) -->hello world
 
 
+    functor = { "functor" }
+    function func1(self, arg)
+        print("called from", arg)
+    end
+
+    setmetatable(functor, { __call = func1 })
+
+    functor("functor") --> called from functor
+
+
+    --- 面向对象
+    -- 元类
+    Shape = { area = 0 }
+
+    -- 基础类方法 new 构造函数
+    function Shape:new(o, side)
+        o = o or {}
+        setmetatable(o, self)
+        self.__index = self
+        next()
+        side = side or 0
+        self.area = side * side;
+        return o
+    end
+
+    -- 基础类方法 printArea
+    function Shape:printArea()
+        print("面积为 ", self.area)
+    end
+
+    -- 创建对象
+    myShape = Shape:new(nil, 10)
+    -- : 用于调用方法
+    myShape:printArea()
+
+    --- 虚变量 用它来表示丢弃不需要的数值，仅仅起到占位的作用
+    local _, finish = string.find("hello", "he") --采用虚变量（即下划线），接收起
+
+    --- 点号与冒号操作符的区别
+    --- 冒号操作会带入一个 self 参数，用来代表 自己。而点号操作，只是 内容 的展开
+    --- 在函数定义时，使用冒号将默认接收一个 self 参数，而使用点号则需要显式传入 self 参数。
+    local str = "abcde"
+    print("case 1:", str:sub(1, 2))
+    print("case 2:", str.sub(str, 1, 2))
+    obj = { x = 20 }
+    function obj:fun1()
+        print(self.x)
+    end
+
+    --- 等价
+    obj = { x = 20 }
+    function obj.fun1(self)
+        print(self.x)
+    end
+
+    debug()
+
+    --[[
+    总结：8，3，3    3 3 2 bg  3 31
+         5,3,3 2
+
+    ]]

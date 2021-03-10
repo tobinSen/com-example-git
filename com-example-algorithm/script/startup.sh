@@ -40,4 +40,7 @@ demoFun(){
 demoFun 120
 echo "自定义函数返回值 $?"
 
-
+until true;
+do
+echo "until";
+done

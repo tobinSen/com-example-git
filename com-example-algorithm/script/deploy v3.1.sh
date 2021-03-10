@@ -75,7 +75,7 @@ build_pkg() {
 
 
 
-get_pkg(){
+function get_pkg(){
   echo "get pkg"
   shell_log "Get PKG" 
   PKG_J=`echo ${ITEM}|grep tomcat*|wc -l`
