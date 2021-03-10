@@ -23,26 +23,49 @@ public class RedisDelayQueue {
 
     private JedisPool jedisPool = null;
     // Redis服务器IP
-    private String ADDR = "Qk2Z756a-1.cachesit.sfcloud.local";
+    private String ADDR = "10.208.20.36";
     // Redis的端口号
     private int PORT = 8080;
 
     private static String DELAY_QUEUE = "delayqueue";
 
+    private Jedis jedis;
+
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public RedisDelayQueue() {
-        jedisPool = new JedisPool(new JedisPoolConfig(), ADDR, PORT, 10000, "WRilJnoZieNY1d8zRkgA25vt");
+        jedisPool = new JedisPool(new JedisPoolConfig(), ADDR, PORT, 10000, "9yyt4swskizudmgc");
+        jedis = jedisPool.getResource();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        RedisDelayQueue redisDelay = new RedisDelayQueue();
-        redisDelay.pushOrderQueue();
-        for (int i = 0; i < 3; i++) {
-            new Thread(redisDelay::pollOrderQueue).start();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+        RedisDelayQueue queue = new RedisDelayQueue();
+        final Jedis jedis = queue.jedis;
+        // 1.先判断是否存在 setnx + expire --> 第一次进行  第二次
+        // 2.incr进行判断 -->
+        String key = dateFormat.format(new Date()) + "0000"; //
+
+
+        for (int i = 0; i < 10; i++) { //
+//            new Thread(() -> {
+//            if (!jedis.exists("Date:" +key)) {
+//                jedis.expire("Date:" + key, 10);
+//                jedis.set("Date:" + key, key);
+//            }
+            Long sequence = jedis.incr("Date:" + key);
+            System.err.println(sequence);
+//            }).start();
         }
-//        redisDelay.deleteZSet();
+        Thread.currentThread().join();
+
+//        RedisDelayQueue redisDelay = new RedisDelayQueue();
+//        redisDelay.pushOrderQueue();
+//        for (int i = 0; i < 3; i++) {
+//            new Thread(redisDelay::pollOrderQueue).start();
+//        }
+////        redisDelay.deleteZSet();
     }
 
     public void deleteZSet() {
