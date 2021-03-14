@@ -37,6 +37,10 @@ import java.util.Map;
  * group by的规则：对每个SQL都会添加group by语句
  * order by的规则：对每个SQL都会添加order by语句
  * limit的规则：如果是2，2 ==》0，4对应每个表进行查询
+ *
+ * +------------------+
+ * +                  +
+ * +------------------+
  */
 @Configuration
 @EnableConfigurationProperties(ShardDataSourceProperties.class)
