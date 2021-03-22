@@ -83,7 +83,7 @@ do
     a = a + 10
 end
 
---- for var=exp1,exp2,exp3 => exp1 初始值，exp2为最大值，exp3为步长(不指定exp3 默认步长为1)
+--- for var =exp1,exp2,exp3 => exp1 初始值，exp2为最大值，exp3为步长(不指定exp3 默认步长为1)
 for i = 1, 10, 2 do
     if i < 2 then
         print(i, "yes continue")
