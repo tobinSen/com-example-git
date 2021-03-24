@@ -70,8 +70,23 @@ package com.example.spring.git.binary;
  *  >>      右移          3>>1 = 1 (3/2 = 1)
  *  >>>     无符号右移     3>>1 = 1 (3/2 = 1)
  *
+ * 每个汉字的机内码需要用两个字节来表示
+ *
+ * 计算机系统通用的字符编码工作方式：
+ *   在计算机内存中，统一使用Unicode编码，当需要保存到硬盘或者需要传输的时候，就转换为UTF-8编码。
+ *   用记事本编辑的时候，从文件读取的UTF-8字符被转换为Unicode字符到内存里，编辑完成后，保存的时候再把Unicode转换为UTF-8保存到文件：
+ *   现在计算机为了解决乱码问题，在本地都是用unicode编码显示，在存储和传输时，则用的utf-8编码
  *
  *
+ * 位（bit）、字节（byte）、字符、编码之间的关系
+ *
+ *  https://img-blog.csdnimg.cn/20200502141325613.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3RzY2F4eA==,size_16,color_FFFFFF,t_70
+ *
+ * 字节: 计算机懂的语言
+ * 字符：人类懂的语言
+ * 编码：硬盘和传输的格式
+ *
+ *  编码就是按照规则将字符翻译成对应的二进制数，在计算器中运行存储，用户看的时候（比如浏览器），再用对应的编码解析成用户可看懂的
  *
  * 总结：5，3点
  *
