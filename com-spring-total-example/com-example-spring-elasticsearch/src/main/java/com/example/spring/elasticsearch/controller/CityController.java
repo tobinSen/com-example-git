@@ -80,7 +80,7 @@ public class CityController {
         List<City> cityList = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             City c = new City();
-            c.setId(Long.valueOf(i));
+            c.setId((long) i);
             c.setName("tongjian" + i);
             c.setScore("29" + new Random().nextInt(1999));
             c.setDescription("kibana " + i + "opertation");
@@ -90,6 +90,16 @@ public class CityController {
         cityRepository.saveAll(cityList);
     }
 
+    /**
+     * {@link String#String(int[], int, int)} {@code jmeter}
+     * @author tong
+     * @see <a href="www.baidu.com">baidu</a>
+     * @since 1.8
+     *
+     * @param name
+     * @return
+     * @throws Exception
+     */
     @RequestMapping("jmeter.do")
     public String jmeter(String name) throws Exception {
         System.out.println("jmeter");
