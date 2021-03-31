@@ -40,6 +40,7 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
@@ -422,6 +423,47 @@ public class RedisConfiguration {
         }
 
 //        System.in.read(); //阻塞
+
+    }
+
+    @Test
+    public void testSentinelsscan() throws Exception {
+        RedisURI redisUri = RedisURI.builder()
+                .withPassword("")
+                .withTimeout(Duration.of(10, ChronoUnit.SECONDS))
+                .withSentinelMasterId("")
+                .withSentinel("", 8001)
+                .withSentinel("", 8001)
+                .withSentinel("", 8001)
+                .build();
+        RedisClient redisClient = RedisClient.create(redisUri);
+        StatefulRedisConnection<String, String> connect = redisClient.connect();
+        RedisCommands<String, String> commands = connect.sync();
+
+        commands.del("key_scan");
+        // limit < 512 直接读所有的数据
+        for (int i = 0; i < 512; i++) {
+            commands.sadd("key_scan", String.valueOf(i));
+        }
+
+        String cursor = ScanCursor.INITIAL.getCursor();
+        final String INIT_CURSOR = cursor;
+        Set<String> data = new HashSet<>();
+        for (; ; ) {
+            ValueScanCursor<String> sscan = commands.sscan("key_scan", ScanCursor.of(cursor), ScanArgs.Builder.limit(4));
+            String curCursor = sscan.getCursor();
+            data.addAll(sscan.getValues());
+            if (INIT_CURSOR.equals(curCursor) && sscan.isFinished()) {
+                break;
+            }
+            System.err.println("=============== sscan start =======================");
+            System.err.println("sscan cursor:" + cursor);
+            System.err.println("sscan finished:" + sscan.isFinished());
+            System.err.println("sscan data:" + sscan.getValues());
+            System.err.println("=============== sscan end =======================");
+            cursor = curCursor;
+        }
+        System.out.println(data);
 
     }
 
