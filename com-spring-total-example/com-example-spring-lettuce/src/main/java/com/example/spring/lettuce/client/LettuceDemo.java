@@ -3,14 +3,19 @@ package com.example.spring.lettuce.client;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.RedisURI;
 import io.lettuce.core.ScriptOutputType;
+import io.lettuce.core.TrackingArgs;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.sync.RedisCommands;
 import io.lettuce.core.pubsub.RedisPubSubListener;
 import io.lettuce.core.pubsub.StatefulRedisPubSubConnection;
 import io.lettuce.core.pubsub.api.sync.RedisPubSubCommands;
+import io.lettuce.core.support.caching.CacheAccessor;
+import io.lettuce.core.support.caching.CacheFrontend;
+import io.lettuce.core.support.caching.ClientSideCaching;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -32,6 +37,12 @@ public class LettuceDemo {
         StatefulRedisConnection<String, String> connect = redisClient.connect();
         //4.同步的命令
         RedisCommands<String, String> syncCommands = connect.sync();
+
+        // redis6.0 客户端缓存，及时通知
+        CacheFrontend<String, String> frontend = ClientSideCaching.enable(
+                CacheAccessor.forMap(new HashMap<>(100)),
+                connect,
+                TrackingArgs.Builder.enabled().noloop());
 
 
         StatefulRedisPubSubConnection<String, String> pubSub = redisClient.connectPubSub();
